@@ -12,7 +12,7 @@ ex. `https://vernier.com/d/XXXXX`
 
 ### How to Use These Recipes
 
-1. Add the prochat-recipes repo to autopkg.
+1. Add the repo - https://github.com/apizz/apizz-recipes repo to autopkg.
 
 2. Create overrides for both the LoggerPro_License.download.recipe and LoggerPro_License.pkg.recipe
 - You can change the override recipe name should the major version of the software change in the future (ex. LoggerPro4)
@@ -21,7 +21,7 @@ ex. `https://vernier.com/d/XXXXX`
 
 4. Update the Logger Pro major version number as necessary (`MAJOR_VERSION`)
 
-### LoggerPro_License Recipe Changes
+### LoggerPro_License Recipe Differences from LoggerPro_Update
 
 #### LoggerPro3.download.recipe
 
