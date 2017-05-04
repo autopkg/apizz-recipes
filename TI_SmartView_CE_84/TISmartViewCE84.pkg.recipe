@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of the TI Connect CE for Mac software and packages it.</string>
 	<key>Identifier</key>
-	<string>local.pkg.TISmartViewCE</string>
+	<string>com.github.apizz.pkg.TISmartViewCE</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
@@ -14,7 +14,7 @@
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>
 	<key>ParentRecipe</key>
-	<string>local.download.TISmartViewCE</string>
+	<string>com.github.apizz.download.TISmartViewCE</string>
 	<key>Process</key>
 	<array>
 		<dict>
