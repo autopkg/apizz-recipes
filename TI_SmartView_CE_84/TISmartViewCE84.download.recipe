@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of the TI Connect CE for Mac software.</string>
 	<key>Identifier</key>
-	<string>local.download.TISmartViewCE</string>
+	<string>com.github.apizz.download.TISmartViewCE</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
