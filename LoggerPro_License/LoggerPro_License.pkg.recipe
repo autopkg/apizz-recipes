@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Downloads the latest version of LoggerPro and packages it. This recipe requires you to create an override and point it to your LoggerPro_License.download.recipe override and substitute your unique 5-digit letter and number string in the DOWNLOAD_URL variable</string>
+	<string>Downloads the latest version of LoggerPro and packages it. This recipe requires you to create an override and substitute your unique 5-digit letter and number string in the DOWNLOAD_URL variable</string>
 	<key>Identifier</key>
 	<string>com.github.apizz.pkg.loggerpro_license</string>
 	<key>Input</key>
