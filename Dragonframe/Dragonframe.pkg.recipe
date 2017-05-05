@@ -10,106 +10,106 @@
     <dict>
         <key>NAME</key>
         <string>Dragonframe</string>
-  		<key>DOWNLOAD_PATTERN</key>
-		<string>http://www.dragonframe.com/download/Dragonframe_X.[0-9].[0-9].pkg</string>
-		<key>DOWNLOAD_URL</key>
-		<string>http://www.dragonframe.com/downloads/</string>
+  	<key>DOWNLOAD_PATTERN</key>
+	<string>http://www.dragonframe.com/download/Dragonframe_X.[0-9].[0-9].pkg</string>
+	<key>DOWNLOAD_URL</key>
+	<string>http://www.dragonframe.com/downloads/</string>
     </dict>
 	<key>Process</key>
 	<array>
+	    <dict>
+	        <key>Arguments</key>
+	        <dict>
+		    <key>re_pattern</key>
+		    <string>%DOWNLOAD_PATTERN%</string>
+		    <key>url</key>
+		    <string>%DOWNLOAD_URL%</string>
+	        </dict>
+	        <key>Processor</key>
+	        <string>URLTextSearcher</string>
+	    </dict>
+	    <dict>
+	        <key>Arguments</key>
 		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>re_pattern</key>
-				<string>%DOWNLOAD_PATTERN%</string>
-				<key>url</key>
-				<string>%DOWNLOAD_URL%</string>
-			</dict>
-			<key>Processor</key>
-			<string>URLTextSearcher</string>
+		    <key>filename</key>
+		    <string>%NAME%.pkg</string>
+		    <key>url</key>
+		    <string>%match%</string>
 		</dict>
+		    <key>Processor</key>
+		    <string>URLDownloader</string>
+	    </dict>
+	    <dict>
+		<key>Arguments</key>
 		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>filename</key>
-				<string>%NAME%.pkg</string>
-				<key>url</key>
-				<string>%match%</string>
-			</dict>
-			<key>Processor</key>
-			<string>URLDownloader</string>
+		    <key>expected_authority_names</key>
+		    <array>
+			<string>Developer ID Installer: DZED Systems LLC</string>
+			<string>Developer ID Certification Authority</string>
+			<string>Apple Root CA</string>
+		    </array>
+		    <key>input_path</key>
+		    <string>%pathname%</string>
 		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>expected_authority_names</key>
-				<array>
-					<string>Developer ID Installer: DZED Systems LLC</string>
-					<string>Developer ID Certification Authority</string>
-					<string>Apple Root CA</string>
-				</array>
-				<key>input_path</key>
-				<string>%pathname%</string>
-			</dict>
 			<key>Processor</key>
 			<string>CodeSignatureVerifier</string>
+	    </dict>
+	    <dict>
+		<key>Processor</key>
+		<string>EndOfCheckPhase</string>
+	    </dict>
+	    <dict>
+		<key>Processor</key>
+		<string>FlatPkgUnpacker</string>
+		<key>Arguments</key>
+		    <dict>
+		        <key>flat_pkg_path</key>
+			<string>%pathname%</string>
+			<key>destination_path</key>
+			<string>%RECIPE_CACHE_DIR%/unpack</string>
+		    </dict>
 		</dict>
 		<dict>
-			<key>Processor</key>
-			<string>EndOfCheckPhase</string>
+		    <key>Processor</key>
+		    <string>PkgPayloadUnpacker</string>
+		    <key>Arguments</key>
+		    <dict>
+			<key>destination_path</key>
+			<string>%RECIPE_CACHE_DIR%/unpack</string>
+			<key>pkg_payload_path</key>
+			<string>%RECIPE_CACHE_DIR%/unpack/Dragonframe.pkg/Payload</string>
+		    </dict>
 		</dict>
 		<dict>
-			<key>Processor</key>
-			<string>FlatPkgUnpacker</string>
-			<key>Arguments</key>
-			<dict>
-				<key>flat_pkg_path</key>
-				<string>%pathname%</string>
-				<key>destination_path</key>
+		    <key>Processor</key>
+		    <string>Versioner</string>
+		    <key>Arguments</key>
+		    <dict>
+		        <key>input_plist_path</key>
+			<string>%RECIPE_CACHE_DIR%/unpack/Applications/Dragonframe/Dragonframe.app/Contents/Info.plist</string>
+		    </dict>
+		</dict>
+		<dict>
+		    <key>Processor</key>
+		    <string>PkgCopier</string>
+		    <key>Arguments</key>
+		    <dict>
+			<key>pkg_path</key>
+			<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+			<key>source_pkg</key>
+			<string>%pathname%</string>
+		    </dict>
+		</dict>
+		<dict>
+		    <key>Processor</key>
+		    <string>PathDeleter</string>
+		    <key>Arguments</key>
+		    <dict>
+			<key>path_list</key>
+			<array>
 				<string>%RECIPE_CACHE_DIR%/unpack</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Processor</key>
-			<string>PkgPayloadUnpacker</string>
-			<key>Arguments</key>
-			<dict>
-				<key>destination_path</key>
-				<string>%RECIPE_CACHE_DIR%/unpack</string>
-				<key>pkg_payload_path</key>
-				<string>%RECIPE_CACHE_DIR%/unpack/Dragonframe.pkg/Payload</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Processor</key>
-			<string>Versioner</string>
-			<key>Arguments</key>
-			<dict>
-				<key>input_plist_path</key>
-				<string>%RECIPE_CACHE_DIR%/unpack/Applications/Dragonframe/Dragonframe.app/Contents/Info.plist</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Processor</key>
-			<string>PkgCopier</string>
-			<key>Arguments</key>
-			<dict>
-				<key>pkg_path</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
-				<key>source_pkg</key>
-				<string>%pathname%</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Processor</key>
-			<string>PathDeleter</string>
-			<key>Arguments</key>
-			<dict>
-				<key>path_list</key>
-				<array>
-					<string>%RECIPE_CACHE_DIR%/unpack</string>
-				</array>
-			</dict>
+			</array>
+		    </dict>
 		</dict> 
 	</array>
 </dict>
