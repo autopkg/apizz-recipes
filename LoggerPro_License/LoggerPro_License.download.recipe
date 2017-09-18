@@ -41,7 +41,7 @@
                 <string>%pathname%/Install Logger Pro %MAJOR_VERSION%.pkg</string>
                 <key>expected_authority_names</key>
                 <array>
-                    <string>Developer ID Installer: Vernier Software &amp; Technology</string>
+                    <string>Developer ID Installer: Vernier Software &amp; Technology (75WN2B2WR8)</string>
                     <string>Developer ID Certification Authority</string>
                     <string>Apple Root CA</string>
                 </array>
