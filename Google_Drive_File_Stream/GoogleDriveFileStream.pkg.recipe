@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of Google Drive File Stream.</string>
 	<key>Identifier</key>
-	<string>com.github.apizz.download.googledrivefilestream</string>
+	<string>com.github.apizz.pkg.googledrivefilestream</string>
 	<key>Input</key>
 	<dict>
 		<key>DOWNLOAD_URL</key>
