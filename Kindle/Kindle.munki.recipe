@@ -21,7 +21,7 @@
 			<key>category</key>
 			<string>%MUNKI_CATEGORY%</string>
 			<key>description</key>
-			<string></string>
+			<string>The Kindle app gives users the ability to read eBooks on a beautiful, easy-to-use interface.</string>
 			<key>developer</key>
 			<string>Amazon</string>
 			<key>display_name</key>
