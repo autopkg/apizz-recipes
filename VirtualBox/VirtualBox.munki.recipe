@@ -21,7 +21,7 @@
 			<key>category</key>
 			<string>%MUNKI_CATEGORY%</string>
 			<key>description</key>
-			<string></string>
+			<string>Oracle VM VirtualBox is a free and open-source hypervisor for x86 computers currently being developed by Oracle Corporation.</string>
 			<key>developer</key>
 			<string>Oracle Corporation</string>
 			<key>display_name</key>
