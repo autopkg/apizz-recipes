@@ -26,6 +26,8 @@
 			<string>Volitans Technology, LLC.</string>
 			<key>display_name</key>
 			<string>SMART Utility</string>
+			<key>minimum_os_version</key>
+			<string>10.9.0</string>
 			<key>name</key>
 			<string>%NAME%</string>
 			<key>unattended_install</key>
