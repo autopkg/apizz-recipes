@@ -21,7 +21,7 @@
 			<key>category</key>
 			<string>%MUNKI_CATEGORY%</string>
 			<key>description</key>
-			<string></string>
+			<string>SMART Utility is an application to scan the hardware diagnostics system of hard drives. SMART (Self-Monitoring, Analysis, and Reporting Technology) is a system built into hard drives by their manufacturers to report on various measurements(called attributes) of a hard drive’s operation. The attributes can be used to detect when a hard drive is having mechanical or electrical problems, and can indicate when the hard drive is failing. SMART Utility can read and display these attributes. This allows time to hopefully backup, and then replace the drive. SMART Utility also allows running a drive’s built in self test, which can also indicate malfunctions on the drive.</string>
 			<key>developer</key>
 			<string>Volitans Technology, LLC.</string>
 			<key>display_name</key>
