@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Identifier</key>
-	<string>com.github.apizz.munki.LoggerPro_License</string>
+	<string>com.github.apizz.munki.loggerpro_license</string>
 	<key>Input</key>
 	<dict>
 		<key>MUNKI_CATEGORY</key>
@@ -33,7 +33,7 @@
 		</dict>
 	</dict>
 	<key>ParentRecipe</key>
-	<string>com.github.apizz.pkg.LoggerPro_License</string>
+	<string>com.github.apizz.pkg.loggerpro_license</string>
 	<key>Process</key>
 	<array>
 		<dict>
