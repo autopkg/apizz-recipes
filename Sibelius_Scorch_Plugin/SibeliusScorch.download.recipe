@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of the Sibelius Scorch plugin.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.download.SibeliusScorch</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>SibeliusScorch</string>
+        <key>SEARCH_PATTERN</key>
+        <string>href="(?P&lt;url&gt;http\:\/\/www\.sibelius\.com\/download\/software\/mac\/SibeliusScorch(?P&lt;version&gt;.*?)\.dmg)"</string>
+        <key>SEARCH_URL</key>
+        <string>https://connect.avid.com/ScorchDownload-Thanks.html</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.4.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>re_pattern</key>
+                <string>%SEARCH_PATTERN%</string>
+                <key>url</key>
+                <string>%SEARCH_URL%</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>filename</key>
+                <string>%NAME%-%version%.dmg</string>
+                <key>url</key>
+                <string>%url%</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>DISABLE_CODE_SIGNATURE_VERIFICATION</key>
+                <string>yes</string>
+                <key>input_path</key>
+                <string>%pathname%/SibeliusScorch%version%.pkg</string>
+                <key>expected_authority_names</key>
+                <array>
+                    <string>Developer ID Installer: Avid Technology Inc</string>
+                    <string>Developer ID Certification Authority</string>
+                    <string>Apple Root CA</string>
+                </array>
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>
