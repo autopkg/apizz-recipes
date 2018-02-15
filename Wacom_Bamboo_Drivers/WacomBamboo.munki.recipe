@@ -25,7 +25,7 @@
 			<key>developer</key>
 			<string>Wacom</string>
 			<key>display_name</key>
-			<string>%NAME%</string>
+			<string>Wacom Bamboo Drivers</string>
 			<key>name</key>
 			<string>%NAME%</string>
 			<key>unattended_install</key>
