@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of the Sibelius Scorch plugin and extracts the pkg.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.pkg.SibeliusScorch</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>SibeliusScorch</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.4.0</string>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.download.SibeliusScorch</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+                <key>source_path</key>
+                <string>%pathname%/SibeliusScorch%version%.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>Copier</string>
+        </dict>
+    </array>
+</dict>
+</plist>
