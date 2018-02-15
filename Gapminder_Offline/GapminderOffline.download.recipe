@@ -7,7 +7,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of Gapminder Offline.</string>
 	<key>Identifier</key>
-	<string>com.github.apizz.download.GapminderOffline</string>
+	<string>com.github.apizz.download.gapminderoffline</string>
 	<key>Input</key>
 	<dict>
 		<key>DOWNLOAD_URL</key>
