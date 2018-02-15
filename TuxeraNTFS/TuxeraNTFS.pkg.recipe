@@ -29,13 +29,13 @@
 		<dict>
 			<key>Arguments</key>
 			<dict>
-				<key>target</key>
+				<key>destination_path</key>
 				<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.mpkg</string>
-				<key>source</key>
+				<key>source_path</key>
 				<string>%pathname%/Install Tuxera NTFS.app/Contents/Resources/Packages/Flat/Install Tuxera NTFS.mpkg</string>
 			</dict>
 			<key>Processor</key>
-			<string>FileMover</string>
+			<string>Copier</string>
 		</dict>
 	</array>
 </dict>
