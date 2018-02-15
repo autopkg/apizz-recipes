@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Downloads the latest version of Tuxera NTFS and copies the mpkg out of the dmg.</string>
+	<key>Identifier</key>
+	<string>com.github.apizz.pkg.tuxerantfs</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>TuxeraNTFS</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>1.0.0</string>
+	<key>ParentRecipe</key>
+	<string>com.github.apizz.download.tuxerantfs</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>dmg_path</key>
+				<string>%pathname%</string>
+			</dict>
+			<key>Processor</key>
+			<string>AppDmgVersioner</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>target</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.mpkg</string>
+				<key>source</key>
+				<string>%pathname%/Install Tuxera NTFS.app/Contents/Resources/Packages/Flat/Install Tuxera NTFS.mpkg</string>
+			</dict>
+			<key>Processor</key>
+			<string>FileMover</string>
+		</dict>
+	</array>
+</dict>
+</plist>
