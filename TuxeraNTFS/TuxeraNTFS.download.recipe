@@ -9,7 +9,7 @@
 	<key>Input</key>
 	<dict>
 		<key>DOWNLOAD_PATTERN</key>
-		<string>href="(?P&lt;url&gt;https\:\/\/www\.tuxera\.com\/mac\/tuxerantfs_[\d]+\.dmg)"</string>
+		<string>href="(?P&lt;url&gt;https\:\/\/www\.tuxera\.com\/mac\/tuxerantfs_[\d\.]+\.dmg)"</string>
 		<key>DOWNLOAD_URL</key>
 		<string>https://www.tuxera.com/products/download/</string>
 		<key>NAME</key>
