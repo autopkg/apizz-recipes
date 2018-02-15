@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of the Sibelius Scorch plugin and extracts the pkg.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.SibeliusScorch</string>
+    <key>Input</key>
+    <dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>Plugins</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>plugins</string>
+        <key>NAME</key>
+        <string>SibeliusScorch</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>Sibelius Scorch is the amazing free web browser plug-in that lets you play, transpose, change instruments, save and print your Sibelius scores on the Internet.</string>
+            <key>developer</key>
+            <string>Avid Technology, Inc.</string>
+            <key>display_name</key>
+            <string>Sibelius Scorch Plugin</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.4.0</string>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.pkg.SibeliusScorch</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+    </array>
+</dict>
+</plist>
