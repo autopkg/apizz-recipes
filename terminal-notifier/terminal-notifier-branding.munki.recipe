@@ -9,7 +9,7 @@
 	<key>Input</key>
 	<dict>
 		<key>BRANDING_ICNS_PATH</key>
-		<string>/Users/ap/Downloads/Self Service.icns</string>
+		<string>/path/to/local/ICNSICON.icns</string>
 		<key>MUNKI_CATEGORY</key>
 		<string>Github Tools</string>
 		<key>MUNKI_REPO_SUBDIR</key>
@@ -20,7 +20,7 @@
 		<dict>
 			<key>catalogs</key>
 			<array>
-				<string>alpha</string>
+				<string>testing</string>
 			</array>
 			<key>category</key>
 			<string>%MUNKI_CATEGORY%</string>
@@ -50,7 +50,7 @@
 				<key>archive_path</key>
 				<string>%pathname%</string>
 				<key>destination_path</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Utilities</string>
+				<string>%RECIPE_CACHE_DIR%/%NAME%</string>
 				<key>purge_destination</key>
 				<true/>
 			</dict>
@@ -61,7 +61,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>destination_path</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Utilities/terminal-notifier.app/Contents/Resources/Terminal.icns</string>
+				<string>%RECIPE_CACHE_DIR%/%NAME%/terminal-notifier.app/Contents/Resources/Terminal.icns</string>
 				<key>source_path</key>
 				<string>%BRANDING_ICNS_PATH%</string>
 				<key>overwrite</key>
@@ -76,7 +76,7 @@
 				<key>dmg_path</key>
 				<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.dmg</string>
 				<key>dmg_root</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Utilities/terminal-notifier.app</string>
+				<string>%RECIPE_CACHE_DIR%/%NAME%/terminal-notifier.app</string>
 			</dict>
 		</dict>
 		<dict>
