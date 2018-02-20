@@ -28,6 +28,8 @@
 			<string>Shea Craig</string>
 			<key>display_name</key>
 			<string>yo</string>
+			<key>minimum_os_version</key>
+			<string>10.10.0</string>
 			<key>name</key>
 			<string>%NAME%</string>
 			<key>unattended_install</key>
