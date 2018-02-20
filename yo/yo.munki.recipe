@@ -21,7 +21,7 @@
 				<string>testing</string>
 			</array>
 			<key>category</key>
-			<string>%MUNKI_CATEGORY%</key>
+			<string>%MUNKI_CATEGORY%</string>
 			<key>description</key>
 			<string>Yo is a simple app for sending custom, persistent native Cocoa notifications to the Notification Center in macOS 10.10+. It allows customizing all of the various notification text fields and button labels, the sound effect played, and the application to open when the (optional) action button has been clicked. Further, it allows you to configure the application icon to be displayed with the notification (with caveats), and configure some of the launch properties, like whether to "poof" when clicked, and how to display when the screen is locked.</string>
 			<key>developer</key>
