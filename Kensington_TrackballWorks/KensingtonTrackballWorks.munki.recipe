@@ -41,7 +41,7 @@
         <dict>
     	    <key>Arguments</key>
     	    <dict>
-		<key>pkginfo</key>
+		<key>additional_pkginfo</key>
     	    	<dict>
     		    <key>version</key>
     		    <string>%version%</string>
