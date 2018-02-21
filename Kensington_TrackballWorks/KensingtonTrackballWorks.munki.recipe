@@ -44,7 +44,7 @@
 		<key>pkginfo</key>
     	    	<dict>
     		    <key>version</key>
-    		    <string>%version%</key>
+    		    <string>%version%</string>
     	    	</dict>
     	    </dict>
     	    <key>Processor</key>
