@@ -6,9 +6,8 @@
     <string>com.github.apizz.munki.iStudioPublisher</string>
     <key>Input</key>
     <dict>
-	<string></string>
 	<key>MUNKI_CATEGORY</key>
-	<string></string>
+	<string>Software</string>
 	<key>MUNKI_REPO_SUBDIR</key>
 	<string>apps</string>
 	<key>NAME</key>
