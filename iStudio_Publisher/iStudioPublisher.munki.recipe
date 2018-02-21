@@ -18,6 +18,7 @@
 	    <array>
 		<string>testing</string>
 	    </array>
+	</dict>
 	<key>category</key>
 	<string>%MUNKI_CATEGORY%</string>
 	<key>description</key>
