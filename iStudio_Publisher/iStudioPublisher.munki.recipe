@@ -2,44 +2,44 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Identifier</key>
-	<string>com.github.apizz.munki.iStudioPublisher</string>
-	<key>Input</key>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.iStudioPublisher</string>
+    <key>Input</key>
+    <dict>
+	<string></string>
+	<key>MUNKI_CATEGORY</key>
+	<string></string>
+	<key>MUNKI_REPO_SUBDIR</key>
+	<string>apps</string>
+	<key>NAME</key>
+	<string>iStudioPublisher</string>
+	<key>pkginfo</key>
 	<dict>
-		<string></string>
-		<key>MUNKI_CATEGORY</key>
-		<string></string>
-		<key>MUNKI_REPO_SUBDIR</key>
-		<string>apps</string>
-		<key>NAME</key>
-		<string>iStudioPublisher</string>
-		<key>pkginfo</key>
-		<dict>
-			<key>catalogs</key>
-			<array>
-				<string>testing</string>
-			</array>
-			<key>category</key>
-			<string>%MUNKI_CATEGORY%</string>
-			<key>description</key>
-			<string>Create stunning documents with iStudio Publisher. Powerful and intuitive page layout software for desktop publishing. Designed exclusively for Mac.</string>
-			<key>developer</key>
-			<string>iStudio Software</string>
-			<key>display_name</key>
-			<string>iStudio Publisher</string>
-			<key>name</key>
-			<string>%NAME%</string>
-			<key>unattended_install</key>
-			<true/>
-		</dict>
-	<key>MinimumVersion</key>
-	<string>1.0.0</string>
-	<key>ParentRecipe</key>
-	<string>com.github.apizz.download.iStudioPublisher</string>
-	<key>Process</key>
-	<array>
-		<dict>
-            <key>Arguments</key>
+	    <key>catalogs</key>
+	    <array>
+		<string>testing</string>
+	    </array>
+	<key>category</key>
+	<string>%MUNKI_CATEGORY%</string>
+	<key>description</key>
+	<string>Create stunning documents with iStudio Publisher. Powerful and intuitive page layout software for desktop publishing. Designed exclusively for Mac.</string>
+	<key>developer</key>
+	<string>iStudio Software</string>
+	<key>display_name</key>
+	<string>iStudio Publisher</string>
+	<key>name</key>
+	<string>%NAME%</string>
+	<key>unattended_install</key>
+	<true/>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>1.0.0</string>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.download.iStudioPublisher</string>
+    <key>Process</key>
+    <array>
+	<dict>
+	    <key>Arguments</key>
             <dict>
                 <key>pkg_path</key>
                 <string>%pathname%</string>
@@ -49,6 +49,6 @@
             <key>Processor</key>
             <string>MunkiImporter</string>
         </dict>
-	</array>
+    </array>
 </dict>
 </plist>
