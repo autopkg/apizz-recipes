@@ -43,8 +43,8 @@
             <dict>
             	<key>additional_pkginfo</key>
             	<dict>
-            		<key>version</key>
-            		<string>%version%</string>
+            	    <key>version</key>
+            	    <string>%version%</string>
             	</dict>
             </dict>
             <key>Processor</key>
