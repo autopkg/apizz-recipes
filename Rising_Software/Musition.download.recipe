@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Downloads the latest version of Musition as a pkg. Need to set MAJOR_VERSION, PLATFORM, and FILETYPE variables. PLATFORM should be either m (Mac) or w (Windows). FILETYPE should be pkg (Mac) or exe (Windows).</string>
+	<key>Identifier</key>
+	<string>com.github.apizz.download.Musition</string>
+	<key>Input</key>
+	<dict>
+		<key>SEARCH_PATTERN</key>
+		<string>(?P&lt;version&gt;%MAJOR_VERSION%\.\d\.[\d\.]+)</string>
+		<key>SEARCH_PAGE</key>
+		<string>https://www.risingsoftware.com/support/downloads-network</string>
+		<key>MAJOR_VERSION</key>
+		<string>5</string>
+		<key>NAME</key>
+		<string>Musition</string>
+		<key>PLATFORM</key>
+		<string>m</string>
+		<key>FILETYPE</key>
+		<string>pkg</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>1.0.0</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>re_pattern</key>
+				<string>%SEARCH_PATTERN%</string>
+				<key>url</key>
+				<string>%SEARCH_PAGE%</string>
+			</dict>
+			<key>Processor</key>
+			<string>URLTextSearcher</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>filename</key>
+				<string>%NAME%-%version%.%FILETYPE%</string>
+				<key>url</key>
+				<string>https://download.risingsoftware.com/musition%MAJOR_VERSION%/%version%/musition%PLATFORM%_%version%.%FILETYPE%</string>
+			</dict>
+			<key>Processor</key>
+			<string>URLDownloader</string>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>EndOfCheckPhase</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>expected_authority_names</key>
+				<array>
+					<string>Developer ID Installer: Rising Software Australia Pty Ltd (NQMN77T7W6)</string>
+					<string>Developer ID Certification Authority</string>
+					<string>Apple Root CA</string>
+				</array>
+				<key>input_path</key>
+				<string>%pathname%</string>
+			</dict>
+			<key>Processor</key>
+			<string>CodeSignatureVerifier</string>
+		</dict>
+	</array>
+</dict>
+</plist>
