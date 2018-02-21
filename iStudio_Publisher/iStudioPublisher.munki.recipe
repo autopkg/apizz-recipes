@@ -18,19 +18,19 @@
 	    <array>
 		<string>testing</string>
 	    </array>
+	    <key>category</key>
+	    <string>%MUNKI_CATEGORY%</string>
+	    <key>description</key>
+	    <string>Create stunning documents with iStudio Publisher. Powerful and intuitive page layout software for desktop publishing. Designed exclusively for Mac.</string>
+	    <key>developer</key>
+	    <string>iStudio Software</string>
+	    <key>display_name</key>
+	    <string>iStudio Publisher</string>
+	    <key>name</key>
+	    <string>%NAME%</string>
+	    <key>unattended_install</key>
+	    <true/>
 	</dict>
-	<key>category</key>
-	<string>%MUNKI_CATEGORY%</string>
-	<key>description</key>
-	<string>Create stunning documents with iStudio Publisher. Powerful and intuitive page layout software for desktop publishing. Designed exclusively for Mac.</string>
-	<key>developer</key>
-	<string>iStudio Software</string>
-	<key>display_name</key>
-	<string>iStudio Publisher</string>
-	<key>name</key>
-	<string>%NAME%</string>
-	<key>unattended_install</key>
-	<true/>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
