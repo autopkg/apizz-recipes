@@ -32,7 +32,7 @@
 	    <string>%NAME%</string>
 	    <key>unattended_install</key>
 	    <true/>
-	/dict>
+	</dict>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
