@@ -2,51 +2,51 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Description</key>
-	<string>Downloads the latest version of Tuxera NTFS.</string>
-	<key>Identifier</key>
-	<string>com.github.apizz.download.tuxerantfs</string>
-	<key>Input</key>
+    <key>Description</key>
+    <string>Downloads the latest version of Tuxera NTFS.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.download.tuxerantfs</string>
+    <key>Input</key>
+    <dict>
+	<key>DOWNLOAD_PATTERN</key>
+	<string>href="(?P&lt;url&gt;https\:\/\/www\.tuxera\.com\/mac\/tuxerantfs_[\d\.]+\.dmg)"</string>
+	<key>DOWNLOAD_URL</key>
+	<string>https://www.tuxera.com/products/download/</string>
+	<key>NAME</key>
+	<string>TuxeraNTFS</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>1.0.0</string>
+    <key>Process</key>
+    <array>
 	<dict>
-		<key>DOWNLOAD_PATTERN</key>
-		<string>href="(?P&lt;url&gt;https\:\/\/www\.tuxera\.com\/mac\/tuxerantfs_[\d\.]+\.dmg)"</string>
-		<key>DOWNLOAD_URL</key>
-		<string>https://www.tuxera.com/products/download/</string>
-		<key>NAME</key>
-		<string>TuxeraNTFS</string>
+	    <key>Arguments</key>
+	    <dict>
+		<key>re_pattern</key>
+		<string>%DOWNLOAD_PATTERN%</string>
+		<key>result_output_var_name</key>
+		<string>version</string>
+		<key>url</key>
+		<string>%DOWNLOAD_URL%</string>
+	    </dict>
+	    <key>Processor</key>
+	    <string>URLTextSearcher</string>
 	</dict>
-	<key>MinimumVersion</key>
-	<string>1.0.0</string>
-	<key>Process</key>
-	<array>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>re_pattern</key>
-				<string>%DOWNLOAD_PATTERN%</string>
-				<key>result_output_var_name</key>
-				<string>version</string>
-				<key>url</key>
-				<string>%DOWNLOAD_URL%</string>
-			</dict>
-			<key>Processor</key>
-			<string>URLTextSearcher</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>filename</key>
-				<string>%NAME%.dmg</string>
-				<key>url</key>
-				<string>%url%</string>
-			</dict>
-			<key>Processor</key>
-			<string>URLDownloader</string>
-		</dict>
-		<dict>
-			<key>Processor</key>
-			<string>EndOfCheckPhase</string>
-		</dict>
-	</array>
+	<dict>
+	    <key>Arguments</key>
+	    <dict>
+		<key>filename</key>
+		<string>%NAME%.dmg</string>
+		<key>url</key>
+		<string>%url%</string>
+	    </dict>
+	    <key>Processor</key>
+	    <string>URLDownloader</string>
+	</dict>
+	<dict>
+	    <key>Processor</key>
+	    <string>EndOfCheckPhase</string>
+	</dict>
+    </array>
 </dict>
 </plist>
