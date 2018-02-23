@@ -2,49 +2,49 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Description</key>
-	<string>Downloads the latest version of StagePlotPro.</string>
-	<key>Identifier</key>
-	<string>com.github.apizz.download.stageplotpro</string>
-	<key>Input</key>
+    <key>Description</key>
+    <string>Downloads the latest version of StagePlotPro.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.download.stageplotpro</string>
+    <key>Input</key>
+    <dict>
+	<key>DOWNLOAD_PATTERN</key>
+	<string>Mac version (?P&lt;version&gt;[\d\.]+)</string>
+	<key>DOWNLOAD_PAGE</key>
+	<string>https://www.stageplot.com/DownloadPage.html</string>
+	<key>NAME</key>
+	<string>StagePlotPro</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>1.0.0</string>
+    <key>Process</key>
+    <array>
 	<dict>
-		<key>DOWNLOAD_PATTERN</key>
-		<string>Mac version (?P&lt;version&gt;[\d\.]+)</string>
-		<key>DOWNLOAD_PAGE</key>
-		<string>https://www.stageplot.com/DownloadPage.html</string>
-		<key>NAME</key>
-		<string>StagePlotPro</string>
+	    <key>Arguments</key>
+	    <dict>
+		<key>re_pattern</key>
+		<string>%DOWNLOAD_PATTERN%</string>
+		<key>url</key>
+		<string>%DOWNLOAD_PAGE%</string>
+	    </dict>
+	    <key>Processor</key>
+	    <string>URLTextSearcher</string>
 	</dict>
-	<key>MinimumVersion</key>
-	<string>1.0.0</string>
-	<key>Process</key>
-	<array>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>re_pattern</key>
-				<string>%DOWNLOAD_PATTERN%</string>
-				<key>url</key>
-				<string>%DOWNLOAD_PAGE%</string>
-			</dict>
-			<key>Processor</key>
-			<string>URLTextSearcher</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>filename</key>
-				<string>%NAME%-%version%.dmg</string>
-				<key>url</key>
-				<string>https://www.stageplot.com/download/StagePlotPro_%version%.dmg</string>
-			</dict>
-			<key>Processor</key>
-			<string>URLDownloader</string>
-		</dict>
-		<dict>
-			<key>Processor</key>
-			<string>EndOfCheckPhase</string>
-		</dict>
-	</array>
+	<dict>
+	    <key>Arguments</key>
+	    <dict>
+		<key>filename</key>
+		<string>%NAME%-%version%.dmg</string>
+		<key>url</key>
+		<string>https://www.stageplot.com/download/StagePlotPro_%version%.dmg</string>
+	    </dict>
+	    <key>Processor</key>
+	    <string>URLDownloader</string>
+	</dict>
+	<dict>
+	    <key>Processor</key>
+	    <string>EndOfCheckPhase</string>
+	</dict>
+    </array>
 </dict>
 </plist>
