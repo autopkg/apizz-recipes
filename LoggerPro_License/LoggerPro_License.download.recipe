@@ -2,20 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Description</key>
-	<string>Downloads the latest version of LoggerPro. This recipe requires you to create an override and substitute your unique 5-digit letter and number string in the DOWNLOAD_URL variable</string>
-	<key>Identifier</key>
-	<string>com.github.apizz.download.loggerpro_license</string>
-	<key>Input</key>
-	<dict>
-		<key>DOWNLOAD_URL</key>
-		<string>https://www.vernier.com/d/XXXXX</string>
-		<key>NAME</key>
-		<string>LoggerPro</string>
-		<key>MAJOR_VERSION</key>
-		<string>3</string>
-	</dict>
-	<key>Process</key>
+    <key>Description</key>
+    <string>Downloads the latest version of LoggerPro. This recipe requires you to create an override and substitute your unique 5-digit letter and number string in the DOWNLOAD_URL variable</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.download.loggerpro_license</string>
+    <key>Input</key>
+    <dict>
+	<key>DOWNLOAD_URL</key>
+	<string>https://www.vernier.com/d/XXXXX</string>
+	<key>NAME</key>
+	<string>LoggerPro</string>
+	<key>MAJOR_VERSION</key>
+	<string>3</string>
+    </dict>
+    <key>Process</key>
     <array>
         <dict>
             <key>Processor</key>
