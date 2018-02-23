@@ -2,18 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Description</key>
-	<string>Downloads the latest version of Google Drive File Stream.</string>
-	<key>Identifier</key>
-	<string>com.github.apizz.download.googledrivefilestream</string>
-	<key>Input</key>
-	<dict>
-		<key>DOWNLOAD_URL</key>
-		<string>https://dl.google.com/drive-file-stream/googledrivefilestream.dmg</string>
-		<key>NAME</key>
-		<string>GoogleDriveFileStream</string>
-	</dict>
-	<key>Process</key>
+    <key>Description</key>
+    <string>Downloads the latest version of Google Drive File Stream.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.download.googledrivefilestream</string>
+    <key>Input</key>
+    <dict>
+	<key>DOWNLOAD_URL</key>
+	<string>https://dl.google.com/drive-file-stream/googledrivefilestream.dmg</string>
+	<key>NAME</key>
+	<string>GoogleDriveFileStream</string>
+    </dict>
+    <key>Process</key>
     <array>
         <dict>
             <key>Processor</key>
