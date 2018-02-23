@@ -8,8 +8,6 @@
     <string>com.github.apizz.munki.googledrivefilestream</string>
     <key>Input</key>
     <dict>
-	<key>DOWNLOAD_URL</key>
-	<string>https://dl.google.com/drive-file-stream/googledrivefilestream.dmg</string>
 	<key>MUNKI_CATEGORY</key>
 	<string>Backup &amp; Sync</string>
 	<key>MUNKI_REPO_SUBDIR</key>
