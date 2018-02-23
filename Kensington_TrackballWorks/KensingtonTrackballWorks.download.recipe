@@ -2,64 +2,64 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Description</key>
-	<string>Downloads the latest version of Kensington TrackballWorks.</string>
-	<key>Identifier</key>
-	<string>com.github.apizz.download.KensingtonTrackballWorks</string>
-	<key>Input</key>
+    <key>Description</key>
+    <string>Downloads the latest version of Kensington TrackballWorks.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.download.KensingtonTrackballWorks</string>
+    <key>Input</key>
+    <dict>
+	<key>SEARCH_PATTERN</key>
+	<string>(?P&lt;url&gt;accoblobstorageus\.blob\.core\.windows\.net\/software\/[\d\D]+\.dmg)</string>
+	<key>SEARCH_PAGE</key>
+	<string>https://www.kensington.com/us/us/6498/trackballworks-customization-software</string>
+	<key>NAME</key>
+	<string>KensingtonTrackballWorks</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>1.0.0</string>
+    <key>Process</key>
+    <array>
 	<dict>
-		<key>SEARCH_PATTERN</key>
-		<string>(?P&lt;url&gt;accoblobstorageus\.blob\.core\.windows\.net\/software\/[\d\D]+\.dmg)</string>
-		<key>SEARCH_PAGE</key>
-		<string>https://www.kensington.com/us/us/6498/trackballworks-customization-software</string>
-		<key>NAME</key>
-		<string>KensingtonTrackballWorks</string>
+	    <key>Arguments</key>
+	    <dict>
+		<key>re_pattern</key>
+		<string>%SEARCH_PATTERN%</string>
+		<key>url</key>
+		<string>%SEARCH_PAGE%</string>
+	    </dict>
+	    <key>Processor</key>
+	    <string>URLTextSearcher</string>
 	</dict>
-	<key>MinimumVersion</key>
-	<string>1.0.0</string>
-	<key>Process</key>
-	<array>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>re_pattern</key>
-				<string>%SEARCH_PATTERN%</string>
-				<key>url</key>
-				<string>%SEARCH_PAGE%</string>
-			</dict>
-			<key>Processor</key>
-			<string>URLTextSearcher</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>filename</key>
-				<string>%NAME%.dmg</string>
-				<key>url</key>
-				<string>https://%url%</string>
-			</dict>
-			<key>Processor</key>
-			<string>URLDownloader</string>
-		</dict>
-		<dict>
-			<key>Processor</key>
-			<string>EndOfCheckPhase</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>input_path</key>
-				<string>%pathname%/Kensington TrackballWorks.pkg</string>
-				<key>expected_authority_names</key>
-				<array>
-					<string>Developer ID Installer: Kensington Computer Products Group (293UQF7R4S)</string>
-					<string>Developer ID Certification Authority</string>
-					<string>Apple Root CA</string>
-				</array>
-			</dict>
-			<key>Processor</key>
-			<string>CodeSignatureVerifier</string>
-		</dict>
-	</array>
+	<dict>
+	    <key>Arguments</key>
+	    <dict>
+		<key>filename</key>
+		<string>%NAME%.dmg</string>
+		<key>url</key>
+		<string>https://%url%</string>
+	    </dict>
+	    <key>Processor</key>
+	    <string>URLDownloader</string>
+	</dict>
+	<dict>
+	    <key>Processor</key>
+	    <string>EndOfCheckPhase</string>
+	</dict>
+	<dict>
+	    <key>Arguments</key>
+	    <dict>
+		<key>input_path</key>
+		<string>%pathname%/Kensington TrackballWorks.pkg</string>
+		<key>expected_authority_names</key>
+		<array>
+		    <string>Developer ID Installer: Kensington Computer Products Group (293UQF7R4S)</string>
+		    <string>Developer ID Certification Authority</string>
+		    <string>Apple Root CA</string>
+		</array>
+	    </dict>
+	    <key>Processor</key>
+	    <string>CodeSignatureVerifier</string>
+	</dict>
+    </array>
 </dict>
 </plist>
