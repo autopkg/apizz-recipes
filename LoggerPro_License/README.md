@@ -14,7 +14,7 @@ ex. `https://vernier.com/d/XXXXX`
 
 1. Add the repo - https://github.com/apizz/apizz-recipes repo to autopkg.
 
-2. Create overrides for both the LoggerPro_License.download.recipe and LoggerPro_License.pkg.recipe
+2. Create overrides for the desired recipe (.download, .pkg, or .munki)
 - You can change the override recipe name should the major version of the software change in the future (ex. LoggerPro4)
 
 3. Substitute your unique Vernier licensed software download URL in the `DOWNLOAD_URL` input entry
@@ -45,59 +45,59 @@ ex. `https://vernier.com/d/XXXXX`
 2. In using the licensed static `DOWNLOAD_URL`, the LoggerPro_Update method for ascertaining the version is not possible. So, we need to do some unpacking in order to get the version from the app's Info.plist file.
 ```
 <dict>
-	<key>Processor</key>
-	<string>FlatPkgUnpacker</string>
-	<key>Arguments</key>
-	<dict>
-		<key>flat_pkg_path</key>
-		<string>%pathname%/Install Logger Pro %MAJOR_VERSION%.pkg</string>
-		<key>destination_path</key>
-		<string>%RECIPE_CACHE_DIR%/unpack</string>
-	</dict>
+    <key>Arguments</key>
+    <dict>
+	<key>flat_pkg_path</key>
+	<string>%pathname%/Install Logger Pro %MAJOR_VERSION%.pkg</string>
+	<key>destination_path</key>
+	<string>%RECIPE_CACHE_DIR%/unpack</string>
+    </dict>
+    <key>Processor</key>
+    <string>FlatPkgUnpacker</string>
 </dict>
 <dict>
-	<key>Processor</key>
-	<string>PkgPayloadUnpacker</string>
-	<key>Arguments</key>
-	<dict>
-		<key>destination_path</key>
-		<string>%RECIPE_CACHE_DIR%/unpack</string>
-		<key>pkg_payload_path</key>
-		<string>%RECIPE_CACHE_DIR%/unpack/apponly.pkg/Payload</string>
-	</dict>
+    <key>Arguments</key>
+    <dict>
+	<key>destination_path</key>
+	<string>%RECIPE_CACHE_DIR%/unpack</string>
+	<key>pkg_payload_path</key>
+	<string>%RECIPE_CACHE_DIR%/unpack/apponly.pkg/Payload</string>
+    </dict>
+    <key>Processor</key>
+    <string>PkgPayloadUnpacker</string>
 </dict>
 <dict>
-	<key>Processor</key>
-	<string>Versioner</string>
-	<key>Arguments</key>
-	<dict>
-		<key>input_plist_path</key>
-		<string>%RECIPE_CACHE_DIR%/unpack/Logger Pro.app/Contents/Info.plist</string>
-	</dict>
+    <key>Arguments</key>
+    <dict>
+	<key>input_plist_path</key>
+	<string>%RECIPE_CACHE_DIR%/unpack/Logger Pro.app/Contents/Info.plist</string>
+    </dict>
+    <key>Processor</key>
+    <string>Versioner</string>
 </dict>
 ```
 3. With the app's version, use the `PkgCopier` processor to copy the original installer PKG but rename it with the standard autopkg `%NAME%-%version%.pkg` and lastly do some cleanup.
 ```
 <dict>
-	<key>Processor</key>
-	<string>PkgCopier</string>
-	<key>Arguments</key>
-	<dict>
-		<key>pkg_path</key>
-		<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
-		<key>source_pkg</key>
-		<string>%pathname%/Install Logger Pro %MAJOR_VERSION%.pkg</string>
-	</dict>
+    <key>Arguments</key>
+    <dict>
+	<key>pkg_path</key>
+	<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+	<key>source_pkg</key>
+	<string>%pathname%/Install Logger Pro %MAJOR_VERSION%.pkg</string>
+    </dict>
+    <key>Processor</key>
+    <string>PkgCopier</string>
 </dict>
 <dict>
-	<key>Processor</key>
-	<string>PathDeleter</string>
-	<key>Arguments</key>
-	<dict>
-		<key>path_list</key>
-		<array>
-			<string>%RECIPE_CACHE_DIR%/unpack</string>
-		</array>
-	</dict>
+    <key>Arguments</key>
+    <dict>
+	<key>path_list</key>
+	<array>
+	    <string>%RECIPE_CACHE_DIR%/unpack</string>
+	</array>
+    </dict>
+    <key>Processor</key>
+    <string>PathDeleter</string>
 </dict> 
 ```
