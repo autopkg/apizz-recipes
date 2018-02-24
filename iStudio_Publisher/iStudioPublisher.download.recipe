@@ -33,7 +33,7 @@
 	    <string>EndOfCheckPhase</string>
 	</dict>
 	<dict>
-	    <key>Arugments</key>
+	    <key>Arguments</key>
 	    <dict>
 	        <key>input_path</key>
 		<string>%pathname%/iStudio Publisher.app</string>
