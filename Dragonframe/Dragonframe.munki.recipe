@@ -7,30 +7,30 @@
     <key>Input</key>
     <dict>
         <key>MUNKI_CATEGORY</key>
-		<string>Software</string>
-		<key>MUNKI_REPO_SUBDIR</key>
-		<string>apps</string>
-		<key>NAME</key>
-		<string>Dragonframe</string>
-		<key>pkginfo</key>
-		<dict>
-			<key>catalogs</key>
-			<array>
-				<string>testing</string>
-			</array>
-			<key>category</key>
-			<string>%MUNKI_CATEGORY%</string>
-			<key>description</key>
-			<string>Begin your stop motion filmmaking journey today with the digital image capture software trusted by major motion picture studios and independent filmmakers alike.</string>
-			<key>developer</key>
-			<string>DZED Systems</string>
-			<key>display_name</key>
-			<string>Dragonframe</string>
-			<key>name</key>
-			<string>%NAME%</string>
-			<key>unattended_install</key>
-			<true/>
-		</dict>
+	<string>Software</string>
+	<key>MUNKI_REPO_SUBDIR</key>
+	<string>apps</string>
+	<key>NAME</key>
+	<string>Dragonframe</string>
+	<key>pkginfo</key>
+	<dict>
+	    <key>catalogs</key>
+	    <array>
+		<string>testing</string>
+	    </array>
+	    <key>category</key>
+	    <string>%MUNKI_CATEGORY%</string>
+	    <key>description</key>
+	    <string>Begin your stop motion filmmaking journey today with the digital image capture software trusted by major motion picture studios and independent filmmakers alike.</string>
+	    <key>developer</key>
+	    <string>DZED Systems</string>
+	    <key>display_name</key>
+	    <string>Dragonframe</string>
+	    <key>name</key>
+	    <string>%NAME%</string>
+	    <key>unattended_install</key>
+	    <true/>
+	</dict>
     </dict>
     <key>ParentRecipe</key>
     <string>com.github.apizz.download.Dragonframe</string>
