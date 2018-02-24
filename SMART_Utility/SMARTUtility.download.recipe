@@ -68,7 +68,7 @@
 	    </dict>
 	    <key>Processor</key>
 	    <string>CodeSignatureVerifier</string>
-	</dict
+	</dict>
     </array>
 </dict>
 </plist>
