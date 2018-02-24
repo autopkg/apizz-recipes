@@ -9,6 +9,8 @@
         <key>NAME</key>
         <string>Dragonframe</string>
     </dict>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.download.Dragonframe</string>
     <key>Process</key>
     <array>
         <dict>
