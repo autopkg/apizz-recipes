@@ -2,61 +2,61 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Identifier</key>
-	<string>com.github.apizz.munki.FileMaker</string>
-	<key>Input</key>
-	<dict>
-		<key>MUNKI_CATEGORY</key>
-		<string>Software</string>
-		<key>MUNKI_REPO_SUBDIR</key>
-		<string>apps</string>
-		<key>pkginfo</key>
-		<dict>
-			<key>catalogs</key>
-			<array>
-				<string>testing</string>
-			</array>
-			<key>category</key>
-			<string>%MUNKI_CATEGORY%</string>
-			<key>developer</key>
-			<string>FileMaker Inc.</string>
-			<key>description</key>
-			<string>FileMaker Pro is a cross-platform relational database application from FileMaker Inc., a subsidiary of Apple Inc.</string>
-			<key>display_name</key>
-			<string>%NAME% %major_version%</string>
-			<key>name</key>
-			<string>%NAME%</string>
-		</dict>
-	</dict>
-	<key>MinimumVersion</key>
-  <string>0.6.1</string>
-  <key>ParentRecipe</key>
-  <string>com.github.nzmacgeek.download.filemaker</string>
-	<key>Process</key>
-	<array>
-		<dict>
-			<key>Processor</key>
-			<string>MunkiPkginfoMerger</string>
-			<key>Arguments</key>
-			<dict>
-				<key>additional_pkginfo</key>
-				<dict>
-					<key>version</key>
-					<string>%version%</string>
-				</dict>
-			</dict>
-		</dict>
-		<dict>
-			<key>Processor</key>
-			<string>MunkiImporter</string>
-			<key>Arguments</key>
-			<dict>
-				<key>pkg_path</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
-				<key>repo_subdirectory</key>
-				<string>%MUNKI_REPO_SUBDIR%</string>
-			</dict>
-		</dict>
-	</array>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.FileMaker</string>
+    <key>Input</key>
+    <dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>Software</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/filemaker</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>developer</key>
+            <string>FileMaker Inc.</string>
+            <key>description</key>
+            <string>FileMaker Pro is a cross-platform relational database application from FileMaker Inc., a subsidiary of Apple Inc.</string>
+            <key>display_name</key>
+            <string>%NAME% %major_version%</string>
+            <key>name</key>
+            <string>%NAME%</string>
+        </dict>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.6.1</string>
+    <key>ParentRecipe</key>
+    <string>com.github.nzmacgeek.download.filemaker</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+            <key>Arguments</key>
+            <dict>
+                <key>additional_pkginfo</key>
+                <dict>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+	    <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+    </array>
 </dict>
 </plist>
