@@ -1,0 +1,1 @@
+The com.github.patgmac SMART Utility recipes rely on the Sparkle feed.  However the SMART Utility devs have some weirdness on their Sparkle feed page, so this download recipe utilizes the URLTextSearcher processor to properly parse the version.
