@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Imports terminal-notifier into Munki.</string>
+    <string>Replaces terminal-notifier app icns file with your own for custom branding and imports into Munki.</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.terminal-notifier-branded</string>
     <key>Input</key>
