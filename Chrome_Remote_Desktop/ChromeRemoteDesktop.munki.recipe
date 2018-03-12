@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.ChromeRemoteDesktop</string>
+    <key>Input</key>
+    <dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>Support Tools</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/googlechromeremotedesktop</string>
+        <key>NAME</key>
+        <string>ChromeRemoteDesktop</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>Chrome Remote Desktop allows users to remotely access another computer through Chrome browser or a Chromebook.  Computers can be made available on an short-term basis for scenarios such as ad hoc remote support, or on a more long-term basis for remote access to your applications and files.  All connections are fully secured.</string>
+            <key>developer</key>
+            <string>Google Inc.</string>
+            <key>display_name</key>
+            <string>Chrome Remote Desktop</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>1.0.0</string>
+    <key>ParentRecipe</key>
+    <string>com.github.autopkg.cgerke-recipes.pkg.ChromeRemoteDesktop</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%pathname%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+    </array>
+</dict>
+</plist>
