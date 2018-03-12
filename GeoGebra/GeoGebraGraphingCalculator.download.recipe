@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest verison of GeoGebra Geometry.</string>
+    <string>Downloads the latest verison of GeoGebra Graphing Calculator.</string>
     <key>Identifier</key>
-    <string>com.github.apizz.download.geogebrageometry</string>
+    <string>com.github.apizz.download.geogebragraphingcalculator</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
