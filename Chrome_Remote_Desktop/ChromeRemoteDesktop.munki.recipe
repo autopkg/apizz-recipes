@@ -28,6 +28,10 @@
             <string>Chrome Remote Desktop</string>
             <key>name</key>
             <string>%NAME%</string>
+            <key>requires</key>
+            <array>
+                <string>GoogleChrome</string>
+            </array>
             <key>unattended_install</key>
             <true/>
         </dict>
