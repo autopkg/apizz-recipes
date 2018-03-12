@@ -21,7 +21,7 @@
 	    <key>category</key>
 	    <string>%MUNKI_CATEGORY%</string>
 	    <key>description</key>
-	    <string>Solve math problems, graph functions, create geometric constructions, do statistics and calculus, save and share your results.</string>
+	    <string>Easily graph functions, solve equations, find special points of functions, save and share your results.</string>
 	    <key>developer</key>
 	    <string>International GeoGebra Institute</string>
 	    <key>display_name</key>
