@@ -18,7 +18,7 @@
 
 ## To-do
 
-- Write script to automatically download and (re)install MAS apps w/ mas-cli and run associated autopkg recipes
--- Option to feed list of MAS app IDs
--- Option to forcibly install
--- Option to upgrade installed apps only
+* Write script to automatically download and (re)install MAS apps w/ mas-cli and run associated autopkg recipes
+  * Option to feed list of MAS app IDs
+  * Option to forcibly install
+  * Option to upgrade installed apps only
