@@ -17,30 +17,30 @@
     <string>0.6.1</string>
     <key>Process</key>
     <array>
-	<dict>
-		<key>Arguments</key>
-		<dict>
-			<key>github_repo</key>
-			<string>mas-cli/mas</string>
-			<key>include_preleases</key>
-			<string>%PRELEASE%</string>
-		</dict>
-		<key>Processor</key>
-		<string>GitHubReleasesInfoProvider</string>
+        <dict>
+	    <key>Arguments</key>
+	    <dict>
+	        <key>github_repo</key>
+	        <string>mas-cli/mas</string>
+	        <key>include_preleases</key>
+	        <string>%PRELEASE%</string>
+	    </dict>
+	    <key>Processor</key>
+	    <string>GitHubReleasesInfoProvider</string>
         </dict>
         <dict>
-			<key>Arguments</key>
-			<dict>
-				<key>filename</key>
-				<string>%NAME%-%version%.zip</string>
-			</dict>
-			<key>Processor</key>
-			<string>URLDownloader</string>
-		</dict>
-		<dict>
-			<key>Processor</key>
-			<string>EndOfCheckPhase</string>
-		</dict>
+            <key>Arguments</key>
+            <dict>
+                <key>filename</key>
+                <string>%NAME%-%version%.zip</string>
+	    </dict>
+	    <key>Processor</key>
+	    <string>URLDownloader</string>
+	</dict>
+        <dict>
+	    <key>Processor</key>
+	    <string>EndOfCheckPhase</string>
+        </dict>
     </array>
 </dict>
 </plist>
