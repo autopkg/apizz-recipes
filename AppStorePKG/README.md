@@ -13,7 +13,7 @@
 4. Download and install the app.  If any of the MAS apps are already installed, add <code>--force</code> to the command
 <pre>mas install [MASAPPID1] [MASAPPID2] ...</pre>
 5. Once all downloads and installs have completed go back to the window running AppStoreExtractor.sh and enter any key.
-6. When prompted, type <code>y</code> to indicate you wish to finalize the packages.  This renames the PKG to <code>APPNAME_VERSION.pkg</code> and puts it in a DMG.
+6. When prompted, type <code>y</code> to indicate you wish to finalize the packages.  This renames the PKG to <code>APPNAME_VERSION.pkg</code> and puts it in a DMG with the same name structure.
 7. Run autopkg munki recipes in this repo to import the DMGs into your munki repo
 
 ## To-do
