@@ -13,7 +13,7 @@
         <key>APP_EXTRACTOR_PATH</key>
         <string>/Users/Shared/AppStore_Packages</string>
         <key>MUNKI_CATEGORY</key>
-        <string>Video</string>
+        <string>Utilities</string>
         <key>MUNKI_REPO_SUBDIR</key>
         <string>apps/pushdiagnostics</string>
         <key>NAME</key>
