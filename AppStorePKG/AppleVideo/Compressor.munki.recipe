@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Munki recipe for Compressor to be used in conjunction with mas-cli (https://github.com/mas-cli/mas) and AppStoreExtractor.sh (https://github.com/maxschlapfer/MacAdminHelpers) in order to import signed MAS apps distributed via PKG into munki.</string> 
     <key>Identifier</key>
-    <string>com.github.apizz.munki.iMovie</string>
+    <string>com.github.apizz.munki.Compressor</string>
     <key>Input</key>
     <dict>
         <key>APP_PATH</key>
