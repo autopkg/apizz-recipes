@@ -1,6 +1,6 @@
 ## Requirements
 
-- mas-cli (https://github.com/mas-cli/cli)
+- mas-cli (https://github.com/mas-cli/mas)
 - AppStoreExtractor.sh (https://github.com/maxschlapfer/MacAdminHelpers/tree/master/AppStoreExtract)
 
 ## Process
