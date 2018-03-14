@@ -21,7 +21,7 @@
 	    <key>category</key>
 	    <string>%MUNKI_CATEGORY%</string>
 	    <key>description</key>
-	    <string></string>
+	    <string>MakeMKV is your one-click solution to convert video that you own into free and patents-unencumbered format that can be played everywhere. MakeMKV is a format converter, otherwise called "transcoder". It converts the video clips from proprietary (and usually encrypted) disc into a set of MKV files, preserving most information but not changing it in any way.</string>
 	    <key>developer</key>
 	    <string>GuinpinSoft Inc</string>
 	    <key>display_name</key>
