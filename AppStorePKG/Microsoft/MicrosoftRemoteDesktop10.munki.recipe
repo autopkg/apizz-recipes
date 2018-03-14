@@ -27,7 +27,7 @@
             <key>category</key>
             <string>%MUNKI_CATEGORY%</string>
             <key>description</key>
-            <string></string>
+            <string>Use the new Microsoft Remote Desktop app to connect to a remote PC or virtual apps and desktops made available by your administrator. The app helps you be productive no matter where you are.</string>
             <key>developer</key>
             <string>Microsoft Corporation</string>
             <key>display_name</key>
