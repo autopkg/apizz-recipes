@@ -15,7 +15,7 @@
         <key>MUNKI_CATEGORY</key>
         <string>Software</string>
         <key>MUNKI_REPO_SUBDIR</key>
-        <string>apps/keynote</string>
+        <string>apps/pages</string>
         <key>NAME</key>
         <string>Pages</string>
         <key>pkginfo</key>
