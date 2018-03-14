@@ -9,7 +9,7 @@
     <key>Input</key>
     <dict>
 	<key>SEARCH_PATTERN</key>
-	<string>(Version\s(?P&lt;version&gt;[\d.]+))</string>
+	<string>Version\s([\d.]+)</string>
 	<key>SEARCH_PAGE</key>
 	<string>https://coriolis-systems.com/iPartition</string>
 	<key>NAME</key>
@@ -36,7 +36,7 @@
 		<key>filename</key>
 		<string>%NAME%.dmg</string>
 		<key>url</key>
-		<string>https://coriolis-systems.com/downloads/iPartition-%version%.dmg</string>
+		<string>https://coriolis-systems.com/downloads/iPartition-%match%.dmg</string>
 	    </dict>
 	    <key>Processor</key>
 	    <string>URLDownloader</string>
