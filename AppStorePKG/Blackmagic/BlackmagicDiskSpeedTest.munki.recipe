@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Munki recipe for Keynote to be used in conjunction with mas-cli (https://github.com/mas-cli/cli) and AppStoreExtractor.sh (https://github.com/maxschlapfer/MacAdminHelpers) in order to import signed MAS apps distributed via PKG into munki.</string> 
+    <string>Munki recipe for Blackmagic Disk Speed Test to be used in conjunction with mas-cli (https://github.com/mas-cli/cli) and AppStoreExtractor.sh (https://github.com/maxschlapfer/MacAdminHelpers) in order to import signed MAS apps distributed via PKG into munki.</string> 
     <key>Identifier</key>
     <string>com.github.apizz.munki.Keynote</string>
     <key>Input</key>
