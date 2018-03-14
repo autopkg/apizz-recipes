@@ -13,7 +13,7 @@
         <key>APP_EXTRACTOR_PATH</key>
         <string>/Users/Shared/AppStore_Packages</string>
         <key>MUNKI_CATEGORY</key>
-        <string>Github Tools</string>
+        <string>Software</string>
         <key>MUNKI_REPO_SUBDIR</key>
         <string>apps/keynote</string>
         <key>NAME</key>
@@ -27,7 +27,7 @@
             <key>category</key>
             <string>%MUNKI_CATEGORY%</string>
             <key>description</key>
-            <string></string>
+            <string>Easily create gorgeous presentations with Keynote, featuring powerful yet easy-to-use tools and dazzling effects that will make you a very hard act to follow.</string>
             <key>developer</key>
             <string>Apple Inc.</string>
             <key>display_name</key>
