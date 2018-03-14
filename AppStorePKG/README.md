@@ -10,7 +10,7 @@
 <pre>mas search "[NAMEOFAPP]"</pre>
 3. In the other Terminal window, run AppStoreExtrator.sh
 <pre>sh /path/to/AppStoreExtractor.sh</pre>
-4. Download and install the app.  If any of the MAS apps are already installed, add <code>--force</code> to the command
+4. Download and install the app (you must already have this app purchased with your signed-in Apple ID).  If any of the MAS apps are already installed, add <code>--force</code> to the command to reinstall the app
 <pre>mas install [MASAPPID1] [MASAPPID2] ...</pre>
 5. Once all downloads and installs have completed go back to the window running AppStoreExtractor.sh and enter any key.
 6. When prompted, type <code>y</code> to indicate you wish to finalize the packages.  This renames the PKG to <code>APPNAME_VERSION.pkg</code> and puts it in a DMG with the same name structure.
