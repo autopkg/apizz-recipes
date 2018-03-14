@@ -13,7 +13,7 @@
         <key>APP_EXTRACTOR_PATH</key>
         <string>/Users/Shared/AppStore_Packages</string>
         <key>MUNKI_CATEGORY</key>
-        <string>Music</string>
+        <string>Video</string>
         <key>MUNKI_REPO_SUBDIR</key>
         <string>apps/imovie</string>
         <key>NAME</key>
