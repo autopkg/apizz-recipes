@@ -3,50 +3,42 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest release copy of the defaultbrowser executable from kerma on Github.</string>
-    <key>Identifier</key>
-    <string>com.github.apizz.download.defaultbrowser</string>
+    <string>Downloads the latest release copy of the defaultbrowser executable from kerma on Github. Set PRERELEASE to a non-empty string to download prereleases, either via Input in an override or via the -k option, i.e.: `-k PRERELEASE=yes`</string>
     <key>Input</key>
     <dict>
-	<key>DOWNLOAD_URL</key>
-	<string>https://github.com/kerma/defaultbrowser/releases/download</string>
 	<key>NAME</key>
 	<string>defaultbrowser</string>
-	<key>VERSION_PATTERN</key>
-	<string>\/kerma\/defaultbrowser\/releases\/tag\/v(?P&lt;version&gt;[\d.]+)</string>
-	<key>VERSION_URL</key>
-	<string>https://github.com/kerma/defaultbrowser/releases.atom</string>
+	<key>PRERELEASE</key>
+        <string></string>
     </dict>
     <key>MinimumVersion</key>
-    <string>0.4.0</string>
+    <string>0.6.1</string>
     <key>Process</key>
     <array>
-	<dict>
+        <dict>
 	    <key>Arguments</key>
 	    <dict>
-		<key>re_pattern</key>
-		<string>%VERSION_PATTERN%</string>
-		<key>url</key>
-		<string>%VERSION_URL%</string>
+	        <key>github_repo</key>
+	        <string>kerma/defaultbrowser</string>
+	        <key>include_preleases</key>
+	        <string>%PRERELEASE%</string>
 	    </dict>
 	    <key>Processor</key>
-	    <string>URLTextSearcher</string>
-	</dict>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>filename</key>
-		<string>%NAME%</string>
-		<key>url</key>
-		<string>%DOWNLOAD_URL%/v%version%/defaultbrowser</string>
+	    <string>GitHubReleasesInfoProvider</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>filename</key>
+                <string>%NAME%</string>
 	    </dict>
 	    <key>Processor</key>
 	    <string>URLDownloader</string>
 	</dict>
-	<dict>
+        <dict>
 	    <key>Processor</key>
 	    <string>EndOfCheckPhase</string>
-	</dict>
+        </dict>
     </array>
 </dict>
 </plist>
