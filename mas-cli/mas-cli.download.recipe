@@ -11,7 +11,7 @@
 	<key>NAME</key>
 	<string>mas-cli</string>
 	<key>PRERELEASE</key>
-    <string></string>
+        <string></string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.6.1</string>
