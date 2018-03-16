@@ -36,7 +36,7 @@
 	        <key>github_repo</key>
 	        <string>RocketChat/Rocket.Chat.Electron</string>
 	        <key>include_preleases</key>
-	        <string>%PRELEASE%</string>
+	        <string>%PRERELEASE%</string>
 	    </dict>
 	    <key>Processor</key>
 	    <string>GitHubReleasesInfoProvider</string>
