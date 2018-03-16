@@ -4,6 +4,8 @@
 <dict>
     <key>Description</key>
     <string>Downloads the latest release copy of the defaultbrowser executable from kerma on Github. Set PRERELEASE to a non-empty string to download prereleases, either via Input in an override or via the -k option, i.e.: `-k PRERELEASE=yes`</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.download.defaultbrowser</string>
     <key>Input</key>
     <dict>
 	<key>NAME</key>
