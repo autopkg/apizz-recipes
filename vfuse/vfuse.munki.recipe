@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.vfuse</string>
+    <key>Input</key>
+    <dict>
+	<key>MUNKI_CATEGORY</key>
+	<string>Github Tools</string>
+	<key>MUNKI_REPO_SUBDIR</key>
+	<string>github-tools/vfuse</string>
+	<key>NAME</key>
+	<string>vfuse</string>
+	<key>pkginfo</key>
+	<dict>
+	    <key>catalogs</key>
+	    <array>
+	        <string>testing</string>
+	    </array>
+	    <key>category</key>
+	    <string>%MUNKI_CATEGORY%</string>
+	    <key>description</key>
+	    <string>This script takes a never-booted DMG and converts it to a VMware Fusion VM.</string>
+	    <key>developer</key>
+	    <string>Joseph Chilcote</string>
+	    <key>display_name</key>
+	    <string>vfuse</string>
+	    <key>name</key>
+	    <string>%NAME%</string>
+	    <key>unattended_install</key>
+	    <true/>
+	</dict>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>1.0.0</string>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.pkg.vfuse</string>
+    <key>Process</key>
+    <array>
+    	<dict>
+    	    <key>Arguments</key>
+            <dict>
+            	<key>additional_pkginfo</key>
+            	<dict>
+            	    <key>version</key>
+            	    <string>%version%</string>
+            	</dict>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%pathname%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+    </array>
+</dict>
+</plist>
