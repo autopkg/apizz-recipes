@@ -26,6 +26,8 @@
 			<string>Tuxera Inc.</string>
 			<key>display_name</key>
 			<string>Tuxera NTFS</string>
+			<key>minimum_os_version</key>
+			<string>10.4</string>
 			<key>name</key>
 			<string>%NAME%</string>
 			<key>unattended_install</key>
