@@ -3,17 +3,15 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of Dragonframe given the desired major version.</string>
+    <string>Downloads the latest version of Dragonframe 3.</string>
     <key>Identifier</key>
-    <string>com.github.apizz.download.Dragonframe</string>
+    <string>com.github.apizz.download.Dragonframe3</string>
     <key>Input</key>
     <dict>
-        <key>MAJOR_VERSION</key>
-        <string>3</string>
         <key>NAME</key>
         <string>Dragonframe</string>
   	<key>SEARCH_PATTERN</key>
-	<string>(?P&lt;url&gt;http:\/\/www\.dragonframe.com\/download\/Dragonframe_(?P&lt;version&gt;%MAJOR_VERSION%.[\d.]+)\.pkg)</string>
+	<string>(?P&lt;url&gt;http:\/\/www\.dragonframe.com\/download\/Dragonframe_(?P&lt;version&gt;3.[\d.]+)\.pkg)</string>
 	<key>SEARCH_URL</key>
 	<string>http://www.dragonframe.com/downloads/</string>
     </dict>
