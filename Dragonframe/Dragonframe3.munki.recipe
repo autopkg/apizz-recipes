@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.apizz.munki.Dragonframe</string>
+    <string>com.github.apizz.munki.Dragonframe3</string>
     <key>Input</key>
     <dict>
         <key>MUNKI_CATEGORY</key>
@@ -33,7 +33,7 @@
 	</dict>
     </dict>
     <key>ParentRecipe</key>
-    <string>com.github.apizz.download.Dragonframe</string>
+    <string>com.github.apizz.download.Dragonframe3</string>
     <key>Process</key>
     <array>
         <dict>
