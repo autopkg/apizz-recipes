@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Downloads the latest release of smartmontools from Github and creates a package.</string>
+	<string>Downloads the latest release of smartmontools from Github and extracts the contained package.</string>
 	<key>Identifier</key>
 	<string>com.github.apizz.pkg.smartmontools</string>
 	<key>Input</key>
