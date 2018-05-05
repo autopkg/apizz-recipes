@@ -21,7 +21,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>asset_regex</key>
-				<string>smartmontools-%version%-1\.dmg</string>
+				<string>smartmontools-[\d.]+-1\.dmg</string>
 				<key>github_repo</key>
 				<string>smartmontools/smartmontools</string>
 				<key>include_preleases</key>
