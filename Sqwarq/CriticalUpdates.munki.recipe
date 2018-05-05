@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of Sqwarq Critical Updates, creates a DMG, and uploads it to a munki repo.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.CriticalUpdates</string>
+	<key>Input</key>
+	<dict>
+		<key>MUNKI_CATEGORY</key>
+	    <string>Security</string>
+	    <key>MUNKI_REPO_SUBDIR</key>
+	    <string>apps/critical-updates</string>
+	    <key>NAME</key>
+		<string>CriticalUpdates</string>
+		<key>pkginfo</key>
+		<dict>
+		    <key>catalogs</key>
+		    <array>
+		        <string>testing</string>
+		    </array>
+		    <key>category</key>
+		    <string>%MUNKI_CATEGORY%</string>
+		    <key>description</key>
+		    <string>Critical Updates.app keeps you informed of when a background update of the listed components occurs. These are controlled by the command line softwareupdate tool and by App Store preference settings in System Preferences.</string>
+		    <key>developer</key>
+		    <string>Philip Stokes</string>
+		    <key>display_name</key>
+		    <string>Critical Updates</string>
+		    <key>name</key>
+		    <string>%NAME%</string>
+		    <key>unattended_install</key>
+		    <true/>
+		</dict>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>1.0.0</string>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.download.CriticalUpdates</string>
+    <key>Process</key>
+    <array>
+	    <dict>
+            <key>Arguments</key>
+	        <dict>
+        	    <key>dmg_root</key>
+        	    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+        	    <key>dmg_path</key>
+        	    <string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
+                <key>dmg_megabytes</key>
+                <string>200</string>
+            </dict>
+	        <key>Processor</key>
+            <string>DmgCreator</string>
+        </dict>
+        <dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
+				<key>repo_subdirectory</key>
+				<string>%MUNKI_REPO_SUBDIR%</string>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiImporter</string>
+		</dict>
+    </array>
+</dict>
+</plist>
