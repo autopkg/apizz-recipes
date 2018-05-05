@@ -23,9 +23,9 @@
 			<key>description</key>
 			<string>The smartmontools package contains two utility programs (smartctl and smartd) to control and monitor storage systems using the Self-Monitoring, Analysis and Reporting Technology System (SMART) built into most modern ATA/SATA, SCSI/SAS and NVMe disks.</string>
 			<key>developer</key>
-			<string>Andrew Naylor</string>
+			<string>smartmontools dev team</string>
 			<key>display_name</key>
-			<string>mas-cli</string>
+			<string>smartmontools</string>
 			<key>name</key>
 			<string>%NAME%</string>
 			<key>unattended_install</key>
