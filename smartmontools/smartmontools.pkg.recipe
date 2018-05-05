@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest release of smartmontools from Github and creates a package.</string>
 	<key>Identifier</key>
-	<string>com.github.apizz.pkg.mas-cli</string>
+	<string>com.github.apizz.pkg.smartmontools</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>

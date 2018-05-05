@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Identifier</key>
-	<string>com.github.apizz.munki.mas-cli</string>
+	<string>com.github.apizz.munki.smartmontools</string>
 	<key>Input</key>
 	<dict>
 		<key>MUNKI_CATEGORY</key>
