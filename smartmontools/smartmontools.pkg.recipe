@@ -21,7 +21,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>source_pkg</key>
-				<string>%pathname%/smartmontools*</string>
+				<string>%pathname%/smartmontools*.pkg</string>
 			</dict>
 			<key>Processor</key>
 			<string>PkgCopier</string>
