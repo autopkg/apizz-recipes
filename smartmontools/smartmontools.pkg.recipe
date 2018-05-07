@@ -20,6 +20,8 @@
 		<dict>
 			<key>Arguments</key>
 			<dict>
+				<key>pkg_path</key>
+				<string>%RECIPE_CACHE_DIR%/smartmontools.pkg</string>
 				<key>source_pkg</key>
 				<string>%pathname%/smartmontools*.pkg</string>
 			</dict>
