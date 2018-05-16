@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of StagePlotPro for 5-place licenses.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.download.stageplotpro-5place</string>
+    <key>Input</key>
+    <dict>
+	<key>DOWNLOAD_URL</key>
+	<string>https://www.stageplot.com/download/StagePlotPro_5-place_Mac.dmg</string>
+	<key>NAME</key>
+	<string>StagePlotPro-5Place</string>
+	<key>USER_AGENT</key>
+        <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>1.0.0</string>
+    <key>Process</key>
+    <array>
+	<dict>
+	    <key>Arguments</key>
+	    <dict>
+		<key>filename</key>
+		<string>%NAME%.dmg</string>
+		<key>request_headers</key>
+		<dict>
+			<key>user-agent</key>
+                <string>%USER_AGENT%</string>
+		</dict>
+		<key>url</key>
+		<string>%DOWNLOAD_URL%</string>
+	    </dict>
+	    <key>Processor</key>
+	    <string>URLDownloader</string>
+	</dict>
+	<dict>
+	    <key>Processor</key>
+	    <string>EndOfCheckPhase</string>
+	</dict>
+	<dict>
+		<key>Arguments</key>
+		<dict>
+			<key>dmg_path</key>
+			<string>%pathname%</string>
+		</dict>
+		<key>Processor</key>
+		<string>AppDmgVersioner</string>
+	</dict>
+    </array>
+</dict>
+</plist>
