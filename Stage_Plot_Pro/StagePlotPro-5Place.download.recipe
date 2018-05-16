@@ -40,13 +40,13 @@
 	    <string>EndOfCheckPhase</string>
 	</dict>
 	<dict>
-		<key>Arguments</key>
-		<dict>
-			<key>dmg_path</key>
-			<string>%pathname%</string>
-		</dict>
-		<key>Processor</key>
-		<string>AppDmgVersioner</string>
+	    <key>Arguments</key>
+	    <dict>
+		<key>dmg_path</key>
+		<string>%pathname%</string>
+	    </dict>
+	    <key>Processor</key>
+	    <string>AppDmgVersioner</string>
 	</dict>
     </array>
 </dict>
