@@ -38,14 +38,28 @@
     <string>com.github.apizz.download.Musition</string>
     <key>Process</key>
     <array>
-    	<dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>info_path</key>
+                <string>%RECIPE_CACHE_DIR%/Applications/Musition %MAJOR_VERSION%.app/Contents/Info.plist</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>LSMinimumSystemVersion</key>
+                    <string>min_os_vers</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PlistReader</string>
+        </dict>
+        <dict>
             <key>Arguments</key>
             <dict>
                 <key>faux_root</key>
                 <string>%RECIPE_CACHE_DIR%</string>
                 <key>installs_item_paths</key>
                 <array>
-                    <string>/Applications/Musition 5.app</string>
+                    <string>/Applications/Musition %MAJOR_VERSION%.app</string>
                 </array>
             </dict>
             <key>Processor</key>
@@ -54,11 +68,6 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>additional_pkginfo</key>
-                <dict>
-                    <key>version</key>
-                    <string>%version%</string>
-                </dict>
             </dict>
             <key>Processor</key>
             <string>MunkiPkginfoMerger</string>
@@ -79,6 +88,15 @@
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>additional_makepkginfo_options</key>
+                <array>
+                    <string>--pkgvers</string>
+                    <string>%version%</string>
+                    <string>--minimum_os_version</string>
+                    <string>%min_os_vers%</string>
+                </array>
+                <key>force_munkiimport</key>
+                <true/>
                 <key>pkg_path</key>
                 <string>%pathname%</string>
                 <key>repo_subdirectory</key>
