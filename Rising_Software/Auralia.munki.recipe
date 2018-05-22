@@ -6,7 +6,7 @@
     <string>com.github.apizz.munki.Auralia</string>
     <key>Input</key>
     <dict>
-	<key>MUNKI_CATEGORY</key>
+    <key>MUNKI_CATEGORY</key>
 	<string>Music</string>
 	<key>MUNKI_REPO_SUBDIR</key>
 	<string>apps</string>
@@ -25,9 +25,9 @@
 	    <key>developer</key>
 	    <string>Rising Software</string>
 	    <key>display_name</key>
-	    <string>Auralia</string>
+	    <string>Auralia %MAJOR_VERSION%</string>
 	    <key>name</key>
-	    <string>%NAME%</string>
+	    <string>%NAME%%MAJOR_VERSION%</string>
 	    <key>unattended_install</key>
 	    <true/>
 	</dict>

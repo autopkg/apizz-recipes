@@ -25,9 +25,9 @@
 	    <key>developer</key>
 	    <string>Rising Software</string>
 	    <key>display_name</key>
-	    <string>Musition</string>
+	    <string>Musition %MAJOR_VERSION%</string>
 	    <key>name</key>
-	    <string>%NAME%</string>
+	    <string>%NAME%%MAJOR_VERSION%</string>
 	    <key>unattended_install</key>
 	    <true/>
 	</dict>
