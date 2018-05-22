@@ -42,7 +42,7 @@
             <key>Arguments</key>
             <dict>
                 <key>info_path</key>
-                <string>%RECIPE_CACHE_DIR%/Applications/Musition %MAJOR_VERSION%.app/Contents/Info.plist</string>
+                <string>%RECIPE_CACHE_DIR%/payload/Applications/Musition %MAJOR_VERSION%.app/Contents/Info.plist</string>
                 <key>plist_keys</key>
                 <dict>
                     <key>LSMinimumSystemVersion</key>
@@ -56,7 +56,7 @@
             <key>Arguments</key>
             <dict>
                 <key>faux_root</key>
-                <string>%RECIPE_CACHE_DIR%</string>
+                <string>%RECIPE_CACHE_DIR%/payload</string>
                 <key>installs_item_paths</key>
                 <array>
                     <string>/Applications/Musition %MAJOR_VERSION%.app</string>
@@ -78,8 +78,7 @@
                 <key>path_list</key>
                 <array>
                     <string>%RECIPE_CACHE_DIR%/unpack</string>
-                    <string>%RECIPE_CACHE_DIR%/Applications</string>
-                    <string>%RECIPE_CACHE_DIR%/Library</string>
+                    <string>%RECIPE_CACHE_DIR%/payload</string>
                 </array>
             </dict>
             <key>Processor</key>
