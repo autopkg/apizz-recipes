@@ -66,6 +66,43 @@
 	    <key>Processor</key>
 	    <string>CodeSignatureVerifier</string>
 	</dict>
+	<dict>
+		<key>Processor</key>
+		<string>FlatPkgUnpacker</string>
+		<key>Arguments</key>
+		<dict>
+			<key>flat_pkg_path</key>
+			<string>%pathname%</string>
+			<key>destination_path</key>
+			<string>%RECIPE_CACHE_DIR%/unpack</string>
+		</dict>
+	</dict>
+	<dict>
+		<key>Processor</key>
+		<string>PkgPayloadUnpacker</string>
+		<key>Arguments</key>
+		<dict>
+			<key>pkg_payload_path</key>
+			<string>%RECIPE_CACHE_DIR%/unpack/Auralia_5.pkg/Payload</string>
+			<key>destination_path</key>
+			<string>%RECIPE_CACHE_DIR%</string>
+		</dict>
+	</dict>
+	<dict>
+		<key>Processor</key>
+		<string>CodeSignatureVerifier</string>
+		<key>Arguments</key>
+		<dict>
+			<key>input_path</key>
+			<string>%RECIPE_CACHE_DIR%/Applications/Auralia 5.app</string>
+			<key>requirement</key>
+			<string>identifier "com.risingsoftware.auralia5" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = NQMN77T7W6</string>
+			<key>strict_verification</key>
+			<true/>
+			<key>expected_authority_names</key>
+			<array/>
+		</dict>
+	</dict>
     </array>
 </dict>
 </plist>
