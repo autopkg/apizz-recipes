@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest release of the jamJAR from Github. Set PRERELEASE to a non-empty string to download prereleases, either via Input in an override or via the -k option, i.e.: `-k PRERELEASE=yes`</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.download.jamJAR</string>
+    <key>Input</key>
+    <dict>
+        <key>DOWNLOAD_URL</key>
+        <string>https://github.com/dataJAR/jamJAR/archive</string>
+        <key>NAME</key>
+        <string>jamJAR</string>
+        <key>VERSION_PATTERN</key>
+        <string>tag\/(?P&lt;version&gt;[\d.]+)</string>
+        <key>VERSION_URL</key>
+        <string>https://github.com/dataJAR/jamJAR/releases/latest</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.6.1</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>re_pattern</key>
+                <string>%VERSION_PATTERN%</string>
+                <key>url</key>
+                <string>%VERSION_URL%</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>%DOWNLOAD_URL%/%version%.zip</string>
+                <key>filename</key>
+                <string>%NAME%-%version%.zip</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+    </array>
+</dict>
+</plist>
