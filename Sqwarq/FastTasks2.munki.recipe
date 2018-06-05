@@ -6,33 +6,33 @@
     <string>Downloads the latest version of Sqwarq FastTasks 2, creates a DMG, and uploads it to a munki repo.</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.FastTasks2</string>
-	<key>Input</key>
-	<dict>
-		<key>MUNKI_CATEGORY</key>
-	    <string>Security</string>
-	    <key>MUNKI_REPO_SUBDIR</key>
-	    <string>apps/fasttasks2</string>
-	    <key>NAME</key>
-		<string>FastTasks2</string>
-		<key>pkginfo</key>
-		<dict>
-		    <key>catalogs</key>
-		    <array>
-		        <string>testing</string>
-		    </array>
-		    <key>category</key>
-		    <string>%MUNKI_CATEGORY%</string>
-		    <key>description</key>
-		    <string>FT2 is a troubleshooting utility that provides a number of useful functions, including at-a-glance display of key system info, fast toggle of invisible files, free memory, remove login items and scan for troublesome apps and files.</string>
-		    <key>developer</key>
-		    <string>Philip Stokes</string>
-		    <key>display_name</key>
-		    <string>FastTasks 2</string>
-		    <key>name</key>
-		    <string>%NAME%</string>
-		    <key>unattended_install</key>
-		    <true/>
-		</dict>
+    <key>Input</key>
+    <dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>Security</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/fasttasks2</string>
+        <key>NAME</key>
+        <string>FastTasks2</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>FT2 is a troubleshooting utility that provides a number of useful functions, including at-a-glance display of key system info, fast toggle of invisible files, free memory, remove login items and scan for troublesome apps and files.</string>
+            <key>developer</key>
+            <string>Philip Stokes</string>
+            <key>display_name</key>
+            <string>FastTasks 2</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
@@ -40,30 +40,30 @@
     <string>com.github.apizz.download.FastTasks2</string>
     <key>Process</key>
     <array>
-	    <dict>
+        <dict>
             <key>Arguments</key>
-	        <dict>
-        	    <key>dmg_root</key>
-        	    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
-        	    <key>dmg_path</key>
-        	    <string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
+            <dict>
+                <key>dmg_root</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>dmg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
                 <key>dmg_megabytes</key>
                 <string>200</string>
             </dict>
-	        <key>Processor</key>
+            <key>Processor</key>
             <string>DmgCreator</string>
         </dict>
         <dict>
-			<key>Arguments</key>
-			<dict>
-				<key>pkg_path</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
-				<key>repo_subdirectory</key>
-				<string>%MUNKI_REPO_SUBDIR%</string>
-			</dict>
-			<key>Processor</key>
-			<string>MunkiImporter</string>
-		</dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
     </array>
 </dict>
 </plist>

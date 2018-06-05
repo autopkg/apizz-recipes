@@ -8,10 +8,10 @@
     <string>com.github.apizz.download.MunkiAdmin</string>
     <key>Input</key>
     <dict>
-        <key>PRERELEASE</key>
-        <string></string>
         <key>NAME</key>
         <string>MunkiAdmin</string>
+        <key>PRERELEASE</key>
+        <string></string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.6.1</string>

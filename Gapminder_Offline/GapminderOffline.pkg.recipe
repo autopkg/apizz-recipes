@@ -10,10 +10,8 @@
     <string>com.github.apizz.pkg.gapminderoffline</string>
     <key>Input</key>
     <dict>
-	<key>BUNDLE_ID</key>
-	<string>com.electron.gapminder-offline</string>
-	<key>NAME</key>
-	<string>Gapminder Offline</string>
+    	<key>NAME</key>
+    	<string>GapminderOffline</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
@@ -21,10 +19,10 @@
     <string>com.github.apizz.download.gapminderoffline</string>
     <key>Process</key>
     <array>
-	<dict>
-	    <key>Processor</key>
-	    <string>AppPkgCreator</string>
-	</dict>
+    	<dict>
+    	    <key>Processor</key>
+    	    <string>AppPkgCreator</string>
+    	</dict>
     </array>
 </dict>
 </plist>

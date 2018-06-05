@@ -8,68 +8,83 @@
     <string>com.github.apizz.pkg.loggerpro_license</string>
     <key>Input</key>
     <dict>
-	<key>NAME</key>
-	<string>LoggerPro</string>
-	<key>MAJOR_VERSION</key>
-	<string>3</string>
+        <key>NAME</key>
+        <string>LoggerPro</string>
+        <key>MAJOR_VERSION</key>
+        <string>3</string>
     </dict>
     <key>ParentRecipe</key>
     <string>com.github.apizz.download.loggerpro_license</string>
     <key>Process</key>
     <array>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>flat_pkg_path</key>
-		<string>%pathname%/Install Logger Pro %MAJOR_VERSION%.pkg</string>
-		<key>destination_path</key>
-		<string>%RECIPE_CACHE_DIR%/unpack</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>FlatPkgUnpacker</string>
-	</dict>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>destination_path</key>
-		<string>%RECIPE_CACHE_DIR%/unpack</string>
-		<key>pkg_payload_path</key>
-		<string>%RECIPE_CACHE_DIR%/unpack/apponly.pkg/Payload</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>PkgPayloadUnpacker</string>
-	</dict>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>input_plist_path</key>
-		<string>%RECIPE_CACHE_DIR%/unpack/Logger Pro.app/Contents/Info.plist</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>Versioner</string>
-	</dict>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>pkg_path</key>
-		<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
-		<key>source_pkg</key>
-		<string>%pathname%/Install Logger Pro %MAJOR_VERSION%.pkg</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>PkgCopier</string>
-	</dict>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>path_list</key>
-		<array>
-		    <string>%RECIPE_CACHE_DIR%/unpack</string>
-		</array>
-	    </dict>
-	    <key>Processor</key>
-	    <string>PathDeleter</string>
-	</dict> 
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>flat_pkg_path</key>
+                <string>%pathname%/Install Logger Pro %MAJOR_VERSION%.pkg</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+            </dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+                <key>pkg_payload_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/apponly.pkg/Payload</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/Logger Pro.app</string>
+                <key>requirement</key>
+                <string>identifier "com.vernier.loggerpro" and certificate root = H"a200ac91a451b5952a4294e5aa69a3cd2a966e67"</string>
+                <key>strict_verification</key>
+                <true/>
+                <key>expected_authority_names</key>
+                <array/>
+            </dict>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>input_plist_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/Logger Pro.app/Contents/Info.plist</string>
+            </dict>
+            <key>Processor</key>
+            <string>Versioner</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+                <key>source_pkg</key>
+                <string>%pathname%/Install Logger Pro %MAJOR_VERSION%.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgCopier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/unpack</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
+        </dict>
     </array>
 </dict>
 </plist>

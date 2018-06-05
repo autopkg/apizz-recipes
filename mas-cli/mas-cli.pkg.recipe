@@ -8,8 +8,8 @@
     <string>com.github.apizz.pkg.mas-cli</string>
     <key>Input</key>
     <dict>
-	<key>NAME</key>
-	<string>mas-cli</string>
+        <key>NAME</key>
+        <string>mas-cli</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.6.1</string>
@@ -17,25 +17,25 @@
     <string>com.github.apizz.download.mas-cli</string>
     <key>Process</key>
     <array>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>pkgdirs</key>
-		<dict>
-		    <key>usr</key>
-		    <string>0755</string>
-		    <key>usr/local/</key>
-		    <string>0755</string>
-		    <key>usr/local/bin/</key>
-		    <string>0775</string>
-		</dict>
-		<key>pkgroot</key>
-		<string>%RECIPE_CACHE_DIR%/%NAME%</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>PkgRootCreator</string>
-	</dict>
-	<dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgdirs</key>
+                <dict>
+                    <key>usr</key>
+                    <string>0755</string>
+                    <key>usr/local/</key>
+                    <string>0755</string>
+                    <key>usr/local/bin/</key>
+                    <string>0775</string>
+                </dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+        </dict>
+        <dict>
             <key>Arguments</key>
             <dict>
                 <key>archive_path</key>
@@ -49,36 +49,36 @@
             <string>Unarchiver</string>
         </dict>
         <dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>pkg_request</key>
-		<dict>
-		    <key>chown</key>
-		    <array>
-			<dict>
-			    <key>group</key>
-			    <string>wheel</string>
-			    <key>mode</key>
-			    <string>0755</string>
-			    <key>path</key>
-			    <string>usr</string>
-			    <key>user</key>
-			    <string>root</string>
-			</dict>
-		    </array>
-		    <key>id</key>
-		    <string>com.github.mas-cli</string>
-		    <key>options</key>
-		    <string>purge_ds_store</string>
-		    <key>pkgname</key>
-		    <string>%NAME%-%version%</string>
-		    <key>version</key>
-		    <string>%version%</string>
-		</dict>
-	    </dict>
-	    <key>Processor</key>
-	    <string>PkgCreator</string>
-	</dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_request</key>
+                <dict>
+                    <key>chown</key>
+                    <array>
+                        <dict>
+                            <key>group</key>
+                            <string>wheel</string>
+                            <key>mode</key>
+                            <string>0755</string>
+                            <key>path</key>
+                            <string>usr</string>
+                            <key>user</key>
+                            <string>root</string>
+                        </dict>
+                    </array>
+                    <key>id</key>
+                    <string>com.github.mas-cli</string>
+                    <key>options</key>
+                    <string>purge_ds_store</string>
+                    <key>pkgname</key>
+                    <string>%NAME%-%version%</string>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PkgCreator</string>
+        </dict>
     </array>
 </dict>
 </plist>

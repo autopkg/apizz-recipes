@@ -8,9 +8,9 @@
     <string>com.github.apizz.download.seb-github</string>
     <key>Input</key>
     <dict>
-	<key>NAME</key>
-	<string>SafeExamBrowser</string>
-	<key>PRERELEASE</key>
+        <key>NAME</key>
+        <string>SafeExamBrowser</string>
+        <key>PRERELEASE</key>
         <string></string>
     </dict>
     <key>MinimumVersion</key>
@@ -18,30 +18,30 @@
     <key>Process</key>
     <array>
         <dict>
-	    <key>Arguments</key>
-	    <dict>
-	        <key>asset_regex</key>
-            <string>SafeExamBrowser-[\d.]+\.dmg</string>
-	        <key>github_repo</key>
-	        <string>SafeExamBrowser/seb-mac</string>
-	        <key>include_preleases</key>
-	        <string>%PRERELEASE%</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>GitHubReleasesInfoProvider</string>
+            <key>Arguments</key>
+            <dict>
+                <key>asset_regex</key>
+                <string>SafeExamBrowser-[\d.]+\.dmg</string>
+                <key>github_repo</key>
+                <string>SafeExamBrowser/seb-mac</string>
+                <key>include_preleases</key>
+                <string>%PRERELEASE%</string>
+            </dict>
+            <key>Processor</key>
+            <string>GitHubReleasesInfoProvider</string>
         </dict>
         <dict>
             <key>Arguments</key>
             <dict>
                 <key>filename</key>
                 <string>SafeExamBrowser-%version%.dmg</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>URLDownloader</string>
-	</dict>
+            </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
         <dict>
-	    <key>Processor</key>
-	    <string>EndOfCheckPhase</string>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
         </dict>
         <dict>
             <key>Arguments</key>

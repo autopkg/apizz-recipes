@@ -8,10 +8,10 @@
     <string>com.github.apizz.pkg.TeamViewerHostCustom</string>
     <key>Input</key>
     <dict>
-    	<key>TEAMVIEWER_VERSION</key>
-    	<string>12</string>
-	<key>TEAMVIEWER_CUSTOM_ID</key>
-    	<string>CUSTOM_ID</string>
+        <key>TEAMVIEWER_VERSION</key>
+        <string>12</string>
+        <key>TEAMVIEWER_CUSTOM_ID</key>
+        <string>CUSTOM_ID</string>
         <key>NAME</key>
         <string>TeamViewerHostCustom</string>
     </dict>
@@ -22,58 +22,58 @@
     <key>Process</key>
     <array>
         <dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>destination_path</key>
-		<string>%RECIPE_CACHE_DIR%/unpack</string>
-		<key>flat_pkg_path</key>
-		<string>%pathname%</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>FlatPkgUnpacker</string>
-	</dict>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>destination_path</key>
-		<string>%RECIPE_CACHE_DIR%/unpack</string>
-		<key>pkg_payload_path</key>
-		<string>%RECIPE_CACHE_DIR%/unpack/TeamViewerHostApp.pkg/Payload</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>PkgPayloadUnpacker</string>
-	</dict>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>input_plist_path</key>
-		<string>%RECIPE_CACHE_DIR%/unpack/TeamViewerHost.app/Contents/Info.plist</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>Versioner</string>
-	</dict>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>pkg_path</key>
-		<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
-		<key>source_pkg</key>
-		<string>%RECIPE_CACHE_DIR%/downloads/%NAME%-%TEAMVIEWER_CUSTOM_ID%.pkg</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>PkgCopier</string>
-	</dict>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>path_list</key>
-		<array>
-		    <string>%RECIPE_CACHE_DIR%/unpack</string>
-		</array>
-	    </dict>
-	    <key>Processor</key>
-	    <string>PathDeleter</string>
-	</dict>
+            <key>Arguments</key>
+            <dict>
+            <key>destination_path</key>
+            <string>%RECIPE_CACHE_DIR%/unpack</string>
+            <key>flat_pkg_path</key>
+            <string>%pathname%</string>
+            </dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+                <key>pkg_payload_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/TeamViewerHostApp.pkg/Payload</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>input_plist_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/TeamViewerHost.app/Contents/Info.plist</string>
+            </dict>
+            <key>Processor</key>
+            <string>Versioner</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+                <key>source_pkg</key>
+                <string>%RECIPE_CACHE_DIR%/downloads/%NAME%-%TEAMVIEWER_CUSTOM_ID%.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgCopier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/unpack</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
+        </dict>
     </array>
 </dict>
 </plist>

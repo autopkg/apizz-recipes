@@ -7,29 +7,29 @@
     <key>Input</key>
     <dict>
         <key>MUNKI_CATEGORY</key>
-	<string>Math</string>
-	<key>MUNKI_REPO_SUBDIR</key>
-	<string>apps/geogebra</string>
-	<key>NAME</key>
-	<string>GeoGebraGeometry</string>
-	<key>pkginfo</key>
-	<dict>
+        <string>Math</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/geogebra</string>
+        <key>NAME</key>
+        <string>GeoGebraGeometry</string>
+        <key>pkginfo</key>
+        <dict>
             <key>catalogs</key>
             <array>
                 <string>testing</string>
             </array>
-	    <key>category</key>
-	    <string>%MUNKI_CATEGORY%</string>
-	    <key>description</key>
-	    <string>Easily construct triangles, drag points, draw parallel lines, intersect circles, save and share your results.</string>
-	    <key>developer</key>
-	    <string>International GeoGebra Institute</string>
-	    <key>display_name</key>
-	    <string>GeoGebra Geometry</string>
-	    <key>name</key>
-	    <string>%NAME%</string>
-	    <key>unattended_install</key>
-	    <true/>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>Easily construct triangles, drag points, draw parallel lines, intersect circles, save and share your results.</string>
+            <key>developer</key>
+            <string>International GeoGebra Institute</string>
+            <key>display_name</key>
+            <string>GeoGebra Geometry</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
         </dict>
     </dict>
     <key>MinimumVersion</key>

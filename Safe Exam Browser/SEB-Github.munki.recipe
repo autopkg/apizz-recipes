@@ -6,31 +6,31 @@
     <string>com.github.apizz.munki.seb-github</string>
     <key>Input</key>
     <dict>
-	<key>MUNKI_CATEGORY</key>
-	<string>Github Tools</string>
-	<key>MUNKI_REPO_SUBDIR</key>
-	<string>github-tools/safeexambrowser</string>
-	<key>NAME</key>
-	<string>SafeExamBrowser</string>
-	<key>pkginfo</key>
-	<dict>
-	    <key>catalogs</key>
-	    <array>
-	        <string>testing</string>
-	    </array>
-	    <key>category</key>
-	    <string>%MUNKI_CATEGORY%</string>
-	    <key>description</key>
-	    <string>Safe Exam Browser is a webbrowser-environment to carry out online exams safely. The software changes any computer into a secure workstation. It regulates access to resources like system functions, other websites and applications and prevents unauthorized resources being used during an exam.</string>
-	    <key>developer</key>
-	    <string>Daniel R. Schneider</string>
-	    <key>display_name</key>
-	    <string>SafeExamBrowser</string>
-	    <key>name</key>
-	    <string>%NAME%</string>
-	    <key>unattended_install</key>
-	    <true/>
-	</dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>Github Tools</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>github-tools/safeexambrowser</string>
+        <key>NAME</key>
+        <string>SafeExamBrowser</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>Safe Exam Browser is a webbrowser-environment to carry out online exams safely. The software changes any computer into a secure workstation. It regulates access to resources like system functions, other websites and applications and prevents unauthorized resources being used during an exam.</string>
+            <key>developer</key>
+            <string>Daniel R. Schneider</string>
+            <key>display_name</key>
+            <string>SafeExamBrowser</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>

@@ -8,54 +8,54 @@
     <string>com.github.apizz.download.iPartition</string>
     <key>Input</key>
     <dict>
-	<key>SEARCH_PATTERN</key>
-	<string>Version\s([\d.]+)</string>
-	<key>SEARCH_PAGE</key>
-	<string>https://coriolis-systems.com/iPartition</string>
-	<key>NAME</key>
-	<string>iPartition</string>
+        <key>SEARCH_PATTERN</key>
+        <string>Version\s([\d.]+)</string>
+        <key>SEARCH_URL</key>
+        <string>https://coriolis-systems.com/iPartition</string>
+        <key>NAME</key>
+        <string>iPartition</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
     <key>Process</key>
     <array>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>re_pattern</key>
-		<string>%SEARCH_PATTERN%</string>
-		<key>url</key>
-		<string>%SEARCH_PAGE%</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>URLTextSearcher</string>
-	</dict>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>filename</key>
-		<string>%NAME%.dmg</string>
-		<key>url</key>
-		<string>https://coriolis-systems.com/downloads/iPartition-%match%.dmg</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>URLDownloader</string>
-	</dict>
-	<dict>
-	    <key>Processor</key>
-	    <string>EndOfCheckPhase</string>
-	</dict>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>input_path</key>
-		<string>%pathname%/iPartition.app</string>
-		<key>requirement</key>
-		<string>anchor apple generic and identifier "com.coriolis-systems.iPartition" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "6R668G5U99")</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>CodeSignatureVerifier</string>
-	</dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>re_pattern</key>
+                <string>%SEARCH_PATTERN%</string>
+                <key>url</key>
+                <string>%SEARCH_URL%</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>filename</key>
+                <string>%NAME%.dmg</string>
+                <key>url</key>
+                <string>https://coriolis-systems.com/downloads/iPartition-%match%.dmg</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%pathname%/iPartition.app</string>
+                <key>requirement</key>
+                <string>anchor apple generic and identifier "com.coriolis-systems.iPartition" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "6R668G5U99")</string>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
     </array>
 </dict>
 </plist>

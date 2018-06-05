@@ -6,31 +6,31 @@
     <string>com.github.apizz.munki.MakeMKV</string>
     <key>Input</key>
     <dict>
-	<key>MUNKI_CATEGORY</key>
-	<string>Video</string>
-	<key>MUNKI_REPO_SUBDIR</key>
-	<string>apps/makemkv</string>
-	<key>NAME</key>
-	<string>MakeMKV</string>
-	<key>pkginfo</key>
-	<dict>
-	    <key>catalogs</key>
-	    <array>
-		<string>testing</string>
-	    </array>
-	    <key>category</key>
-	    <string>%MUNKI_CATEGORY%</string>
-	    <key>description</key>
-	    <string>MakeMKV is your one-click solution to convert video that you own into free and patents-unencumbered format that can be played everywhere. MakeMKV is a format converter, otherwise called "transcoder". It converts the video clips from proprietary (and usually encrypted) disc into a set of MKV files, preserving most information but not changing it in any way.</string>
-	    <key>developer</key>
-	    <string>GuinpinSoft Inc</string>
-	    <key>display_name</key>
-	    <string>MakeMKV</string>
-	    <key>name</key>
-	    <string>%NAME%</string>
-	    <key>unattended_install</key>
-	    <true/>
-	</dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>Video</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/makemkv</string>
+        <key>NAME</key>
+        <string>MakeMKV</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>MakeMKV is your one-click solution to convert video that you own into free and patents-unencumbered format that can be played everywhere. MakeMKV is a format converter, otherwise called "transcoder". It converts the video clips from proprietary (and usually encrypted) disc into a set of MKV files, preserving most information but not changing it in any way.</string>
+            <key>developer</key>
+            <string>GuinpinSoft Inc</string>
+            <key>display_name</key>
+            <string>MakeMKV</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
     </dict>
     <key>MinimumVersion</key>
     <string>0.5.0</string>
@@ -39,18 +39,18 @@
     <key>Process</key>
     <array>
         <dict>
-    	    <key>Arguments</key>
-    	    <dict>
-		<key>additional_pkginfo</key>
-    	    	<dict>
-    		    <key>version</key>
-    		    <string>%version%</string>
-    	    	</dict>
-    	    </dict>
-    	    <key>Processor</key>
-    	    <string>MunkiPkginfoMerger</string>
-    	</dict>
-	<dict>
+            <key>Arguments</key>
+            <dict>
+                <key>additional_pkginfo</key>
+                <dict>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
             <key>Arguments</key>
             <dict>
                 <key>pkg_path</key>

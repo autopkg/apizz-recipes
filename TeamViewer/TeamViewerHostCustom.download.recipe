@@ -8,10 +8,10 @@
     <string>com.github.apizz.download.TeamViewerHostCustom</string>
     <key>Input</key>
     <dict>
-    	<key>TEAMVIEWER_VERSION</key>
-    	<string>12</string>
-    	<key>TEAMVIEWER_CUSTOM_ID</key>
-    	<string>CUSTOM_ID_NUMBER</string>
+        <key>TEAMVIEWER_VERSION</key>
+        <string>12</string>
+        <key>TEAMVIEWER_CUSTOM_ID</key>
+        <string>CUSTOM_ID_NUMBER</string>
         <key>DOWNLOAD_URL</key>
         <string>https://dl.tvcdn.de//download/version_%TEAMVIEWER_VERSION%x/CustomDesign/Install%20TeamViewerHost-%TEAMVIEWER_CUSTOM_ID%.pkg</string>
         <key>NAME</key>
@@ -22,8 +22,6 @@
     <key>Process</key>
     <array>
         <dict>
-            <key>Processor</key>
-            <string>URLDownloader</string>
             <key>Arguments</key>
             <dict>
                 <key>url</key>
@@ -31,14 +29,14 @@
                 <key>filename</key>
                 <string>%NAME%-%TEAMVIEWER_CUSTOM_ID%.pkg</string>
             </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
         </dict>
         <dict>
             <key>Processor</key>
             <string>EndOfCheckPhase</string>
         </dict>
         <dict>
-            <key>Processor</key>
-            <string>CodeSignatureVerifier</string>
             <key>Arguments</key>
             <dict>
                 <key>input_path</key>
@@ -50,6 +48,8 @@
                     <string>Apple Root CA</string>
                 </array>
             </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
         </dict>
     </array>
 </dict>

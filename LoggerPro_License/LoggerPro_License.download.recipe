@@ -8,18 +8,16 @@
     <string>com.github.apizz.download.loggerpro_license</string>
     <key>Input</key>
     <dict>
-	<key>DOWNLOAD_URL</key>
-	<string>https://www.vernier.com/d/XXXXX</string>
-	<key>NAME</key>
-	<string>LoggerPro</string>
-	<key>MAJOR_VERSION</key>
-	<string>3</string>
+        <key>DOWNLOAD_URL</key>
+        <string>https://www.vernier.com/d/XXXXX</string>
+        <key>NAME</key>
+        <string>LoggerPro</string>
+        <key>MAJOR_VERSION</key>
+        <string>3</string>
     </dict>
     <key>Process</key>
     <array>
         <dict>
-            <key>Processor</key>
-            <string>URLDownloader</string>
             <key>Arguments</key>
             <dict>
                 <key>url</key>
@@ -27,14 +25,14 @@
                 <key>filename</key>
                 <string>%NAME%.dmg</string>
             </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
         </dict>
         <dict>
             <key>Processor</key>
             <string>EndOfCheckPhase</string>
         </dict>
         <dict>
-            <key>Processor</key>
-            <string>CodeSignatureVerifier</string>
             <key>Arguments</key>
             <dict>
                 <key>input_path</key>
@@ -46,6 +44,8 @@
                     <string>Apple Root CA</string>
                 </array>
             </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
         </dict>
     </array>
 </dict>

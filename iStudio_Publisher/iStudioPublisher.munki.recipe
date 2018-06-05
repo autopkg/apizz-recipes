@@ -6,31 +6,31 @@
     <string>com.github.apizz.munki.iStudioPublisher</string>
     <key>Input</key>
     <dict>
-	<key>MUNKI_CATEGORY</key>
-	<string>Software</string>
-	<key>MUNKI_REPO_SUBDIR</key>
-	<string>apps</string>
-	<key>NAME</key>
-	<string>iStudioPublisher</string>
-	<key>pkginfo</key>
-	<dict>
-	    <key>catalogs</key>
-	    <array>
-		<string>testing</string>
-	    </array>
-	    <key>category</key>
-	    <string>%MUNKI_CATEGORY%</string>
-	    <key>description</key>
-	    <string>Create stunning documents with iStudio Publisher. Powerful and intuitive page layout software for desktop publishing. Designed exclusively for Mac.</string>
-	    <key>developer</key>
-	    <string>iStudio Software</string>
-	    <key>display_name</key>
-	    <string>iStudio Publisher</string>
-	    <key>name</key>
-	    <string>%NAME%</string>
-	    <key>unattended_install</key>
-	    <true/>
-	</dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>Software</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps</string>
+        <key>NAME</key>
+        <string>iStudioPublisher</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>Create stunning documents with iStudio Publisher. Powerful and intuitive page layout software for desktop publishing. Designed exclusively for Mac.</string>
+            <key>developer</key>
+            <string>iStudio Software</string>
+            <key>display_name</key>
+            <string>iStudio Publisher</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
@@ -38,8 +38,8 @@
     <string>com.github.apizz.download.iStudioPublisher</string>
     <key>Process</key>
     <array>
-	<dict>
-	    <key>Arguments</key>
+    <dict>
+        <key>Arguments</key>
             <dict>
                 <key>pkg_path</key>
                 <string>%pathname%</string>

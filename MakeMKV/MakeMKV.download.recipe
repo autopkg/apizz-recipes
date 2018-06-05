@@ -8,67 +8,67 @@
     <string>com.github.apizz.download.MakeMKV</string>
     <key>Input</key>
     <dict>
-	<key>SEARCH_PATTERN</key>
-	<string>(?P&lt;file&gt;makemkv_v(?P&lt;version&gt;[\d\.]+)_osx\.dmg)</string>
-	<key>SEARCH_PAGE</key>
-	<string>https://www.makemkv.com/download</string>
-	<key>NAME</key>
-	<string>MakeMKV</string>
+        <key>SEARCH_PATTERN</key>
+        <string>(?P&lt;file&gt;makemkv_v(?P&lt;version&gt;[\d\.]+)_osx\.dmg)</string>
+        <key>SEARCH_URL</key>
+        <string>https://www.makemkv.com/download</string>
+        <key>NAME</key>
+        <string>MakeMKV</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
     <key>Process</key>
     <array>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>re_pattern</key>
-		<string>%SEARCH_PATTERN%</string>
-		<key>url</key>
-		<string>%SEARCH_PAGE%</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>URLTextSearcher</string>
-	</dict>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>filename</key>
-		<string>%NAME%.dmg</string>
-		<key>url</key>
-		<string>%url%/%file%</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>URLDownloader</string>
-	</dict>
-	<dict>
-	    <key>Processor</key>
-	    <string>EndOfCheckPhase</string>
-	</dict>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-	        <key>destination_path</key>
-		<string>%RECIPE_CACHE_DIR%/%NAME%/MakeMKV.app</string>
-		<key>overwrite</key>
-		<true/>
-		<key>source_path</key>
-		<string>%pathname%/MakeMKV.app</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>Copier</string>
-	</dict>
-	<dict>
+        <dict>
             <key>Arguments</key>
-	    <dict>
-        	<key>dmg_root</key>
-        	<string>%RECIPE_CACHE_DIR%/%NAME%</string>
-        	<key>dmg_path</key>
-        	<string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
+            <dict>
+                <key>re_pattern</key>
+                <string>%SEARCH_PATTERN%</string>
+                <key>url</key>
+                <string>%SEARCH_URL%</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>filename</key>
+                <string>%NAME%.dmg</string>
+                <key>url</key>
+                <string>%url%/%file%</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/MakeMKV.app</string>
+                <key>overwrite</key>
+                <true/>
+                <key>source_path</key>
+                <string>%pathname%/MakeMKV.app</string>
+            </dict>
+            <key>Processor</key>
+            <string>Copier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>dmg_root</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>dmg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
                 <key>dmg_megabytes</key>
                 <string>200</string>
             </dict>
-	    <key>Processor</key>
+            <key>Processor</key>
             <string>DmgCreator</string>
         </dict>
     </array>

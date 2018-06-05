@@ -8,67 +8,67 @@
     <string>com.github.apizz.download.smartutility</string>
     <key>Input</key>
     <dict>
-	<key>DOWNLOAD_PATTERN</key>
-	<string>enclosure url="(?P&lt;url&gt;https\:\/\/cloudfront\.volitans-software\.com\/smartutility[\d]+\.zip)" sparkle:version=".*" sparkle:shortVersionString="(?P&lt;version&gt;[\d\.]+)"</string>
-	<key>NAME</key>
-	<string>SMARTUtility</string>
-	<key>SPARKLE_URL</key>
-	<string>https://www.volitans-software.com/stats/smart-utility/profileInfo.php</string>
+        <key>DOWNLOAD_PATTERN</key>
+        <string>enclosure url="(?P&lt;url&gt;https\:\/\/cloudfront\.volitans-software\.com\/smartutility[\d]+\.zip)" sparkle:version=".*" sparkle:shortVersionString="(?P&lt;version&gt;[\d\.]+)"</string>
+        <key>NAME</key>
+        <string>SMARTUtility</string>
+        <key>SPARKLE_URL</key>
+        <string>https://www.volitans-software.com/stats/smart-utility/profileInfo.php</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
     <key>Process</key>
     <array>
         <dict>
-   	    <key>Arguments</key>
-	    <dict>
-		<key>re_pattern</key>
-		<string>%DOWNLOAD_PATTERN%</string>
-		<key>url</key>
-		<string>%SPARKLE_URL%</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>URLTextSearcher</string>
-	</dict>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>filename</key>
-		<string>%NAME%-%version%.zip</string>
-		<key>url</key>
-		<string>%url%</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>URLDownloader</string>
-	</dict>
-	<dict>
-	    <key>Processor</key>
-	    <string>EndOfCheckPhase</string>
-	</dict>
-	<dict>
-	    <key>Arugments</key>
-	    <dict>
-	        <key>archive_path</key>
-		<string>%pathname%</string>
-		<key>destination_path</key>
-		<string>%RECIPE_CACHE_DIR%/%NAME%</string>
-		<key>purge_destination</key>
-		<true/>
-	    </dict>
-	    <key>Processor</key>
-	    <string>Unarchiver</string>
-	</dict>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-	        <key>input_path</key>
-		<string>%RECIPE_CACHE_DIR%/%NAME%/SMART Utility/SMART Utility.app</string>
-		<key>requirement</key>
-		<string>anchor apple generic and identifier "com.volitans-software.smartutility" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = YJ65CCRY6B)</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>CodeSignatureVerifier</string>
-	</dict>
+            <key>Arguments</key>
+            <dict>
+                <key>re_pattern</key>
+                <string>%DOWNLOAD_PATTERN%</string>
+                <key>url</key>
+                <string>%SPARKLE_URL%</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>filename</key>
+                <string>%NAME%-%version%.zip</string>
+                <key>url</key>
+                <string>%url%</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Arugments</key>
+            <dict>
+                <key>archive_path</key>
+                <string>%pathname%</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>purge_destination</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>Unarchiver</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/SMART Utility/SMART Utility.app</string>
+                <key>requirement</key>
+                <string>anchor apple generic and identifier "com.volitans-software.smartutility" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = YJ65CCRY6B)</string>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
     </array>
 </dict>
 </plist>

@@ -8,33 +8,33 @@
     <string>com.github.apizz.munki.yo</string>
     <key>Input</key>
     <dict>
-	<key>MUNKI_CATEGORY</key>
-	<string>Github Tools</string>
-	<key>MUNKI_REPO_SUBDIR</key>
-	<string>github-tools</string>
-	<key>NAME</key>
-	<string>yo</string>
-	<key>pkginfo</key>
-	<dict>
-	    <key>catalogs</key>
-	    <array>
-		<string>testing</string>
-	    </array>
-	    <key>category</key>
-	    <string>%MUNKI_CATEGORY%</string>
-	    <key>description</key>
-	    <string>Yo is a simple app for sending custom, persistent native Cocoa notifications to the Notification Center in macOS 10.10+. It allows customizing all of the various notification text fields and button labels, the sound effect played, and the application to open when the (optional) action button has been clicked. Further, it allows you to configure the application icon to be displayed with the notification (with caveats), and configure some of the launch properties, like whether to "poof" when clicked, and how to display when the screen is locked.</string>
-	    <key>developer</key>
-	    <string>Shea Craig</string>
-	    <key>display_name</key>
-	    <string>yo</string>
-	    <key>minimum_os_version</key>
-	    <string>10.10.0</string>
-	    <key>name</key>
-	    <string>%NAME%</string>
-	    <key>unattended_install</key>
-	    <true/>
-	</dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>Github Tools</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>github-tools</string>
+        <key>NAME</key>
+        <string>yo</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>Yo is a simple app for sending custom, persistent native Cocoa notifications to the Notification Center in macOS 10.10+. It allows customizing all of the various notification text fields and button labels, the sound effect played, and the application to open when the (optional) action button has been clicked. Further, it allows you to configure the application icon to be displayed with the notification (with caveats), and configure some of the launch properties, like whether to "poof" when clicked, and how to display when the screen is locked.</string>
+            <key>developer</key>
+            <string>Shea Craig</string>
+            <key>display_name</key>
+            <string>yo</string>
+            <key>minimum_os_version</key>
+            <string>10.10.0</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
     </dict>
     <key>MinimumVersion</key>
     <string>0.5.0</string>
@@ -42,17 +42,17 @@
     <string>com.github.sheagcraig.download.yo</string>
     <key>Process</key>
     <array>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>pkg_path</key>
-		<string>%pathname%</string>
-		<key>repo_subdirectory</key>
-		<string>%MUNKI_REPO_SUBDIR%</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>MunkiImporter</string>
-	</dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+            <key>pkg_path</key>
+            <string>%pathname%</string>
+            <key>repo_subdirectory</key>
+            <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
     </array>
 </dict>
 </plist>

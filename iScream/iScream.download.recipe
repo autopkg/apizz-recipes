@@ -10,30 +10,30 @@
     <string>com.github.apizz.download.iScream</string>
     <key>Input</key>
     <dict>
-	<key>DOWNLOAD_URL</key>
-	<string>https://www.mediahuman.com/download/iScream.dmg</string>
-	<key>NAME</key>
-	<string>iScream</string>
+        <key>DOWNLOAD_URL</key>
+        <string>https://www.mediahuman.com/download/iScream.dmg</string>
+        <key>NAME</key>
+        <string>iScream</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
     <key>Process</key>
     <array>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>filename</key>
-		<string>%NAME%.dmg</string>
-		<key>url</key>
-		<string>%DOWNLOAD_URL%</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>URLDownloader</string>
-	</dict>
-	<dict>
-	    <key>Processor</key>
-	    <string>EndOfCheckPhase</string>
-	</dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>filename</key>
+                <string>%NAME%.dmg</string>
+                <key>url</key>
+                <string>%DOWNLOAD_URL%</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
     </array>
 </dict>
 </plist>

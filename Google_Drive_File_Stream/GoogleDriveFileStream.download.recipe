@@ -8,10 +8,10 @@
     <string>com.github.apizz.download.googledrivefilestream</string>
     <key>Input</key>
     <dict>
-    <key>DOWNLOAD_URL</key>
-    <string>https://dl.google.com/drive-file-stream/googledrivefilestream.dmg</string>
-    <key>NAME</key>
-    <string>GoogleDriveFileStream</string>
+        <key>DOWNLOAD_URL</key>
+        <string>https://dl.google.com/drive-file-stream/googledrivefilestream.dmg</string>
+        <key>NAME</key>
+        <string>GoogleDriveFileStream</string>
     </dict>
     <key>Process</key>
     <array>
@@ -31,8 +31,6 @@
             <string>EndOfCheckPhase</string>
         </dict>
         <dict>
-            <key>Processor</key>
-            <string>CodeSignatureVerifier</string>
             <key>Arguments</key>
             <dict>
                 <key>input_path</key>
@@ -44,10 +42,10 @@
                     <string>Apple Root CA</string>
                 </array>
             </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
         </dict>
         <dict>
-            <key>Processor</key>
-            <string>FlatPkgUnpacker</string>
             <key>Arguments</key>
             <dict>
                 <key>flat_pkg_path</key>
@@ -55,10 +53,10 @@
                 <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/unpack</string>
             </dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
         </dict>
         <dict>
-            <key>Processor</key>
-            <string>PkgPayloadUnpacker</string>
             <key>Arguments</key>
             <dict>
                 <key>pkg_payload_path</key>
@@ -66,10 +64,10 @@
                 <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/payload</string>
             </dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
         </dict>
         <dict>
-            <key>Processor</key>
-            <string>CodeSignatureVerifier</string>
             <key>Arguments</key>
             <dict>
                 <key>input_path</key>
@@ -81,6 +79,8 @@
                 <key>expected_authority_names</key>
                 <array/>
             </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
         </dict>
     </array>
 </dict>

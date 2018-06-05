@@ -7,29 +7,29 @@
     <key>Input</key>
     <dict>
         <key>MUNKI_CATEGORY</key>
-	<string>Utilities</string>
-	<key>MUNKI_REPO_SUBDIR</key>
-	<string>apps/datarescue</string>
-	<key>NAME</key>
-	<string>DataRescue4</string>
-	<key>pkginfo</key>
-	<dict>
+        <string>Utilities</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/datarescue</string>
+        <key>NAME</key>
+        <string>DataRescue4</string>
+        <key>pkginfo</key>
+        <dict>
             <key>catalogs</key>
             <array>
                 <string>testing</string>
             </array>
-	    <key>category</key>
-	    <string>%MUNKI_CATEGORY%</string>
-	    <key>description</key>
-	    <string>Data Rescue is a data recovery software for Mac. Find, recover, and preview accidentally deleted files, lost data, and reformatted drives with ease. Go beyond hard drive recovery software. Data Rescue recovers files from a multitude of devices including SD cards, USB drives, CF cards, solid state drives, and more.</string>
-	    <key>developer</key>
-	    <string>Prosoft Engineering, Inc.</string>
-	    <key>display_name</key>
-	    <string>Data Rescue 4</string>
-	    <key>name</key>
-	    <string>%NAME%</string>
-	    <key>unattended_install</key>
-	    <true/>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>Data Rescue is a data recovery software for Mac. Find, recover, and preview accidentally deleted files, lost data, and reformatted drives with ease. Go beyond hard drive recovery software. Data Rescue recovers files from a multitude of devices including SD cards, USB drives, CF cards, solid state drives, and more.</string>
+            <key>developer</key>
+            <string>Prosoft Engineering, Inc.</string>
+            <key>display_name</key>
+            <string>Data Rescue 4</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
         </dict>
     </dict>
     <key>MinimumVersion</key>
