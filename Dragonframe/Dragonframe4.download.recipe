@@ -10,54 +10,54 @@
     <dict>
         <key>NAME</key>
         <string>Dragonframe</string>
-  	<key>SEARCH_PATTERN</key>
-	<string>(?P&lt;url&gt;http:\/\/www\.dragonframe.com\/download\/Dragonframe_(?P&lt;version&gt;4.[\d.]+)\.pkg)</string>
-	<key>SEARCH_URL</key>
-	<string>http://www.dragonframe.com/downloads/</string>
+        <key>SEARCH_PATTERN</key>
+        <string>(?P&lt;url&gt;http:\/\/www\.dragonframe.com\/download\/Dragonframe_(?P&lt;version&gt;4.[\d.]+)\.pkg)</string>
+        <key>SEARCH_URL</key>
+        <string>http://www.dragonframe.com/downloads/</string>
     </dict>
     <key>Process</key>
     <array>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>re_pattern</key>
-		<string>%SEARCH_PATTERN%</string>
-		<key>url</key>
-		<string>%SEARCH_URL%</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>URLTextSearcher</string>
-	</dict>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>filename</key>
-		<string>%NAME%-%version%.pkg</string>
-		<key>url</key>
-		<string>%url%</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>URLDownloader</string>
-	</dict>
-	<dict>
-	    <key>Processor</key>
-	    <string>EndOfCheckPhase</string>
-	</dict>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-	        <key>expected_authority_names</key>
-		<array>
-		    <string>Developer ID Installer: DZED Systems LLC (PG7SM8SD8M)</string>
-		    <string>Developer ID Certification Authority</string>
-		    <string>Apple Root CA</string>
-		</array>
-		<key>input_path</key>
-		<string>%pathname%</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>CodeSignatureVerifier</string>
-	</dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>re_pattern</key>
+                <string>%SEARCH_PATTERN%</string>
+                <key>url</key>
+                <string>%SEARCH_URL%</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>filename</key>
+                <string>%NAME%-%version%.pkg</string>
+                <key>url</key>
+                <string>%url%</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>expected_authority_names</key>
+                <array>
+                    <string>Developer ID Installer: DZED Systems LLC (PG7SM8SD8M)</string>
+                    <string>Developer ID Certification Authority</string>
+                    <string>Apple Root CA</string>
+                </array>
+                <key>input_path</key>
+                <string>%pathname%</string>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
     </array>
 </dict>
 </plist>
