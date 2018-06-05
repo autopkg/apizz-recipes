@@ -7,30 +7,30 @@
     <key>Input</key>
     <dict>
         <key>MUNKI_CATEGORY</key>
-	<string>Software</string>
-	<key>MUNKI_REPO_SUBDIR</key>
-	<string>apps</string>
-	<key>NAME</key>
-	<string>Dragonframe</string>
-	<key>pkginfo</key>
-	<dict>
-	    <key>catalogs</key>
-	    <array>
-		<string>testing</string>
-	    </array>
-	    <key>category</key>
-	    <string>%MUNKI_CATEGORY%</string>
-	    <key>description</key>
-	    <string>Begin your stop motion filmmaking journey today with the digital image capture software trusted by major motion picture studios and independent filmmakers alike.</string>
-	    <key>developer</key>
-	    <string>DZED Systems</string>
-	    <key>display_name</key>
-	    <string>Dragonframe</string>
-	    <key>name</key>
-	    <string>%NAME%</string>
-	    <key>unattended_install</key>
-	    <true/>
-	</dict>
+        <string>Software</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/dragonframe3</string>
+        <key>NAME</key>
+        <string>Dragonframe3</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>Begin your stop motion filmmaking journey today with the digital image capture software trusted by major motion picture studios and independent filmmakers alike.</string>
+            <key>developer</key>
+            <string>DZED Systems</string>
+            <key>display_name</key>
+            <string>Dragonframe 3</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
     </dict>
     <key>ParentRecipe</key>
     <string>com.github.apizz.download.Dragonframe3</string>
@@ -39,13 +39,67 @@
         <dict>
             <key>Arguments</key>
             <dict>
-           	<key>pkg_path</key>
-           	<string>%pathname%</string>
-           	<key>repo_subdirectory</key>
-           	<string>%MUNKI_REPO_SUBDIR%</string>
+                <key>flat_pkg_path</key>
+                <string>%pathname%</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+            </dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>pkg_payload_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/Dragonframe.pkg/Payload</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>faux_root</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>installs_item_paths</key>
+                <array>
+                    <string>/Applications/Dragonframe/Dragonframe.app</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiInstallsItemsCreator</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%pathname%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
             </dict>
             <key>Processor</key>
             <string>MunkiImporter</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                    <string>%RECIPE_CACHE_DIR%/unpack</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
         </dict>
     </array>
 </dict>
