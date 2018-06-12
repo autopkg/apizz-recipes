@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the latest version of Google Drive File Stream and adds to munki repo.</string>
     <key>Identifier</key>
-    <string>com.github.apizz.munki.googledrivefilestream</string>
+    <string>com.github.apizz.munki.GoogleDriveFileStream</string>
     <key>Input</key>
     <dict>
         <key>MUNKI_CATEGORY</key>
@@ -37,7 +37,7 @@
         </dict>
     </dict>
     <key>ParentRecipe</key>
-    <string>com.github.apizz.pkg.googledrivefilestream</string>
+    <string>com.github.nstrauss.pkg.GoogleDriveFileStream</string>
     <key>Process</key>
     <array>
         <dict>
