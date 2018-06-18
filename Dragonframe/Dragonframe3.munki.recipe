@@ -33,7 +33,7 @@
         </dict>
     </dict>
     <key>ParentRecipe</key>
-    <string>com.github.apizz.download.Dragonframe3</string>
+    <string>com.github.amsysuk-recipes.pkg.Dragonframe3</string>
     <key>Process</key>
     <array>
         <dict>
