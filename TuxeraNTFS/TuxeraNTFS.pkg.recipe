@@ -8,8 +8,8 @@
     <string>com.github.apizz.pkg.tuxerantfs</string>
     <key>Input</key>
     <dict>
-	<key>NAME</key>
-	<string>TuxeraNTFS</string>
+        <key>NAME</key>
+        <string>TuxeraNTFS</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
@@ -17,26 +17,41 @@
     <string>com.github.apizz.download.tuxerantfs</string>
     <key>Process</key>
     <array>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>dmg_path</key>
-		<string>%pathname%</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>AppDmgVersioner</string>
-	</dict>
-	<dict>
-	    <key>Arguments</key>
-	    <dict>
-		<key>destination_path</key>
-		<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.mpkg</string>
-		<key>source_path</key>
-		<string>%pathname%/Install Tuxera NTFS.app/Contents/Resources/Packages/Flat/Install Tuxera NTFS.mpkg</string>
-	    </dict>
-	    <key>Processor</key>
-	    <string>Copier</string>
-	</dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>dmg_path</key>
+                <string>%pathname%</string>
+            </dict>
+            <key>Processor</key>
+            <string>AppDmgVersioner</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>expected_authority_names</key>
+                <array>
+                    <string>Developer ID Installer: Tuxera Inc. (PPNVCC9Z68)</string>
+                    <string>Developer ID Certification Authority</string>
+                    <string>Apple Root CA</string>
+                </array>
+                <key>input_path</key>
+                <string>%pathname%/Install Tuxera NTFS.app/Contents/Resources/Packages/Flat/Install Tuxera NTFS.mpkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.mpkg</string>
+                <key>source_path</key>
+                <string>%pathname%/Install Tuxera NTFS.app/Contents/Resources/Packages/Flat/Install Tuxera NTFS.mpkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>Copier</string>
+        </dict>
     </array>
 </dict>
 </plist>
