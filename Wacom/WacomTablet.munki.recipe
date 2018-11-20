@@ -6,31 +6,55 @@
     <string>com.github.apizz.munki.WacomTablet</string>
     <key>Input</key>
     <dict>
-    <key>MUNKI_CATEGORY</key>
-    <string>Drivers</string>
-    <key>MUNKI_REPO_SUBDIR</key>
-    <string>drivers</string>
-    <key>NAME</key>
-    <string>WacomTablet</string>
-    <key>pkginfo</key>
-    <dict>
-        <key>catalogs</key>
-        <array>
-        <string>testing</string>
-        </array>
-        <key>category</key>
-        <string>%MUNKI_CATEGORY%</string>
-        <key>description</key>
-        <string>Wacom drivers for the latest professional pen displays and pen tablets, as well as their business solutions.</string>
-        <key>developer</key>
-        <string>Wacom</string>
-        <key>display_name</key>
-        <string>Wacom Tablet Drivers</string>
-        <key>name</key>
-        <string>%NAME%</string>
-        <key>unattended_install</key>
-        <true/>
-    </dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>Drivers</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>drivers</string>
+        <key>NAME</key>
+        <string>WacomTablet</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>Wacom drivers for the latest professional pen displays and pen tablets, as well as their business solutions.</string>
+            <key>developer</key>
+            <string>Wacom</string>
+            <key>display_name</key>
+            <string>Wacom Tablet Drivers</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>postuninstall_script</key>
+            <string>#!/bin/bash
+
+UNINSTALLER="/Applications/Wacom Tablet Utility.app/Contents/MacOS/Wacom Tablet Utility"
+
+sudo "$UNINSTALLER" --uninstall
+
+exit</string>
+            <key>preinstall_script</key>
+            <string>#!/bin/bash
+
+OLD_APP="/Applications/Pen Tablet.localized/Pen Tablet Utility.app"
+APP="/Applications/Wacom Tablet.localized/Wacom Tablet Utility.app"
+OLD_EXE="${OLD_APP}/Contents/Resources/uninstall.pl"
+EXE="${APP}/Contents/MacOS/Wacom Tablet Utility"
+
+# If this app is installing, munki has detected we have a newer version. Therefore, if Wacom Tablet Utility already exists then we need to uninstall first
+if [ -d "$OLD_APP" ]; then
+    sudo "$OLD_EXE"
+fi
+
+if [ -d "$APP" ]; then
+    sudo "$EXE" --uninstall
+fi</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
     </dict>
     <key>MinimumVersion</key>
     <string>0.5.0</string>
@@ -38,6 +62,41 @@
     <string>com.github.rustymyers.download.WacomTablet</string>
     <key>Process</key>
     <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>flat_pkg_path</key>
+                <string>%pathname%/Install Wacom Tablet.pkg</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+            </dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_payload_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/content.pkg/Payload</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/Applications</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>faux_root</key>
+                <string>%RECIPE_CACHE_DIR%/Applications</string>
+                <key>installs_item_paths</key>
+                <array>
+                    <string>/Applications/Wacom Tablet.localized/Wacom Tablet Utility.app</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiInstallsItemsCreator</string>
+        </dict>
         <dict>
             <key>Arguments</key>
             <dict>
@@ -60,6 +119,18 @@
             </dict>
             <key>Processor</key>
             <string>MunkiImporter</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/unpack</string>
+                    <string>%RECIPE_CACHE_DIR%/Applications</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
         </dict>
     </array>
 </dict>
