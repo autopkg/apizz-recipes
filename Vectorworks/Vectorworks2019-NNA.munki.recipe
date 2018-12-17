@@ -88,7 +88,7 @@ exit $result</string>
 
 # Path to locally-copied Vectorworks install application
 UNINSTALL_APP_PATH="%VW_INSTALL_DIR%/Uninstall.app"
-EXE="${APP_PATH}/Contents/MacOS/installbuilder.sh"
+EXE="${UNINSTALL_APP_PATH}/Contents/MacOS/installbuilder.sh"
 
 if [ -d "$UNINSTALL_APP_PATH" ]; then
 	"$EXE" --mode unattended
