@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Adds the latest version of Vectorworks 2019 NNA to a munki_repo.
+
+Because of the fact the install is done via an installer app, we have to make some assumptions - like the installer app being the same version number as the app that's installed - which may make this recipe not a great long-term solution.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.Vectorworks2019-NNA</string>
+    <key>Input</key>
+    <dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>Design</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/vectorworks</string>
+        <key>NAME</key>
+        <string>Vectorworks2019NNA</string>
+        <key>VW_COMPANY</key>
+        <string>ENTER COMPANY NAME HERE</string>
+        <key>VW_INSTALL_DIR</key>
+        <string>/Applications/Vectorworks 2019</string>
+        <key>VW_SERIAL</key>
+        <string>ENTER SERIAL NUMBER HERE</string>
+        <key>VW_TMP_DIR</key>
+        <string>/private/tmp</string>
+        <key>VW_USERNAME</key>
+        <string>ENTER USER NAME HERE</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string></string>
+            <key>developer</key>
+            <string>GuinpinSoft Inc</string>
+            <key>display_name</key>
+            <string>Vectorworks 2019</string>
+            <key>items_to_copy</key>
+            <array>
+            	<dict>
+            		<key>destination_path</key>
+            		<string>%VW_TMP_DIR%</string>
+            		<key>source_item</key>
+            		<string>Vectorworks 2019 Installer.app</string>
+            	</dict>
+            </array>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>postinstall_script</key>
+            <string>#!/bin/bash
+
+# Path to locally-copied Vectorworks install application
+APP_PATH="%VW_TMP_DIR%/Vectorworks 2019 Installer.app"
+EXE="${APP_PATH}/Contents/Resources/installer/Install Vectorworks2019.app/Contents/MacOS/installbuilder.sh"
+# Directory to install Vectorworks and resources
+INSTALL_DIR="%VW_INSTALL_DIR%"
+# Company associated with license
+COMPANY="%VW_COMPANY%"
+# Vectorworks serial number
+SERIAL="%VW_SERIAL%"
+# User associated with license
+USERNAME="%VW_USERNAME%"
+
+# Silent install
+if [ -d "$APP_PATH" ]; then
+	"$EXE" --unattendedmodeui none --mode unattended --Serial "$SERIAL" --UserName "$USERNAME" --CompName "$COMPANY" --installdir "$INSTALL_DIR"
+	result=$(/bin/echo $?)
+else
+	/bin/echo "Vectorworks installer app at APP_PATH does not exist."
+	result=1
+fi
+
+# If install successful, delete installer app
+if [ "$result" = 0 ]; then
+	/bin/rm -rf "$APP_PATH"
+fi
+
+exit $result</string>
+			<key>uninstall_method</key>
+			<string>uninstall_script</string>
+			<key>uninstall_script</key>
+			<string>#!/bin/bash
+
+# Path to locally-copied Vectorworks install application
+UNINSTALL_APP_PATH="%VW_INSTALL_DIR%/Uninstall.app"
+EXE="${APP_PATH}/Contents/MacOS/installbuilder.sh"
+
+if [ -d "$UNINSTALL_APP_PATH" ]; then
+	"$EXE" --mode unattended
+	result=$(/bin/echo $?)
+else
+	/bin/echo "Vectorworks UNINSTALL_APP_PATH does not exist."
+	result=1
+fi
+
+# Remove leftovers
+for u in /Users/* ; do
+	# Remove user preferences
+	/bin/rm ${u}/Library/Preferences/net.nemetschek*.plist
+	# Remove Application Support folders
+	/bin/rm -rf ${u}/Library/Application\ Support/Vectorworks*
+	/bin/rm -rf ${u}/Library/Application\ Support/vectorworks-installer-wrapper
+done
+
+exit $result</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.5.0</string>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.download.Vectorworks2019-NNA</string>
+    <key>Process</key>
+    <array>
+    	<dict>
+    		<key>Arguments</key>
+    		<dict>
+    			<key>dmg_path</key>
+    			<string>%pathname%</string>
+    		</dict>
+    		<key>Processor</key>
+    		<string>AppDmgVersioner</string>
+    	</dict>
+    	<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>additional_pkginfo</key>
+				<dict>
+					<key>installs</key>
+					<array>
+						<dict>
+							<key>CFBundleIdentifier</key>
+							<string>net.nemetschek.vectorworks</string>
+							<key>CFBundleName</key>
+							<string>Vectorworks</string>
+							<key>CFBundleVersion</key>
+							<string>%version%</string>
+							<key>path</key>
+							<string>%VW_INSTALL_DIR%/Vectorworks 2019.app</string>
+							<key>type</key>
+							<string>application</string>
+							<key>version_comparison_key</key>
+							<string>CFBundleVersion</string>
+						</dict>
+					</array>
+				</dict>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiPkginfoMerger</string>
+		</dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%pathname%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+    </array>
+</dict>
+</plist>
