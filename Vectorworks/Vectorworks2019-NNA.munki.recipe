@@ -107,6 +107,8 @@ for u in /Users/* ; do
 	/bin/rm -rf ${u}/Library/Application\ Support/vectorworks-installer-wrapper
 done
 
+/bin/rm -rf "%VW_INSTALL_DIR%"
+
 exit $result</string>
             <key>unattended_install</key>
             <true/>
