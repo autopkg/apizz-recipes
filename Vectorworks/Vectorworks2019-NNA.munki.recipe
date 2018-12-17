@@ -35,9 +35,9 @@ Because of the fact the install is done via an installer app, we have to make so
             <key>category</key>
             <string>%MUNKI_CATEGORY%</string>
             <key>description</key>
-            <string></string>
+            <string>Whether your specialty is architecture, landscape, or entertainment design—or anything in between—Vectorworks Designer software enables you to draft, model, and present in a single, intuitive interface.</string>
             <key>developer</key>
-            <string>GuinpinSoft Inc</string>
+            <string>Nemetschek Group</string>
             <key>display_name</key>
             <string>Vectorworks 2019</string>
             <key>items_to_copy</key>
