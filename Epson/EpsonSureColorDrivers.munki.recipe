@@ -54,14 +54,12 @@ in the Drivers section of the web page. Currently, the recipe fails for the P600
         <key>MUNKI_REPO_SUBDIR</key>
         <string>drivers/epson</string>
         <key>NAME</key>
-        <string>Epson SureColor P800</string>
-        <key>SEARCH_URL</key>
-        <string>https://epson.com/Support/Printers/Professional-Imaging-Printers/SureColor-Series/Epson-SureColor-P800/s/SPT_SCP800SE?review-filter=macOS+10.13.x</string>
+        <string>Epson SureColor</string>
         <key>pkginfo</key>
         <dict>
             <key>catalogs</key>
             <array>
-                <string>alpha</string>
+                <string>testing</string>
             </array>
             <key>category</key>
             <string>%MUNKI_CATEGORY%</string>
@@ -87,7 +85,7 @@ in the Drivers section of the web page. Currently, the recipe fails for the P600
             <key>Arguments</key>
             <dict>
                 <key>pkg_path</key>
-                <string>%pathname%/Epson Printer.pkg</string>
+                <string>%pathname%</string>
                 <key>repo_subdirectory</key>
                 <string>%MUNKI_REPO_SUBDIR%</string>
             </dict>
