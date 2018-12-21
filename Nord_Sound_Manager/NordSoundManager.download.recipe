@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of the Nord Sound Manager.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.download.NordSoundManager</string>
+    <key>Input</key>
+    <dict>
+        <key>SEARCH_PATTERN</key>
+        <string>(?P&lt;url&gt;https\:\/\/www\.nordkeyboards\.com\/[\w.]+\/[\w.]+\/[\w.]+\/[\w.]+\/[\w.]+\/[\w.]+\/nord-sound-manager\/Nord%20Sound%20Manager%20v(?P&lt;version&gt;[\d.]+)\.dmg)</string>
+        <key>SEARCH_URL</key>
+        <string>https://www.nordkeyboards.com/downloads/software-tools/nord-sound-manager</string>
+        <key>NAME</key>
+        <string>NordSoundManager</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>1.0.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>re_pattern</key>
+                <string>%SEARCH_PATTERN%</string>
+                <key>url</key>
+                <string>%SEARCH_URL%</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>filename</key>
+                <string>%NAME%.dmg</string>
+                <key>url</key>
+                <string>%url%</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%pathname%/Nord Sound Manager v%version%.app</string>
+                <key>requirement</key>
+                <string>anchor apple generic and identifier "com.clavia.NordSoundManager" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = PPG4267J2V)</string>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+    </array>
+</dict>
+</plist>
