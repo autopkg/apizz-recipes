@@ -35,7 +35,7 @@
     <key>MinimumVersion</key>
     <string>1.0.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.apizz.pkg.mas-cli</string>
+    <string>com.github.apizz.download.mas-cli</string>
     <key>Process</key>
     <array>
         <dict>
