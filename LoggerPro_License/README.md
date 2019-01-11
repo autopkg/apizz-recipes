@@ -12,7 +12,10 @@ ex. `https://vernier.com/d/XXXXX`
 
 ### How to Use These Recipes
 
-1. Add the repo - https://github.com/apizz/apizz-recipes repo to autopkg.
+1. Add my repo to autopkg.
+```
+autopkg repo-add https://github.com/autopkg/apizz-recipes.git
+```
 
 2. Create overrides for the desired recipe (.download, .pkg, or .munki)
 - You can change the override recipe name should the major version of the software change in the future (ex. LoggerPro4)
