@@ -39,7 +39,7 @@
     <key>MinimumVersion</key>
     <string>0.5.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.apizz.download.ShureWirelessWorkbench</string>
+    <string>com.github.apizz.download.ShureWirelessWorkbench6</string>
     <key>Process</key>
     <array>
     	<dict>
