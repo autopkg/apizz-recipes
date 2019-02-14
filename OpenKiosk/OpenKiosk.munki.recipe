@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Downloads the latest version of OpenKiosk and imports it into Munki.</string>
+	<key>Identifier</key>
+	<string>com.github.apizz.munki.OpenKiosk</string>
+	<key>Input</key>
+	<dict>
+		<key>MUNKI_CATEGORY</key>
+		<string>Browsers</string>
+		<key>MUNKI_REPO_SUBDIR</key>
+		<string>apps/openkiosk</string>
+		<key>NAME</key>
+		<string>OpenKiosk</string>
+		<key>pkginfo</key>
+		<dict>
+			<key>catalogs</key>
+			<array>
+				<string>testing</string>
+			</array>
+			<key>category</key>
+			<string>%MUNKI_CATEGORY%</string>
+			<key>description</key>
+			<string>OpenKiosk is a cross platform kiosk web browser based on Mozilla Firefox that can be easily installed and used to secure a computer for use as a public terminal. This is a complete solution for any kiosk installation.</string>
+			<key>developer</key>
+			<string>Mozdev Group, Inc.</string>
+			<key>display_name</key>
+			<string>OpenKiosk</string>
+			<key>name</key>
+			<string>%NAME%</string>
+			<key>unattended_install</key>
+			<true/>
+		</dict>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>1.0.0</string>
+	<key>ParentRecipe</key>
+	<string>com.github.apizz.download.OpenKiosk</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_path</key>
+				<string>%pathname%</string>
+				<key>repo_subdirectory</key>
+				<string>%MUNKI_REPO_SUBDIR%</string>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiImporter</string>
+		</dict>
+	</array>
+</dict>
+</plist>
