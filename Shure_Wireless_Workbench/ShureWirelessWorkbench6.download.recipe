@@ -9,7 +9,7 @@
     <key>Input</key>
     <dict>
         <key>SEARCH_PATTERN</key>
-        <string>(?P&lt;url&gt;\/software\/wireless-workbench-mac-v(?P&lt;version&gt;[\d.]+)\.zip)</string>
+        <string>&lt;a href="https?:\/\/www.shure.com(?P&lt;url&gt;[a-zA-Z\-\.\/]+)"&gt;Wireless Workbench (?P&lt;version&gt;[0-9\.]+) \(macOS\)&lt;/a&gt;</string>
         <key>SEARCH_PAGE</key>
         <string>https://www.shure.com/americas/products/software/wireless-workbench/wireless-workbench-6#downloads</string>
         <key>NAME</key>
