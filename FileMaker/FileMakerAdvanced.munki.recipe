@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Downloads the latest FileMaker Pro Advanced full installer given the supplied MAJOR_VERSION and imports it into a munki_repo.
+	
+When purchasing FileMaker, the order confirmation email includes a URL which takes you to a page to download the latest full installer. Despite indicating the link will expire, almost a year later and our own account purchase link still works. You will need to supply that link in the SEARCH_URL variable.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.FileMakerAdvanced</string>
+    <key>Input</key>
+	<dict>
+		<key>MUNKI_CATEGORY</key>
+		<string>Software</string>
+		<key>MUNKI_REPO_SUBDIR</key>
+		<string>apps/filemaker</string>
+		<key>MAJOR_VERSION</key>
+		<string>17</string>
+		<key>NAME</key>
+		<string>FileMakerAdvanced</string>
+		<key>pkginfo</key>
+		<dict>
+			<key>catalogs</key>
+			<array>
+				<string>testing</string>
+			</array>
+			<key>category</key>
+			<string>%MUNKI_CATEGORY%</string>
+			<key>developer</key>
+			<string>FileMaker Inc.</string>
+			<key>description</key>
+			<string>FileMaker Pro is a cross-platform relational database application from FileMaker Inc., a subsidiary of Apple Inc.</string>
+			<key>display_name</key>
+			<string>FileMaker Pro %MAJOR_VERSION% Advanced</string>
+			<key>minimum_os_version</key>
+			<string>10.12</string>
+			<key>name</key>
+			<string>%NAME%%MAJOR_VERSION%</string>
+		</dict>
+	</dict>
+    <key>MinimumVersion</key>
+    <string>0.6.1</string>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.download.FileMakerAdvanced</string>
+    <key>Process</key>
+    <array>
+    	<dict>
+        	<key>Arguments</key>
+        	<dict>
+        		<key>destination_path</key>
+        		<string>%RECIPE_CACHE_DIR%/unpack</string>
+        		<key>flat_pkg_path</key>
+        		<string>%pathname%/*.pkg</string>
+        	</dict>
+        	<key>Processor</key>
+        	<string>FlatPkgUnpacker</string>
+        </dict>
+        <dict>
+        	<key>Arguments</key>
+        	<dict>
+        		<key>destination_path</key>
+        		<string>%RECIPE_CACHE_DIR%/%NAME%/Applications/FileMaker Pro %MAJOR_VERSION% Advanced</string>
+        		<key>pkg_payload_path</key>
+        		<string>%RECIPE_CACHE_DIR%/unpack/fmpa%MAJOR_VERSION%Application.pkg/Payload</string>
+        	</dict>
+        	<key>Processor</key>
+        	<string>PkgPayloadUnpacker</string>
+        </dict>
+        <dict>
+        	<key>Arguments</key>
+        	<dict>
+        		<key>faux_root</key>
+        		<string>%RECIPE_CACHE_DIR%/%NAME%</string>
+        		<key>installs_item_paths</key>
+        		<array>
+        			<string>/Applications/FileMaker Pro %MAJOR_VERSION% Advanced/FileMaker Pro Advanced.app</string>
+        		</array>
+        	</dict>
+        	<key>Processor</key>
+        	<string>MunkiInstallsItemsCreator</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict/>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>additional_pkginfo</key>
+                <dict>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%pathname%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/unpack</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
+        </dict>
+    </array>
+</dict>
+</plist>
