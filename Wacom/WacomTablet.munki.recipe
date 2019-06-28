@@ -9,7 +9,7 @@
         <key>MUNKI_CATEGORY</key>
         <string>Drivers</string>
         <key>MUNKI_REPO_SUBDIR</key>
-        <string>drivers</string>
+        <string>drivers/wacom</string>
         <key>NAME</key>
         <string>WacomTablet</string>
         <key>pkginfo</key>
@@ -79,7 +79,7 @@ fi</string>
                 <key>pkg_payload_path</key>
                 <string>%RECIPE_CACHE_DIR%/unpack/content.pkg/Payload</string>
                 <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/Applications</string>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
             </dict>
             <key>Processor</key>
             <string>PkgPayloadUnpacker</string>
@@ -87,15 +87,43 @@ fi</string>
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>filename</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Library/LaunchAgents</string>
+                <key>mode</key>
+                <string>a+x</string>
+            </dict>
+            <key>Processor</key>
+            <string>com.github.jessepeterson.munki.UniversalTypeClient6/ModeChanger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>filename</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Library/LaunchDaemons</string>
+                <key>mode</key>
+                <string>a+x</string>
+            </dict>
+            <key>Processor</key>
+            <string>com.github.jessepeterson.munki.UniversalTypeClient6/ModeChanger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
                 <key>faux_root</key>
-                <string>%RECIPE_CACHE_DIR%/Applications</string>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>installs_item_paths</key>
                 <array>
-                    <string>/Applications/Wacom Tablet.localized/Wacom Tablet Utility.app</string>
+                    <string>/Library/PreferencePanes/WacomTablet.prefPane</string>
                 </array>
             </dict>
             <key>Processor</key>
             <string>MunkiInstallsItemsCreator</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict/>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
         </dict>
         <dict>
             <key>Arguments</key>
@@ -126,7 +154,7 @@ fi</string>
                 <key>path_list</key>
                 <array>
                     <string>%RECIPE_CACHE_DIR%/unpack</string>
-                    <string>%RECIPE_CACHE_DIR%/Applications</string>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 </array>
             </dict>
             <key>Processor</key>
