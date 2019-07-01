@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of Fathom and does the necessary parsing to import into a munki_repo.
+
+DESTINATION_PATH should not contain a trailing '/'</string>
+    <key>Identifier</key>
+    <string>com.github.joshua-d-miller.download.fathom</string>
+    <key>Input</key>
+    <dict>
+        <key>DESTINATION_PATH</key>
+        <string>/Applications</string>
+        <key>MUNKI_CATEGORY</key>
+        <string>Math</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/fathom</string>
+        <key>NAME</key>
+        <string>Fathom</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>developer</key>
+            <string>The Concord Consortium</string>
+            <key>description</key>
+            <string>Fathom is dynamic software that's fun and effective for teaching data analysis and statistics. It's also a powerful tool for high school students to use for modeling with mathematics, as required by the Common Core State Standards. In addition to helping students understand algebra, precalculus and statistics, Fathom's powerful data analysis capabilities make it an excellent tool for the physical and biological sciences, as well as for social science courses.</string>
+            <key>display_name</key>
+            <string>Fathom</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.6.1</string>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.download.fathom</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%%DESTINATION_PATH%/%fathom_dir%</string>
+                <key>source_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%.dmg/%fathom_dir%</string>
+            </dict>
+            <key>Processor</key>
+            <string>Copier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>faux_root</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>installs_item_paths</key>
+                <array>
+                    <string>%DESTINATION_PATH%/%fathom_dir%/Fathom.app</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiInstallsItemsCreator</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>additional_pkginfo</key>
+                <dict>
+                    <key>items_to_copy</key>
+                    <array>
+                        <dict>
+                            <key>destination_path</key>
+                            <string>%DESTINATION_PATH%</string>
+                            <key>source_item</key>
+                            <string>%fathom_dir%</string>
+                        </dict>
+                    </array>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>munkiimport_appname</key>
+                <string>%fathom_dir%/Fathom.app</string>
+                <key>pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+    </array>
+</dict>
+</plist>
