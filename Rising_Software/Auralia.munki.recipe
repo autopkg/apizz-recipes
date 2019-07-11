@@ -9,7 +9,7 @@
         <key>MUNKI_CATEGORY</key>
         <string>Music</string>
         <key>MUNKI_REPO_SUBDIR</key>
-        <string>apps</string>
+        <string>apps/risingsoftware</string>
         <key>NAME</key>
         <string>Auralia</string>
         <key>pkginfo</key>
