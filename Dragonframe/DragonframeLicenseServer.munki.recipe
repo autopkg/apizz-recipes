@@ -7,30 +7,30 @@
     <key>Input</key>
     <dict>
         <key>MUNKI_CATEGORY</key>
-	<string>Software</string>
-	<key>MUNKI_REPO_SUBDIR</key>
-	<string>apps/dragonframe</string>
-	<key>NAME</key>
-	<string>DragonframeLicenseServer</string>
-	<key>pkginfo</key>
-	<dict>
-	    <key>catalogs</key>
-	    <array>
-		<string>testing</string>
-	    </array>
-	    <key>category</key>
-	    <string>%MUNKI_CATEGORY%</string>
-	    <key>description</key>
-	    <string>The Dragonframe license manager provides an alternative activation method for schools and large institutions with many Dragonframe licenses.</string>
-	    <key>developer</key>
-	    <string>DZED Systems</string>
-	    <key>display_name</key>
-	    <string>Dragonframe License Server</string>
-	    <key>name</key>
-	    <string>%NAME%</string>
-	    <key>unattended_install</key>
-	    <true/>
-	</dict>
+        <string>Software</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/dragonframe</string>
+        <key>NAME</key>
+        <string>DragonframeLicenseServer</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>The Dragonframe license manager provides an alternative activation method for schools and large institutions with many Dragonframe licenses.</string>
+            <key>developer</key>
+            <string>DZED Systems</string>
+            <key>display_name</key>
+            <string>Dragonframe License Server</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
     </dict>
     <key>ParentRecipe</key>
     <string>com.github.apizz.download.DragonframeLicenseServer</string>
@@ -39,10 +39,10 @@
         <dict>
             <key>Arguments</key>
             <dict>
-           	<key>pkg_path</key>
-           	<string>%pathname%</string>
-           	<key>repo_subdirectory</key>
-           	<string>%MUNKI_REPO_SUBDIR%</string>
+            <key>pkg_path</key>
+            <string>%pathname%</string>
+            <key>repo_subdirectory</key>
+            <string>%MUNKI_REPO_SUBDIR%</string>
             </dict>
             <key>Processor</key>
             <string>MunkiImporter</string>
