@@ -61,7 +61,7 @@
                     </dict>
                     </array>
                     <key>id</key>
-                    <string>com.volitans-software.%NAME%</string>
+                    <string>com.volitans-software.SMARTUtility</string>
                     <key>options</key>
                     <string>purge_ds_store</string>
                     <key>pkgname</key>
