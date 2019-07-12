@@ -76,7 +76,7 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>additional_makepkginfo_options</key>
+                <key>additional_pkginfo</key>
                 <dict>
                     <key>minimum_os_version</key>
                     <string>min_os_vers</string>
