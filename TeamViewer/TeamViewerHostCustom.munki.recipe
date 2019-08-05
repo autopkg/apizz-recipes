@@ -2,6 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>Description</key>
+    <string>Downloads the latest version of TeamViewer Host and imports it into a munki_repo.
+
+The postinstall_script depends on supplying your custom module's config ID (ex. idc1a2b3c4)
+
+NOTE:
+- This recipe depends on keeleysam's MunkiPkginfoReceiptsEditor for marking certain pkg receipts as optional.  Add the repo via:
+
+autopkg repo-add keeleysam-recipes</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.TeamViewerHostCustom</string>
     <key>Input</key>
@@ -9,7 +18,7 @@
         <key>MUNKI_CATEGORY</key>
         <string>Support Tools</string>
         <key>MUNKI_REPO_SUBDIR</key>
-        <string>apps</string>
+        <string>apps/teamviewerhost</string>
         <key>NAME</key>
         <string>TeamViewerHostCustom</string>
         <key>pkginfo</key>
@@ -28,6 +37,24 @@
             <string>TeamViewer Host</string>
             <key>name</key>
             <string>%NAME%</string>
+            <key>postinstall_script</key>
+            <string>#!/bin/bash
+
+ATTR="com.TeamViewer.ConfigurationId"
+CONFIG_ID="YOUR_TV_CONFIG_ID"
+TVHOST="/Applications/TeamViewerHost.app"
+STATUS=$(/usr/bin/xattr -l "$TVHOST" | /usr/bin/awk '{print $NF}')
+
+# Write custom TV Host ID for configuration if not present
+if [ "$STATUS" = "" ] || [ "$STATUS" != "$CONFIG_ID" ]; then
+    /bin/echo "Writing TeamViewer Host configuration ID ..."
+    /usr/bin/xattr -w "$ATTR" "$CONFIG_ID" "$TVHOST"
+elif [ "$STATUS" = "$CONFIG_ID" ]; then
+    /bin/echo "TeamViewer Host config ID already present."
+else
+    /bin/echo "Unknown error with config."
+    exit 1
+fi</string>
             <key>unattended_install</key>
             <true/>
         </dict>
@@ -60,6 +87,18 @@
             </dict>
             <key>Processor</key>
             <string>MunkiImporter</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_ids_set_optional_true</key>
+                <array>
+                    <string>com.teamviewer.RemotePrintingPackage</string>
+                    <string>com.teamviewer.teamviewerhost14SilentInstaller</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>com.github.keeleysam.recipes.GoogleTalkPlugin/MunkiPkginfoReceiptsEditor</string>
         </dict>
     </array>
 </dict>
