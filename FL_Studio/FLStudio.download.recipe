@@ -34,15 +34,15 @@
         </dict>
         <dict>
             <key>Arguments</key>
-			<dict>
-				<key>expected_authority_names</key>
-				<array>
-					<string>Developer ID Installer: image-line (N68WEP5ZZZ)</string>
-					<string>Developer ID Certification Authority</string>
-					<string>Apple Root CA</string>
-				</array>
-				<key>input_path</key>
-				<string>%pathname%/Install*.pkg</string>
+            <dict>
+                <key>expected_authority_names</key>
+                <array>
+                    <string>Developer ID Installer: image-line (N68WEP5ZZZ)</string>
+                    <string>Developer ID Certification Authority</string>
+                    <string>Apple Root CA</string>
+                </array>
+                <key>input_path</key>
+                <string>%pathname%/Install*.pkg</string>
             </dict>
             <key>Processor</key>
             <string>CodeSignatureVerifier</string>
