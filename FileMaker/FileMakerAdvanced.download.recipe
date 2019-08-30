@@ -6,50 +6,50 @@
 	<string>Downloads the latest FileMaker Pro Advanced full installer given the supplied MAJOR_VERSION.
 	
 When purchasing FileMaker, the order confirmation email includes a URL which takes you to a page to download the latest full installer. Despite indicating the link will expire, almost a year later and our own account purchase link still works. You will need to supply that link in the SEARCH_URL variable.</string>
-    <key>Identifier</key>
-    <string>com.github.apizz.download.FileMakerAdvanced</string>
-    <key>Input</key>
-    <dict>
-    	<key>MAJOR_VERSION</key>
-    	<string>17</string>
-    	<key>NAME</key>
-    	<string>FileMakerAdvanced%MAJOR_VERSION%</string>
-    	<key>SEARCH_PATTERN</key>
-    	<string>(?P&lt;url&gt;https\:\/\/fmdl\.filemaker\.com\/esd\/fmpa_(?P&lt;version&gt;%MAJOR_VERSION%[\d.]+)\.dmg)</string>
-    	<key>SEARCH_URL</key>
-    	<string>https://accounts.filemaker.com/software/esd/YOUR_UNIQUE_NUMBER</string>
-    </dict>
-    <key>MinimumVersion</key>
-    <string>0.6.1</string>
-    <key>Process</key>
-    <array>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>re_pattern</key>
-                <string>%SEARCH_PATTERN%</string>
-                <key>url</key>
-                <string>%SEARCH_URL%</string>
-            </dict>
-            <key>Processor</key>
-            <string>URLTextSearcher</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>filename</key>
-                <string>%NAME%-%version%.dmg</string>
-                <key>url</key>
-                <string>%url%</string>
-            </dict>
-            <key>Processor</key>
-            <string>URLDownloader</string>
-        </dict>
-        <dict>
-        	<key>Processor</key>
-        	<string>EndOfCheckPhase</string>
-        </dict>
-        <dict>
+	<key>Identifier</key>
+	<string>com.github.apizz.download.FileMakerAdvanced</string>
+	<key>Input</key>
+	<dict>
+		<key>MAJOR_VERSION</key>
+		<string>17</string>
+		<key>NAME</key>
+		<string>FileMakerAdvanced%MAJOR_VERSION%</string>
+		<key>SEARCH_PATTERN</key>
+		<string>(?P&lt;url&gt;https\:\/\/fmdl\.filemaker\.com\/esd\/fmpa_(?P&lt;version&gt;%MAJOR_VERSION%[\d.]+)\.dmg)</string>
+		<key>SEARCH_URL</key>
+		<string>https://accounts.filemaker.com/software/esd/YOUR_UNIQUE_NUMBER</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>0.6.1</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>re_pattern</key>
+				<string>%SEARCH_PATTERN%</string>
+				<key>url</key>
+				<string>%SEARCH_URL%</string>
+			</dict>
+			<key>Processor</key>
+			<string>URLTextSearcher</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>filename</key>
+				<string>%NAME%-%version%.dmg</string>
+				<key>url</key>
+				<string>%url%</string>
+			</dict>
+			<key>Processor</key>
+			<string>URLDownloader</string>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>EndOfCheckPhase</string>
+		</dict>
+		<dict>
 			<key>Arguments</key>
 			<dict>
 				<key>expected_authority_names</key>
@@ -64,6 +64,6 @@ When purchasing FileMaker, the order confirmation email includes a URL which tak
 			<key>Processor</key>
 			<string>CodeSignatureVerifier</string>
 		</dict>
-    </array>
+	</array>
 </dict>
 </plist>
