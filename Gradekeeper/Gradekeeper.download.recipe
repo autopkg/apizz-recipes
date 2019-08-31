@@ -9,7 +9,7 @@
     <key>Input</key>
     <dict>
         <key>DOWNLOAD_URL</key>
-        <string>http://www.gradekeeper.com/downloads/gk-universal-installer.dmg</string>
+        <string>https://www.gradekeeper.com/downloads/gk-universal-installer.dmg</string>
         <key>NAME</key>
         <string>Gradekeeper</string>
     </dict>
@@ -27,6 +27,10 @@
             </dict>
             <key>Processor</key>
             <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
         </dict>
     </array>
 </dict>
