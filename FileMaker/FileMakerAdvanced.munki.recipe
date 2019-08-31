@@ -3,13 +3,39 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Downloads the latest FileMaker Pro Advanced full installer given the supplied MAJOR_VERSION and imports it into a munki_repo.
-	
-When purchasing FileMaker, the order confirmation email includes a URL which takes you to a page to download the latest full installer. Despite indicating the link will expire, almost a year later and our own account purchase link still works. You will need to supply that link in the SEARCH_URL variable.</string>
+	<string>Downloads the latest FileMaker Pro Advanced full installer given the supplied MAJOR_VERSION and imports it into a Munki repo.
+
+The keys below that start with AI_ are used to generate an Assisted Install.txt file that allows silent background installation.
+
+In order to automatically download the installer, you need to provide your license key by overriding the FMP_LICENSE_KEY variable, or use the -k option to provide it when running AutoPkg.</string>
 	<key>Identifier</key>
 	<string>com.github.apizz.munki.FileMakerAdvanced</string>
 	<key>Input</key>
 	<dict>
+		<key>AI_DISABLEADVANCEDTOOLS</key>
+		<string>0</string>
+		<key>AI_DISABLEIWP</key>
+		<string>0</string>
+		<key>AI_DISABLEPLUGINS</key>
+		<string>0</string>
+		<key>AI_DISABLEUPDATENOTIFY</key>
+		<string>1</string>
+		<key>AI_DISABLEVERSIONNOTIFY</key>
+		<string>1</string>
+		<key>AI_DISABLEXDBC</key>
+		<string>0</string>
+		<key>AI_LICENSE_ACCEPTED</key>
+		<string>1</string>
+		<key>AI_NONEWDATABASES</key>
+		<string>0</string>
+		<key>AI_ORGANIZATION</key>
+		<string>Example Organization</string>
+		<key>AI_REGISTRATION</key>
+		<string>0</string>
+		<key>AI_SKIPDIALOG</key>
+		<string>1</string>
+		<key>AI_USERNAME</key>
+		<string>Example User</string>
 		<key>MAJOR_VERSION</key>
 		<string>17</string>
 		<key>MUNKI_CATEGORY</key>
@@ -20,6 +46,11 @@ When purchasing FileMaker, the order confirmation email includes a URL which tak
 		<string>FileMakerAdvanced</string>
 		<key>pkginfo</key>
 		<dict>
+			<key>blocking_applications</key>
+			<array>
+				<string>FileMaker Pro Advanced.app</string>
+				<string>FileMaker Pro.app</string>
+			</array>
 			<key>catalogs</key>
 			<array>
 				<string>testing</string>
@@ -27,19 +58,23 @@ When purchasing FileMaker, the order confirmation email includes a URL which tak
 			<key>category</key>
 			<string>%MUNKI_CATEGORY%</string>
 			<key>description</key>
-			<string>FileMaker Pro is a cross-platform relational database application from FileMaker Inc., a subsidiary of Apple Inc.</string>
+			<string>FileMaker Pro is a cross-platform relational database application.</string>
 			<key>developer</key>
-			<string>FileMaker Inc.</string>
+			<string>Claris International, Inc.</string>
 			<key>display_name</key>
 			<string>FileMaker Pro %MAJOR_VERSION% Advanced</string>
 			<key>minimum_os_version</key>
 			<string>10.12</string>
 			<key>name</key>
 			<string>%NAME%%MAJOR_VERSION%</string>
+			<key>unattended_install</key>
+			<true/>
+			<key>unattended_uninstall</key>
+			<true/>
 		</dict>
 	</dict>
 	<key>MinimumVersion</key>
-	<string>0.6.1</string>
+	<string>1.1</string>
 	<key>ParentRecipe</key>
 	<string>com.github.apizz.download.FileMakerAdvanced</string>
 	<key>Process</key>
@@ -47,10 +82,67 @@ When purchasing FileMaker, the order confirmation email includes a URL which tak
 		<dict>
 			<key>Arguments</key>
 			<dict>
+				<key>pkgdirs</key>
+				<dict/>
+				<key>pkgroot</key>
+				<string>%RECIPE_CACHE_DIR%/dmg_root</string>
+			</dict>
+			<key>Processor</key>
+			<string>PkgRootCreator</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_path</key>
+				<string>%RECIPE_CACHE_DIR%/dmg_root/FileMaker Pro %MAJOR_VERSION% Advanced.pkg</string>
+				<key>source_pkg</key>
+				<string>%pathname%/FileMaker Pro %MAJOR_VERSION% Advanced.pkg</string>
+			</dict>
+			<key>Processor</key>
+			<string>PkgCopier</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>file_content</key>
+				<string>AI_LICENSE_ACCEPTED=%AI_LICENSE_ACCEPTED%
+AI_USERNAME=%AI_USERNAME%
+AI_ORGANIZATION=%AI_ORGANIZATION%
+AI_LICENSEKEY=%FMP_LICENSE_KEY%
+AI_NONEWDATABASES=%AI_NONEWDATABASES%
+AI_REGISTRATION=%AI_REGISTRATION%
+AI_SKIPDIALOG=%AI_SKIPDIALOG%
+AI_DISABLEUPDATENOTIFY=%AI_DISABLEUPDATENOTIFY%
+AI_DISABLEVERSIONNOTIFY=%AI_DISABLEVERSIONNOTIFY%
+AI_DISABLEPLUGINS=%AI_DISABLEPLUGINS%
+AI_DISABLEXDBC=%AI_DISABLEXDBC%
+AI_DISABLEIWP=%AI_DISABLEIWP%
+AI_DISABLEADVANCEDTOOLS=%AI_DISABLEADVANCEDTOOLS%
+</string>
+				<key>file_path</key>
+				<string>%RECIPE_CACHE_DIR%/dmg_root/Assisted Install.txt</string>
+			</dict>
+			<key>Processor</key>
+			<string>FileCreator</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>dmg_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%%MAJOR_VERSION%-%version%.dmg</string>
+				<key>dmg_root</key>
+				<string>%pkgroot%</string>
+			</dict>
+			<key>Processor</key>
+			<string>DmgCreator</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
 				<key>destination_path</key>
 				<string>%RECIPE_CACHE_DIR%/unpack</string>
 				<key>flat_pkg_path</key>
-				<string>%pathname%/*.pkg</string>
+				<string>%pathname%/FileMaker Pro %MAJOR_VERSION% Advanced.pkg</string>
 			</dict>
 			<key>Processor</key>
 			<string>FlatPkgUnpacker</string>
@@ -101,7 +193,7 @@ When purchasing FileMaker, the order confirmation email includes a URL which tak
 			<key>Arguments</key>
 			<dict>
 				<key>pkg_path</key>
-				<string>%pathname%</string>
+				<string>%RECIPE_CACHE_DIR%/%NAME%%MAJOR_VERSION%-%version%.dmg</string>
 				<key>repo_subdirectory</key>
 				<string>%MUNKI_REPO_SUBDIR%</string>
 			</dict>
@@ -114,6 +206,7 @@ When purchasing FileMaker, the order confirmation email includes a URL which tak
 				<key>path_list</key>
 				<array>
 					<string>%RECIPE_CACHE_DIR%/unpack</string>
+					<string>%RECIPE_CACHE_DIR%/dmg_root</string>
 				</array>
 			</dict>
 			<key>Processor</key>
