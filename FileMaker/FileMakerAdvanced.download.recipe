@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest FileMaker Pro Advanced full installer given the supplied MAJOR_VERSION.
 
-In order to automatically download the installer, you need to provide your license key in the FMP_LICENSE_KEY variable below, or use the -k option to provide it when running AutoPkg.</string>
+In order to automatically download the installer, you need to provide your license key by overriding the FMP_LICENSE_KEY variable, or use the -k option to provide it when running AutoPkg.</string>
 	<key>Identifier</key>
 	<string>com.github.apizz.download.FileMakerAdvanced</string>
 	<key>Input</key>
