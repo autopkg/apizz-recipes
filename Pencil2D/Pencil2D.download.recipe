@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest release copy of Pencil2D from Github. Set PRERELEASE to a non-empty string to download prereleases, either via Input in an override or via the -k option, i.e.: `-k PRERELEASE=yes`
+
+10.12+ version regex: ^pencil2d-mac-[\d.]+.zip$
+10.7-10.11 version regex: ^pencil2d-mac-legacy-[\d.]+.zip$</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.download.Pencil2D</string>
+    <key>Input</key>
+    <dict>
+    	<key>NAME</key>
+    	<string>Pencil2D</string>
+    	<key>PRERELEASE</key>
+      <string></string>
+      <key>ASSET_REGEX</key>
+      <string>^pencil2d-mac-[\d.]+.zip$</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.6.1</string>
+    <key>Process</key>
+    <array>
+      <dict>
+    	  <key>Arguments</key>
+    	  <dict>
+          <key>asset_regex</key>
+          <string>%ASSET_REGEX%</string>
+    	    <key>github_repo</key>
+    	    <string>pencil2d/pencil</string>
+    	    <key>include_preleases</key>
+    	    <string>%PRERELEASE%</string>
+    	  </dict>
+    	  <key>Processor</key>
+    	  <string>GitHubReleasesInfoProvider</string>
+      </dict>
+      <dict>
+        <key>Arguments</key>
+        <dict>
+          <key>filename</key>
+          <string>%NAME%.zip</string>
+        </dict>
+    	  <key>Processor</key>
+    	  <string>URLDownloader</string>
+    	</dict>
+      <dict>
+  	    <key>Processor</key>
+  	    <string>EndOfCheckPhase</string>
+      </dict>
+    </array>
+</dict>
+</plist>
