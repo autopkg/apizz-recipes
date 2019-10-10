@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of MathType and imports into a munki_repo.</string>
+    <string>Downloads the latest version of MathType and imports it into a munki_repo.</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.MathType</string>
     <key>Input</key>

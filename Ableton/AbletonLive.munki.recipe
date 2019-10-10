@@ -3,7 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Make an override of this recipe in order to specify the necessary Ableton Live download information, including LIVE_VERS and EDITION</string>
+	<string>Downloads the latest version of Ableton Live and imports it into a munki_repo.
+
+Make an override of this recipe in order to specify the necessary Ableton Live download information, including LIVE_VERS and EDITION</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.AbletonLive</string>
     <key>Input</key>

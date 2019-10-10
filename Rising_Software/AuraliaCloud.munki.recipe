@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>Description</key>
+    <string>Downloads the latest version of Auralia Cloud and imports it into a munki_repo. Need to set MAJOR_VERSION, PLATFORM, and FILETYPE variables. PLATFORM should be either m (Mac) or w (Windows). FILETYPE should be pkg (Mac) or exe (Windows).</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.AuraliaCloud</string>
     <key>Input</key>

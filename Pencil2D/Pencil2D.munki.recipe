@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest release version of Pencil2D and imports into Munki.</string>
+    <string>Downloads the latest release version of Pencil2D and imports into a munki_repo.</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.Pencil2D</string>
     <key>Input</key>

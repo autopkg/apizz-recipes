@@ -5,7 +5,7 @@
 	<key>Comment</key>
 	<string>Created with Recipe Robot v1.0.5 (https://github.com/homebysix/recipe-robot)</string>
 	<key>Description</key>
-	<string>Downloads the latest version of Lightwell and imports it into Munki.</string>
+	<string>Downloads the latest version of Lightwell and imports it into a munki_repo.</string>
 	<key>Identifier</key>
 	<string>com.github.apizz.munki.Lightwell</string>
 	<key>Input</key>

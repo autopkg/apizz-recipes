@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of unearth.</string>
+    <string>Downloads the latest version of unearth from Github.</string>
     <key>Identifier</key>
     <string>com.github.apizz.download.unearth</string>
     <key>Input</key>

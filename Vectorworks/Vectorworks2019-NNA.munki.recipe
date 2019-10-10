@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Adds the latest version of Vectorworks 2019 NNA to a munki_repo.
+	<string>Downloads the latest version of Vectorworks 2019 NNA and imports it into a munki_repo.
 
 Because of the fact the install is done via an installer app, we have to make some assumptions - like the installer app being the same version number as the app that's installed - which may make this recipe not a great long-term solution.</string>
     <key>Identifier</key>
