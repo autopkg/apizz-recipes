@@ -28,6 +28,8 @@
             <string>Wacom Tablet Drivers</string>
             <key>name</key>
             <string>%NAME%</string>
+            <key>minimum_os_version</key>
+            <string>10.11</string>
             <key>postuninstall_script</key>
             <string>#!/bin/bash
 
