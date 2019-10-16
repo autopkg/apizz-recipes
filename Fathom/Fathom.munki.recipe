@@ -7,7 +7,7 @@
 
 DESTINATION_PATH should not contain a trailing '/'</string>
     <key>Identifier</key>
-    <string>com.github.joshua-d-miller.download.fathom</string>
+    <string>com.github.apizz.munki.fathom</string>
     <key>Input</key>
     <dict>
         <key>DESTINATION_PATH</key>
@@ -41,7 +41,7 @@ DESTINATION_PATH should not contain a trailing '/'</string>
     <key>MinimumVersion</key>
     <string>0.6.1</string>
     <key>ParentRecipe</key>
-    <string>com.github.apizz.download.fathom</string>
+    <string>com.github.joshua-d-miller.download.fathom</string>
     <key>Process</key>
     <array>
         <dict>
