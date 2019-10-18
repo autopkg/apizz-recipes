@@ -10,6 +10,8 @@
     <dict>
         <key>NAME</key>
         <string>smartmontools</string>
+        <key>ASSET_REGEX</key>
+        <string>^smartmontools-[\d.]+-1\.dmg$</string>
         <key>PRERELEASE</key>
         <string></string>
     </dict>
@@ -21,7 +23,7 @@
             <key>Arguments</key>
             <dict>
                 <key>asset_regex</key>
-                <string>smartmontools-[\d.]+-1\.dmg</string>
+                <string>%ASSET_REGEX%</string>
                 <key>github_repo</key>
                 <string>smartmontools/smartmontools</string>
                 <key>include_preleases</key>
