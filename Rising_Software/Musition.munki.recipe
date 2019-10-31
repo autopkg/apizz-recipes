@@ -81,9 +81,9 @@
                 <key>additional_pkginfo</key>
                 <dict>
                     <key>minimum_os_version</key>
-                    <string>min_os_vers</string>
+                    <string>%min_os_vers%</string>
                     <key>version</key>
-                    <string>%version</string>
+                    <string>%version%</string>
                 </dict>
             </dict>
             <key>Processor</key>
