@@ -18,6 +18,8 @@ A preinstall script in this support package checks to make sure the same version
         <string>apps-content/unity</string>
         <key>NAME</key>
         <string>Unity3D_AndroidSupport</string>
+        <key>RECEIPT_PATH</key>
+        <string>/Library/Receipts</string>
         <key>UNITY_MUNKI_ITEM_NAME</key>
         <string>munki_item_name_here</string>
         <key>pkginfo</key>
@@ -51,6 +53,25 @@ A preinstall script in this support package checks to make sure the same version
             <dict>
                 <key>additional_pkginfo</key>
                 <dict>
+                    <key>installcheck_script</key>
+                    <string>#!/bin/bash
+# Check for existing receipt and version
+RECEIPT="%RECEIPT_PATH%/Unity3D_android_version.txt"
+INSTALLED_VERSION=$(cat "$RECEIPT")
+VERSION="%version%"
+
+if [ ! -f "$RECEIPT" ] || [ "$INSTALLED_VERSION" != "$VERSION" ] &amp;&amp; [[ "$INSTALLED_VERSION" &lt; "$VERSION" ]]; then
+    exit 0
+else
+    exit 1
+fi</string>
+                    <key>postinstall_script</key>
+                    <string>#!/bin/bash
+# Write version receipt to reference in installcheck_script as pkg receipt has no version
+RECEIPT="%RECEIPT_PATH%/Unity3D_android_version.txt"
+VERSION="%version%"
+
+echo "$VERSION" > "$RECEIPT"</string>
                     <key>update_for</key>
                     <array>
                         <string>%UNITY_MUNKI_ITEM_NAME%-%version%</string>
