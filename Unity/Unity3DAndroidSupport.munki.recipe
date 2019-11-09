@@ -72,6 +72,14 @@ RECEIPT="%RECEIPT_PATH%/Unity3D_android_version.txt"
 VERSION="%version%"
 
 echo "$VERSION" > "$RECEIPT"</string>
+                    <key>postuninstall_script</key>
+                    <string>#!/bin/bash
+# Remove receipt
+RECEIPT="%RECEIPT_PATH%/Unity3D_android_version.txt"
+
+if [ -f "$RECEIPT" ]; then
+    rm "$RECEIPT"
+fi</string>
                     <key>update_for</key>
                     <array>
                         <string>%UNITY_MUNKI_ITEM_NAME%-%version%</string>

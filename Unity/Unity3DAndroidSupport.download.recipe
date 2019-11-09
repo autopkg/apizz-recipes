@@ -2,15 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>Description</key>
+    <string>Downloads the latest version of the Unity Android Target Support installer.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.autopkg.download.Unity3DAndroid</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
         <string>Unity3D_AndroidSupport</string>
     </dict>
-    <key>Description</key>
-    <string>Downloads the latest version of the Unity Android Target Support installer.</string>
-    <key>Identifier</key>
-    <string>com.github.apizz.autopkg.download.Unity3DAndroid</string>
     <key>MinimumVersion</key>
     <string>0.5.0</string>
     <key>Process</key>
