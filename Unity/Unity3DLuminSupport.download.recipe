@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of the Unity Lumin Target Support installer.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.autopkg.download.Unity3DLumin</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>Unity3D_LuminSupport</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.5.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>https://unity3d.com/unity-release/latest</string>
+                <key>re_pattern</key>
+                <string>(?P&lt;url&gt;https:\/\/[a-z0-9]+\.unity3d\.com\/download\/.*\/UnitySetup-Lumin-Support-for-Editor-(?P&lt;version&gt;[\d.f]+)\.pkg)</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>%url%</string>
+                <key>filename</key>
+                <string>%NAME%.pkg</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>expected_authority_names</key>
+                <array>
+                    <string>Developer ID Installer: Unity Technologies ApS (BVPN9UFA9B)</string>
+                    <string>Developer ID Certification Authority</string>
+                    <string>Apple Root CA</string>
+                </array>
+                <key>input_path</key>
+                <string>%pathname%</string>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+    </array>
+</dict>
+</plist>
