@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of the Unity Android Target Support installer.</string>
+    <string>Downloads the latest version of the Unity Lumin Target Support installer.</string>
     <key>Identifier</key>
-    <string>com.github.apizz.autopkg.download.Unity3DAndroid</string>
+    <string>com.github.apizz.autopkg.download.Unity3DLumin</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string>Unity3D_AndroidSupport</string>
+        <string>Unity3D_LuminSupport</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.5.0</string>
@@ -23,7 +23,7 @@
                 <key>url</key>
                 <string>https://unity3d.com/unity-release/latest</string>
                 <key>re_pattern</key>
-                <string>(?P&lt;url&gt;https:\/\/[a-z0-9]+\.unity3d\.com\/.*\/UnitySetup-Android-Support-for-Editor-(?P&lt;version&gt;[\d.f]+)\.pkg)</string>
+                <string>(?P&lt;url&gt;https:\/\/[a-z0-9]+\.unity3d\.com\/.*\/UnitySetup-Lumin-Support-for-Editor-(?P&lt;version&gt;[\d.f]+)\.pkg)</string>
             </dict>
         </dict>
         <dict>

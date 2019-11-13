@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Download the latest version of the Unity Android Support pkg and imports it into a munki_repo.
+    <string>Download the latest version of the Unity Windows Support pkg and imports it into a munki_repo.
 
 Need to supply the munki item name for Unity 3D in UNITY_MUNKI_ITEM_NAME to correctly link this support installer to it along with the correct version.
 
 A preinstall script in this support package checks to make sure the same version of Unity 3D is installed, otherwise it fails.</string>
     <key>Identifier</key>
-    <string>com.github.apizz.autopkg.munki.Unity3DAndroid</string>
+    <string>com.github.apizz.autopkg.munki.Unity3DWindows</string>
     <key>Input</key>
     <dict>
         <key>MUNKI_CATEGORY</key>
@@ -17,7 +17,7 @@ A preinstall script in this support package checks to make sure the same version
         <key>MUNKI_REPO_SUBDIR</key>
         <string>apps-content/unity</string>
         <key>NAME</key>
-        <string>Unity3D_AndroidSupport</string>
+        <string>Unity3D_WindowsSupport</string>
         <key>RECEIPT_PATH</key>
         <string>/Library/Receipts</string>
         <key>UNITY_MUNKI_ITEM_NAME</key>
@@ -33,9 +33,9 @@ A preinstall script in this support package checks to make sure the same version
             <key>developer</key>
             <string>Unity Technologies</string>
             <key>display_name</key>
-            <string>Unity 3D - Android Support</string>
+            <string>Unity 3D - Windows Support</string>
             <key>description</key>
-            <string>Android Support component for Unity 3D.</string>
+            <string>Windows Support component for Unity 3D.</string>
             <key>name</key>
             <string>%NAME%</string>
             <key>unattended_install</key>
@@ -45,7 +45,7 @@ A preinstall script in this support package checks to make sure the same version
     <key>MinimumVersion</key>
     <string>0.2.9</string>
     <key>ParentRecipe</key>
-    <string>com.github.apizz.autopkg.download.Unity3DAndroid</string>
+    <string>com.github.apizz.autopkg.download.Unity3DWindows</string>
     <key>Process</key>
     <array>
         <dict>
@@ -56,7 +56,7 @@ A preinstall script in this support package checks to make sure the same version
                     <key>installcheck_script</key>
                     <string>#!/bin/bash
 # Check for existing receipt and version
-RECEIPT="%RECEIPT_PATH%/Unity3D_android_version.txt"
+RECEIPT="%RECEIPT_PATH%/Unity3D_windows_version.txt"
 INSTALLED_VERSION=$(cat "$RECEIPT")
 VERSION="%version%"
 
@@ -68,14 +68,14 @@ fi</string>
                     <key>postinstall_script</key>
                     <string>#!/bin/bash
 # Write version receipt to reference in installcheck_script as pkg receipt has no version
-RECEIPT="%RECEIPT_PATH%/Unity3D_android_version.txt"
+RECEIPT="%RECEIPT_PATH%/Unity3D_windows_version.txt"
 VERSION="%version%"
 
 echo "$VERSION" &gt; "$RECEIPT"</string>
                     <key>postuninstall_script</key>
                     <string>#!/bin/bash
 # Remove receipt
-RECEIPT="%RECEIPT_PATH%/Unity3D_android_version.txt"
+RECEIPT="%RECEIPT_PATH%/Unity3D_windows_version.txt"
 
 if [ -f "$RECEIPT" ]; then
     rm "$RECEIPT"
