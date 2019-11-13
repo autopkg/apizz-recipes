@@ -23,7 +23,7 @@
                 <key>url</key>
                 <string>https://unity3d.com/unity-release/latest</string>
                 <key>re_pattern</key>
-                <string>(?P&lt;url&gt;https:\/\/[a-z0-9]+\.unity3d\.com\/download\/.*\/UnitySetup-WebGL-Support-for-Editor-(?P&lt;version&gt;[\d.f]+)\.pkg)</string>
+                <string>(?P&lt;url&gt;https:\/\/[a-z0-9]+\.unity3d\.com\/.*\/UnitySetup-WebGL-Support-for-Editor-(?P&lt;version&gt;[\d.f]+)\.pkg)</string>
             </dict>
         </dict>
         <dict>
