@@ -71,7 +71,7 @@ fi</string>
 RECEIPT="%RECEIPT_PATH%/Unity3D_macos_version.txt"
 VERSION="%version%"
 
-echo "$VERSION" > "$RECEIPT"</string>
+echo "$VERSION" &gt; "$RECEIPT"</string>
                     <key>postuninstall_script</key>
                     <string>#!/bin/bash
 # Remove receipt
