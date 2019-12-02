@@ -33,7 +33,7 @@
             <dict>
                 <key>expected_authority_names</key>
                 <array>
-                    <string>Developer ID Installer: Texas Instruments</string>
+                    <string>Developer ID Installer: Texas Instruments (TLEVLB8B5D)</string>
                     <string>Developer ID Certification Authority</string>
                     <string>Apple Root CA</string>
                 </array>
