@@ -8,10 +8,6 @@
     <string>com.github.apizz.download.tuxerantfs</string>
     <key>Input</key>
     <dict>
-        <key>DOWNLOAD_PATTERN</key>
-        <string>href="(?P&lt;url&gt;https\:\/\/tuxera\.com\/mac\/tuxerantfs_[\d\.]+\.dmg)"</string>
-        <key>DOWNLOAD_URL</key>
-        <string>https://www.tuxera.com/products/tuxera-ntfs-for-mac/download/</string>
         <key>NAME</key>
         <string>TuxeraNTFS</string>
         <key>USER_AGENT</key>
@@ -25,7 +21,7 @@
             <key>Arguments</key>
             <dict>
                 <key>re_pattern</key>
-                <string>%DOWNLOAD_PATTERN%</string>
+                <string>(?P&lt;url&gt;https\:\/\/tuxera\.com\/.*/tuxerantfs_(?P&lt;version&gt;[\d.]+)\.dmg)</string>
                 <key>request_headers</key>
                 <dict>
                     <key>user-agent</key>
@@ -34,7 +30,7 @@
                 <key>result_output_var_name</key>
                 <string>version</string>
                 <key>url</key>
-                <string>%DOWNLOAD_URL%</string>
+                <string>https://www.tuxera.com/products/tuxera-ntfs-for-mac/download/</string>
             </dict>
             <key>Processor</key>
             <string>URLTextSearcher</string>
