@@ -58,7 +58,7 @@
             <key>Arguments</key>
             <dict>
                 <key>input_path</key>
-                <string>%pathname%/Rocket.Chat+.app</string>
+                <string>%pathname%/Rocket.Chat.app</string>
                 <key>expected_authority_names</key>
                 <array>
                     <string>Developer ID Installer: Rocket.Chat Technologies Corp. (S6UPZG7ZR3)</string>
