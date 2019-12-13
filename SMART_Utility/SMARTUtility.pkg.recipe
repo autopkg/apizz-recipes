@@ -51,14 +51,14 @@
                 <dict>
                     <key>chown</key>
                     <array>
-                    <dict>
-                        <key>group</key>
-                        <string>admin</string>
-                        <key>path</key>
-                        <string>Applications</string>
-                        <key>user</key>
-                        <string>root</string>
-                    </dict>
+                        <dict>
+                            <key>group</key>
+                            <string>admin</string>
+                            <key>path</key>
+                            <string>Applications</string>
+                            <key>user</key>
+                            <string>root</string>
+                        </dict>
                     </array>
                     <key>id</key>
                     <string>com.volitans-software.SMARTUtility</string>
