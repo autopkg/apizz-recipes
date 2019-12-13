@@ -9,7 +9,7 @@ Need to supply the munki item name for Unity 3D in UNITY_MUNKI_ITEM_NAME to corr
 
 A preinstall script in this support package checks to make sure the same version of Unity 3D is installed, otherwise it fails.</string>
     <key>Identifier</key>
-    <string>com.github.apizz.autopkg.munki.Unity3DDocumentation</string>
+    <string>com.github.apizz.munki.Unity3DDocumentation</string>
     <key>Input</key>
     <dict>
         <key>MUNKI_CATEGORY</key>
@@ -18,8 +18,6 @@ A preinstall script in this support package checks to make sure the same version
         <string>apps-content/unity</string>
         <key>NAME</key>
         <string>Unity3D_Documentation</string>
-        <key>RECEIPT_PATH</key>
-        <string>/Library/Receipts</string>
         <key>UNITY_MUNKI_ITEM_NAME</key>
         <string>munki_item_name_here</string>
         <key>pkginfo</key>
@@ -45,53 +43,18 @@ A preinstall script in this support package checks to make sure the same version
     <key>MinimumVersion</key>
     <string>0.2.9</string>
     <key>ParentRecipe</key>
-    <string>com.github.apizz.autopkg.download.Unity3DDocumentation</string>
+    <string>com.github.apizz.pkg.Unity3DDocumentation</string>
     <key>Process</key>
     <array>
-        <dict>
-            <key>Arguments</key>
-            <dict/>
-            <key>Processor</key>
-            <string>com.github.dataJAR-recipes.munki.JumpCloud Agent/PkgInfo</string>
-        </dict>
         <dict>
             <key>Arguments</key>
             <dict>
                 <key>additional_pkginfo</key>
                 <dict>
-                    <key>installcheck_script</key>
-                    <string>#!/bin/bash
-# Check for existing receipt and version
-RECEIPT="%RECEIPT_PATH%/Unity3D_documentation_version.txt"
-INSTALLED_VERSION=$(cat "$RECEIPT")
-VERSION="%version%"
-
-if [ ! -f "$RECEIPT" ] || [ "$INSTALLED_VERSION" != "$VERSION" ] &amp;&amp; [[ "$INSTALLED_VERSION" &lt; "$VERSION" ]]; then
-    exit 0
-else
-    exit 1
-fi</string>
-                    <key>postinstall_script</key>
-                    <string>#!/bin/bash
-# Write version receipt to reference in installcheck_script as pkg receipt has no version
-RECEIPT="%RECEIPT_PATH%/Unity3D_documentation_version.txt"
-VERSION="%version%"
-
-echo "$VERSION" &gt; "$RECEIPT"</string>
-                    <key>postuninstall_script</key>
-                    <string>#!/bin/bash
-# Remove receipt
-RECEIPT="%RECEIPT_PATH%/Unity3D_documentation_version.txt"
-
-if [ -f "$RECEIPT" ]; then
-    rm "$RECEIPT"
-fi</string>
                     <key>update_for</key>
                     <array>
                         <string>%UNITY_MUNKI_ITEM_NAME%-%version%</string>
                     </array>
-                    <key>version</key>
-                    <string>%version%</string>
                 </dict>
             </dict>
             <key>Processor</key>
@@ -101,7 +64,7 @@ fi</string>
             <key>Arguments</key>
             <dict>
                 <key>pkg_path</key>
-                <string>%pathname%</string>
+                <string>%pkg_path%</string>
                 <key>repo_subdirectory</key>
                 <string>%MUNKI_REPO_SUBDIR%</string>
             </dict>

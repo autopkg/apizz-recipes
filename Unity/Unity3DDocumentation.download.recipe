@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the latest version of the Unity Documentation installer.</string>
     <key>Identifier</key>
-    <string>com.github.apizz.autopkg.download.Unity3DDocumentation</string>
+    <string>com.github.apizz.download.Unity3DDocumentation</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
