@@ -103,8 +103,8 @@
             <string>Copier</string>
         </dict>
         <dict>
-        	<key>Processor</key>
-        	<string>com.github.apizz.apizz-recipes.SharedProcessors/unearthVersioner</string>
+            <key>Processor</key>
+            <string>com.github.apizz.apizz-recipes.SharedProcessors/unearthVersioner</string>
         </dict>
         <dict>
             <key>Arguments</key>
