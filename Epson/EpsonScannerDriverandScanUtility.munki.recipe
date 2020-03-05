@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of the Epson Scanner Driver and EPSON Scan Utility from Epson's site and imports it into a munki repo.  
+
+IMPORTANT:
+This recipe requires that you find the support page for your product and copy that URL for 
+use as the base string for the SEARCH_URL key in your override. In order for the recipe to 
+work, the target OS must be explicitly specified in the URL.
+
+Recommended Procedure for Creating URL:
+1. Go to the Epson site for your country.
+2. Find the support page for your Epson device.
+3. The support page will attempt to determine your current OS version and will display that 
+in a pop-up menu on the page. If that is OS you are targeting for deployment, temporarily 
+change the value in that popup menu to any other OS, wait a second (enough for the page to 
+quickly reload), and then change to the OS you are targeting for deployment. If you are 
+targeting a different OS, then directly change the OS in the popup menu. 
+4. Copy the URL.
+5. Create an override of this recipe (or edit an existing override).
+6. In the Input section, paste the URL that you copied earlier into the string for SEARCH_URL.
+7. Check the URL you just pasted. Confirm that it ends with one of the following strings
+(substituting the number of the OS as appropriate). You can append this string if it is not 
+present. 
+
+For macOS 10.12 and later:     ?review-filter=macOS+10.12.x
+For OS X 10.11.x and earlier:  ?review-filter=Mac+OS+X+10.11.x
+
+For example, the URL for the Epson Perfection V850 Pro fetched from the US Epson site with macOS Mojave as the deployment OS is:
+
+    https://epson.com/Support/Scanners/Perfection-Series/Epson-Perfection-V850-Pro/s/SPT_B11B224201?review-filter=macOS+10.14.x</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.EpsonScannerDriverandScanUtility</string>
+    <key>Input</key>
+    <dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>Drivers</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>drivers/epson</string>
+        <key>NAME</key>
+        <string>Epson_Scanner_Driver_and_Scan_Utility</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>Epson Scanner Driver and Scan Utility.</string>
+            <key>developer</key>
+            <string>Epson Corporation</string>
+            <key>display_name</key>
+            <string>Epson Scanner Driver and Scan Utility</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.4.0</string>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.download.EpsonScannerDriverandScanUtility</string>
+    <key>Process</key>
+    <array>
+       <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%pathname%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+    </array>
+</dict>
+</plist>
