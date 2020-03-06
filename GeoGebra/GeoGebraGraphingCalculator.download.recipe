@@ -59,19 +59,6 @@
             <key>Processor</key>
             <string>CodeSignatureVerifier</string>
         </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>dmg_megabytes</key>
-                <string>200</string>
-                <key>dmg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
-                <key>dmg_root</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
-            </dict>
-            <key>Processor</key>
-            <string>DmgCreator</string>
-        </dict>
     </array>
 </dict>
 </plist>
