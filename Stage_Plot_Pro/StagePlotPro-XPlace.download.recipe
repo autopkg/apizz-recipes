@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of StagePlotPro for 5-place licenses.</string>
+    <string>Downloads the latest version of StagePlotPro for the desired X-place licenses. The possible values for X_PLACE are 5, 10, 20, or 30.</string>
     <key>Identifier</key>
-    <string>com.github.apizz.download.stageplotpro-5place</string>
+    <string>com.github.apizz.download.stageplotpro-xplace</string>
     <key>Input</key>
     <dict>
-        <key>DOWNLOAD_URL</key>
-        <string>https://www.stageplot.com/download/StagePlotPro_5-place_Mac.dmg</string>
+        <key>X_PLACE</key>
+        <string>5</string>
         <key>NAME</key>
-        <string>StagePlotPro-5Place</string>
+        <string>StagePlotPro_XPlace</string>
         <key>USER_AGENT</key>
         <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
     </dict>
@@ -19,6 +19,17 @@
     <string>1.0.0</string>
     <key>Process</key>
     <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>re_pattern</key>
+                <string>(download\/StagePlotPro_(?P&lt;version&gt;[\d\.]+)_%X_PLACE%-place_Mac\.dmg)</string>
+                <key>url</key>
+                <string>https://www.stageplot.com/DownloadPage.html</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+        </dict>
         <dict>
             <key>Arguments</key>
             <dict>
@@ -30,7 +41,7 @@
                     <string>%USER_AGENT%</string>
                 </dict>
                 <key>url</key>
-                <string>%DOWNLOAD_URL%</string>
+                <string>https://www.stageplot.com/%match%</string>
             </dict>
             <key>Processor</key>
             <string>URLDownloader</string>
@@ -43,21 +54,12 @@
             <key>Arguments</key>
             <dict>
                 <key>input_path</key>
-                <string>%pathname%/StagePlotPro_5-place_Mac.app</string>
+                <string>%pathname%/StagePlotPro*.app</string>
                 <key>requirements</key>
                 <string>identifier "com.divertisma.StagePlotPro" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "584DQZP443"</string>
             </dict>
             <key>Processor</key>
             <string>CodeSignatureVerifier</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>dmg_path</key>
-                <string>%pathname%</string>
-            </dict>
-            <key>Processor</key>
-            <string>AppDmgVersioner</string>
         </dict>
     </array>
 </dict>

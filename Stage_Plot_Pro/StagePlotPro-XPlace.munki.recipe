@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>Description</key>
+    <string>Downloads the latest version of StagePlotPro for the desired X-place licenses and imports it into a munki repo. The possible values for X_PLACE are 5, 10, 20, or 30.</string>
     <key>Identifier</key>
-    <string>com.github.apizz.munki.stageplotpro-5place</string>
+    <string>com.github.apizz.munki.stageplotpro-xplace</string>
     <key>Input</key>
     <dict>
         <key>MUNKI_CATEGORY</key>
@@ -11,7 +13,7 @@
         <key>MUNKI_REPO_SUBDIR</key>
         <string>apps/stageplotpro</string>
         <key>NAME</key>
-        <string>StagePlotPro-5Place</string>
+        <string>StagePlotPro_XPlace</string>
         <key>pkginfo</key>
         <dict>
             <key>catalogs</key>
@@ -35,7 +37,7 @@
     <key>MinimumVersion</key>
     <string>1.0.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.apizz.download.stageplotpro-5place</string>
+    <string>com.github.apizz.download.stageplotpro-xplace</string>
     <key>Process</key>
     <array>
         <dict>
