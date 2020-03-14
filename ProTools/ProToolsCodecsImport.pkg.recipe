@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Copies the Pro Tools Codecs PKG out from a Pro Tools .dmg download.
+
+To use this recipe:
+
+1) Create a recipe override of this recipe.
+2) Go to the Avid website and download the Pro Tools for Mac DMG.
+3) Copy the downloaded DMG onto your Mac running autopkg in the folder specified in the PATH variable. Don't include a trailing '/'.
+4) Run the recipe.
+
+More valuable when used as a parent recipe to bring into munki, Jamf, etc.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.pkg.ProToolsCodecsImport</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>ProToolsCodecs</string>
+        <key>PATH</key>
+        <string>/path/to/ProToolsDMG/folder</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.4.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Comment</key>
+            <string>Gets the Pro Tools DMG filename</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%PATH%/*.dmg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Assign the Pro Tools DMG path to dmg_path and collect the Codecs path in the DMG</string>
+            <key>Arguments</key>
+            <dict>
+                <key>dmg_path</key>
+                <string>%found_filename%</string>
+                <key>pattern</key>
+                <string>%found_filename%/Codec Installers/*.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Check the code signature of the Codecs PKG.</string>
+            <key>Arguments</key>
+            <dict>
+                <key>expected_authority_names</key>
+                <array>
+                    <string>Developer ID Installer: Avid Technology Inc (4UYUA773XD)</string>
+                    <string>Developer ID Certification Authority</string>
+                    <string>Apple Root CA</string>
+                </array>
+                <key>input_path</key>
+                <string>%dmg_path%/%dmg_found_filename%</string>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>source_path</key>
+                <string>%dmg_path%/%dmg_found_filename%</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
+                <key>overwrite</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>Copier</string>
+        </dict>
+    </array>
+</dict>
+</plist>

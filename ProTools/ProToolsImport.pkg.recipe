@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Copies the Pro Tools PKG out from a Pro Tools .dmg download and collects the version from the filename.
+
+To use this recipe:
+
+1) Create a recipe override of this recipe.
+2) Go to the Avid website and download the Pro Tools for Mac DMG.
+3) Copy the downloaded DMG onto your Mac running autopkg in the folder specified in the PATH variable. Don't include a trailing '/'.
+4) Run the recipe.
+
+More valuable when used as a parent recipe to bring Pro Tools into munki, Jamf, etc.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.pkg.ProToolsImport</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>ProTools2019</string>
+        <key>PATH</key>
+        <string>/path/to/ProToolsDMG/folder</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.4.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Comment</key>
+            <string>Gets the Pro Tools DMG filename</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%PATH%/*.dmg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>With a DMG file detected, check the code signature of the contained PKG.</string>
+            <key>Arguments</key>
+            <dict>
+                <key>expected_authority_names</key>
+                <array>
+                    <string>Developer ID Installer: Avid Technology Inc (4UYUA773XD)</string>
+                    <string>Developer ID Certification Authority</string>
+                    <string>Apple Root CA</string>
+                </array>
+                <key>input_path</key>
+                <string>%found_filename%/Install*.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>With a successful code signature check, get the version from the filename</string>
+            <key>Arguments</key>
+            <dict>
+                <key>version</key>
+                <string>%found_filename%</string>
+                <key>index</key>
+                <integer>-2</integer>
+                <key>split_on</key>
+                <string>_</string>
+            </dict>
+            <key>Processor</key>
+            <string>com.github.homebysix.VersionSplitter/VersionSplitter</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>source_path</key>
+                <string>%found_filename%/Install*.pkg</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+                <key>overwrite</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>Copier</string>
+        </dict>
+    </array>
+</dict>
+</plist>
