@@ -11,13 +11,12 @@ To use this recipe:
 
 1) Create a recipe override of this recipe.
 2) Go to the Avid website and download the Pro Tools for Mac DMG.
-3) Copy the downloaded DMG onto your Mac running autopkg.
+3) Copy the downloaded DMG onto your Mac running autopkg in the folder specified in the PATH variable. Don't include a trailing '/'.
 4) Specify the desired Pro Tools display name in the DISPLAY_NAME variable. The collected version will be appended to the name.
-5) Specify the folder path that contains the DMG in the PATH input variable. Don't include a trailing '/'.
-6) Specify the munki item name for the HD Driver as listed in your munki repo in the PROTOOLS_DRIVER_NAME. This name and the detected PKG version of the HD Driver in the .dmg will be added to the `requires` array for Pro Tools.
-7) Specify the munki item name for the Codecs as listed in your munki repo in the PROTOOLS_CODECS_NAME input variable. This name and the detected PKG version of the Codecs in the .dmg will be added to the `requires` array for Pro Tools.
-8) Run the recipe.
-9) Profit.</string>
+5) Specify the munki item name for the HD Driver as listed in your munki repo in the PROTOOLS_DRIVER_NAME. This name and the detected PKG version of the HD Driver in the .dmg will be added to the `requires` array for Pro Tools.
+6) Specify the munki item name for the Codecs as listed in your munki repo in the PROTOOLS_CODECS_NAME input variable. This name and the detected PKG version of the Codecs in the .dmg will be added to the `requires` array for Pro Tools.
+7) Run the recipe.
+8) Profit.</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.ProToolsImport</string>
     <key>Input</key>
