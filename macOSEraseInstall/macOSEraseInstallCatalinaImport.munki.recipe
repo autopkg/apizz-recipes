@@ -23,7 +23,7 @@ To use this recipe:
 		<key>NAME</key>
 		<string>macOS_Catalina_EraseInstall</string>
 		<key>PATH</key>
-		<string>/path/to/ProToolsDMG/folder</string>
+		<string>/path/to/macOSDMG/folder</string>
 		<key>pkginfo</key>
 		<dict>
 			<key>additional_startosinstall_options</key>
