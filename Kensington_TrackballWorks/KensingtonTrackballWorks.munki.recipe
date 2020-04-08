@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of Kensington TrackballWorks and imports it into a munki_repo.</string>
+    <string>Downloads the latest version of KensingtonWorks and imports it into a munki_repo.</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.KensingtonTrackballWorks</string>
     <key>Input</key>
@@ -13,7 +13,7 @@
         <key>MUNKI_REPO_SUBDIR</key>
         <string>drivers</string>
         <key>NAME</key>
-        <string>KensingtonTrackballWorks</string>
+        <string>KensingtonWorks</string>
         <key>pkginfo</key>
         <dict>
             <key>catalogs</key>
@@ -23,13 +23,13 @@
             <key>category</key>
             <string>%MUNKI_CATEGORY%</string>
             <key>description</key>
-            <string>TrackballWorks™ allows you to program your Trackball to behave how you want it to by customizing the functions assigned to each Trackball button.</string>
+            <string>KensingtonWorks™ allows you to program your Trackball to behave how you want it to by customizing the functions assigned to each Trackball button.</string>
             <key>developer</key>
             <string>Kensington Computer Products Group</string>
             <key>display_name</key>
-            <string>Kensington TrackballWorks</string>
+            <string>KensingtonWorks</string>
             <key>minimum_os_version</key>
-            <string>10.11</string>
+            <string>10.10.0</string>
             <key>name</key>
             <string>%NAME%</string>
             <key>unattended_install</key>
@@ -39,7 +39,7 @@
             <key>uninstall_script</key>
             <string>#!/bin/bash
 
-UNINSTALL="/Applications/Utilities/TrackballWorks Uninstaller.app/Contents/Resources/uninstbw"
+UNINSTALL="/Applications/Utilities/KensingtonWorks Uninstaller.app/Contents/Resources/uninstbw"
 
 "$UNINSTALL" --removetbw
 
@@ -58,7 +58,7 @@ exit</string>
                 <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/unpack</string>
                 <key>flat_pkg_path</key>
-                <string>%pathname%/*.pkg</string>
+                <string>%pathname%</string>
             </dict>
             <key>Processor</key>
             <string>FlatPkgUnpacker</string>
@@ -69,7 +69,7 @@ exit</string>
                 <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>pkg_payload_path</key>
-                <string>%RECIPE_CACHE_DIR%/unpack/Kensington TrackballWorks Driver.pkg/Payload</string>
+                <string>%RECIPE_CACHE_DIR%/unpack/kensingtonworks.pkg/Payload</string>
             </dict>
             <key>Processor</key>
             <string>PkgPayloadUnpacker</string>
@@ -81,7 +81,7 @@ exit</string>
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>installs_item_paths</key>
                 <array>
-                    <string>/Library/PreferencePanes/TrackballWorks.prefPane</string>
+                    <string>/Library/PreferencePanes/KensingtonWorks.prefPane</string>
                 </array>
             </dict>
             <key>Processor</key>
