@@ -8,10 +8,6 @@
     <string>com.github.apizz.download.KensingtonTrackballWorks</string>
     <key>Input</key>
     <dict>
-        <key>SEARCH_PATTERN</key>
-        <string>(?P&lt;url&gt;\/[\w]+\/[\w-]+\/trackballworks\-(?P&lt;version&gt;[\d.]+)\.dmg)</string>
-        <key>SEARCH_PAGE</key>
-        <string>https://www.kensington.com/software/trackballworks-customization-software/</string>
         <key>NAME</key>
         <string>KensingtonTrackballWorks</string>
     </dict>
@@ -23,9 +19,9 @@
             <key>Arguments</key>
             <dict>
                 <key>re_pattern</key>
-                <string>%SEARCH_PATTERN%</string>
+                <string>(?P&lt;url&gt;\/.*\/kensingtonworks\_(?P&lt;version&gt;[\d.]+)\.pkg)</string>
                 <key>url</key>
-                <string>%SEARCH_PAGE%</string>
+                <string>https://www.kensington.com/software/kensingtonworks</string>
             </dict>
             <key>Processor</key>
             <string>URLTextSearcher</string>
@@ -34,7 +30,7 @@
             <key>Arguments</key>
             <dict>
                 <key>filename</key>
-                <string>%NAME%.dmg</string>
+                <string>%NAME%.pkg</string>
                 <key>url</key>
                 <string>https://www.kensington.com%url%</string>
             </dict>
@@ -49,7 +45,7 @@
             <key>Arguments</key>
             <dict>
                 <key>input_path</key>
-                <string>%pathname%/Kensington TrackballWorks.pkg</string>
+                <string>%pathname%</string>
                 <key>expected_authority_names</key>
                 <array>
                     <string>Developer ID Installer: Kensington Computer Products Group (293UQF7R4S)</string>
