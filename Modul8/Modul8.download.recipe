@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest verison of Modul8. Requires supplying your Modul8 license serial number in order to get the latest download URL.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.download.modul8</string>
+    <key>Input</key>
+    <dict>
+        <key>MAJOR_VERSION</key>
+        <string>3</string>
+        <key>NAME</key>
+        <string>Modul8</string>
+        <key>SERIAL</key>
+        <string>your-serial-number-here</string>
+        <key>USER_AGENT</key>
+        <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.3.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>curl_opts</key>
+                <array>
+                    <string>-F</string>
+                    <string>serial=%SERIAL%</string>
+                </array>
+                <key>re_pattern</key>
+                <string>download.php\?d\=modul8v%MAJOR_VERSION%[\d\_A-Za-z]+\.dmg</string>
+                <key>url</key>
+                <string>https://yourspacemodul8.garagecube.com</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>filename</key>
+                <string>%NAME%.dmg</string>
+                <key>request_headers</key>
+                <dict>
+                    <key>user-agent</key>
+                    <string>%USER_AGENT%</string>
+                </dict>
+                <key>url</key>
+                <string>https://yourspacemodul8.garagecube.com/%match%</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%pathname%/modul8v%MAJOR_VERSION%/Modul8.app</string>
+                <key>requirements</key>
+                <string>identifier "com.GarageCUBE.modul8-30" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "574S7ZGCZ5"</string>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+    </array>
+</dict>
+</plist>
