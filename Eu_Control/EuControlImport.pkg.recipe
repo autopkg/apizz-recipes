@@ -11,7 +11,7 @@
         <key>NAME</key>
         <string>EuControl</string>
         <key>PATH</key>
-        <string>/Volumes/1TB/AutoPkgr</string>
+        <string>/path/to/EuControlDMG/folder</string>
     </dict>
     <key>Process</key>
     <array>
