@@ -25,7 +25,7 @@
 			<key>category</key>
 			<string>%MUNKI_CATEGORY%</string>
 			<key>description</key>
-			<string></string>
+			<string>Design to code for native mobile. Create rich animations and interfaces as iOS elements that a developer can use.</string>
 			<key>developer</key>
 			<string>Lollihop, INC.</string>
 			<key>display_name</key>
