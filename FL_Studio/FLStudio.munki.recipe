@@ -67,6 +67,21 @@
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>expected_authority_names</key>
+                <array/>
+                <key>input_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/FL Studio 20.app</string>
+                <key>requirement</key>
+                <string>identifier "com.image-line.flstudio" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = N68WEP5ZZZ</string>
+                <key>strict_verification</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
                 <key>faux_root</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>installs_item_paths</key>
