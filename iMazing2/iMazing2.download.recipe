@@ -8,8 +8,6 @@
     <string>com.github.apizz.download.iMazing2</string>
     <key>Input</key>
     <dict>
-        <key>DOWNLOAD_URL</key>
-        <string>https://downloads.imazing.com/mac/iMazing/iMazing2forMac.dmg</string>
         <key>NAME</key>
         <string>iMazing2</string>
     </dict>
@@ -23,7 +21,7 @@
                 <key>filename</key>
                 <string>%NAME%.dmg</string>
                 <key>url</key>
-                <string>%DOWNLOAD_URL%</string>
+                <string>https://downloads.imazing.com/mac/iMazing/iMazing2forMac.dmg</string>
             </dict>
             <key>Processor</key>
             <string>URLDownloader</string>
@@ -39,6 +37,8 @@
                 <string>%pathname%/iMazing.app</string>
                 <key>requirement</key>
                 <string>anchor apple generic and identifier "com.DigiDNA.iMazing2Mac" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = J5PR93692Y)</string>
+                <key>strict_verification</key>
+                <true/>
             </dict>
             <key>Processor</key>
             <string>CodeSignatureVerifier</string>
