@@ -44,14 +44,14 @@
             <string>CodeSignatureVerifier</string>
             <key>Arguments</key>
             <dict>
+                <key>expected_authority_names</key>
+                <array/>
                 <key>input_path</key>
                 <string>%RECIPE_CACHE_DIR%/unpack/Logger Pro.app</string>
                 <key>requirement</key>
                 <string>identifier "com.vernier.loggerpro" and certificate root = H"a200ac91a451b5952a4294e5aa69a3cd2a966e67"</string>
                 <key>strict_verification</key>
                 <true/>
-                <key>expected_authority_names</key>
-                <array/>
             </dict>
         </dict>
         <dict>
@@ -67,7 +67,7 @@
             <key>Arguments</key>
             <dict>
                 <key>pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+                <string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
                 <key>source_pkg</key>
                 <string>%pathname%/Install Logger Pro %MAJOR_VERSION%.pkg</string>
             </dict>
