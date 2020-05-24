@@ -55,6 +55,8 @@
                 <string>%RECIPE_CACHE_DIR%/%NAME%/GeoGebra Geometry.app</string>
                 <key>requirement</key>
                 <string>identifier "org.geogebra.mac.geometry" and anchor apple generic and certificate leaf[subject.CN] = "3rd Party Mac Developer Application: Internationales GeoGebra Institut, \"IGI\" (T9W862P4D2)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+                <key>strict_verification</key>
+                <true/>
             </dict>
             <key>Processor</key>
             <string>CodeSignatureVerifier</string>
