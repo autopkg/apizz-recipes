@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads latest Google Hangouts Chat and imports it into a munki_repo.</string>
+    <string>Downloads latest Google Chat and imports it into a munki_repo.</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.hangoutschat</string>
     <key>Input</key>
@@ -11,7 +11,9 @@
         <key>MUNKI_CATEGORY</key>
         <string>Communication</string>
         <key>MUNKI_REPO_SUBDIR</key>
-        <string>apps/hangoutschat</string>
+        <string>apps/googlechat</string>
+        <key>NAME</key>
+        <string>GoogleChat</string>
         <key>pkginfo</key>
         <dict>
             <key>catalogs</key>
@@ -23,9 +25,9 @@
             <key>developer</key>
             <string>Google Inc.</string>
             <key>description</key>
-            <string>Hangouts Chat is an intelligent and secure communication tool, built for teams. From direct messages to team chat rooms, Hangouts Chat provides and integrated platform that makes team communication easy and efficient. Current version is for G Suite customers only.</string>
+            <string>Google Chat is an intelligent and secure communication tool, built for teams. From direct messages to team chat rooms, Google Chat provides and integrated platform that makes team communication easy and efficient. Current version is for G Suite customers only.</string>
             <key>display_name</key>
-            <string>%NAME%</string>
+            <string>Google Chat</string>
             <key>name</key>
             <string>%NAME%</string>
             <key>unattended_install</key>
