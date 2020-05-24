@@ -77,10 +77,87 @@ exit</string>
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>info_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/KensingtonWorks .app/Contents/Info.plist</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleShortVersionString</key>
+                    <string>version</string>
+                    <key>LSMinimumSystemVersion</key>
+                    <string>min_os_version</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PlistReader</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>additional_pkginfo</key>
+                <dict>
+                    <key>minimum_os_version</key>
+                    <string>%min_os_version%</string>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>expected_authority_names</key>
+                <array/>
+                <key>input_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/KensingtonWorks .app</string>
+                <key>requirement</key>
+                <string>identifier "com.kensington.kensingtonworks2.app" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "293UQF7R4S"</string>
+                <key>strict_verification</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>expected_authority_names</key>
+                <array/>
+                <key>input_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Library/Extensions/trackballworks2.kext</string>
+                <key>requirement</key>
+                <string>identifier "com.kensington.trackballworks2" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "293UQF7R4S"</string>
+                <key>strict_verification</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>expected_authority_names</key>
+                <array/>
+                <key>input_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Library/PreferencePanes/KensingtonWorks.prefPane</string>
+                <key>requirement</key>
+                <string>anchor apple generic and identifier "com.kensington.trackballworks2.prefPane" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "293UQF7R4S")</string>
+                <key>strict_verification</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
                 <key>faux_root</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>installs_item_paths</key>
                 <array>
+                    <string>/Applications/KensingtonWorks .app</string>
+                    <string>/Library/Extensions/trackballworks2.kext</string>
                     <string>/Library/PreferencePanes/KensingtonWorks.prefPane</string>
                 </array>
             </dict>
@@ -90,18 +167,6 @@ exit</string>
         <dict>
             <key>Arguments</key>
             <dict/>
-            <key>Processor</key>
-            <string>MunkiPkginfoMerger</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>additional_pkginfo</key>
-                <dict>
-                    <key>version</key>
-                    <string>%version%</string>
-                </dict>
-            </dict>
             <key>Processor</key>
             <string>MunkiPkginfoMerger</string>
         </dict>
@@ -121,6 +186,7 @@ exit</string>
             <dict>
                 <key>path_list</key>
                 <array>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                     <string>%RECIPE_CACHE_DIR%/unpack</string>
                 </array>
             </dict>
