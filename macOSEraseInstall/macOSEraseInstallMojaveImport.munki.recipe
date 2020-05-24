@@ -90,7 +90,7 @@ exit 0</string>
             <dict>
                 <key>input_path</key>
                 <string>%dmg_path%/%dmg_found_filename%</string>
-                <key>requirements</key>
+                <key>requirement</key>
                 <string>identifier "com.apple.InstallAssistant.Mojave" and anchor apple</string>
                 <key>strict_verification</key>
                 <false/>

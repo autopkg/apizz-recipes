@@ -62,7 +62,7 @@
             <dict>
                 <key>input_path</key>
                 <string>%pathname%/modul8v%MAJOR_VERSION%/Modul8.app</string>
-                <key>requirements</key>
+                <key>requirement</key>
                 <string>identifier "com.GarageCUBE.modul8-30" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "574S7ZGCZ5"</string>
             </dict>
             <key>Processor</key>

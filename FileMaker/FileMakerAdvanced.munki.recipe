@@ -73,7 +73,7 @@ When purchasing FileMaker, the order confirmation email includes a URL which tak
                 <array/>
                 <key>input_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/FileMaker Pro %MAJOR_VERSION% Advanced/FileMaker Pro Advanced.app</string>
-                <key>requirements</key>
+                <key>requirement</key>
                 <string>identifier "com.filemaker.client.pro12" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = J6K4T76U7W</string>
                 <key>strict_verification</key>
                 <true/>

@@ -35,7 +35,7 @@
             <dict>
                 <key>input_path</key>
                 <string>%pathname%/DigiExam.app</string>
-                <key>requirements</key>
+                <key>requirement</key>
                 <string>identifier "se.digiexam.DigiExam" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "73T9H7VE4P"</string>
                 <key>strict_verification</key>
                 <true/>
