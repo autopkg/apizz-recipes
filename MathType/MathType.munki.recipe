@@ -28,6 +28,8 @@
             <string>MathType is a powerful interactive equation editor for Windows and Macintosh that lets you create mathematical notation for word processing, web pages, desktop publishing, presentations, elearning, and for TeX, LaTeX, and MathML documents.</string>
             <key>display_name</key>
             <string>MathType</string>
+            <key>maximum_os_version</key>
+            <string>10.14.99</string>
             <key>name</key>
             <string>%NAME%</string>
             <key>unattended_install</key>
@@ -71,9 +73,37 @@
                 <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/MathType/MathType.app</string>
                 <key>requirement</key>
                 <string>anchor apple generic and identifier "com.dessci.MathType" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = HNQ4485Q28)</string>
+                <key>strict_verification</key>
+                <true/>
             </dict>
             <key>Processor</key>
             <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>info_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/MathType/MathType.app/Contents/Info.plist</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleVersion</key>
+                    <string>version</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PlistReader</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>additional_pkginfo</key>
+                <dict>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
         </dict>
         <dict>
             <key>Arguments</key>
@@ -92,30 +122,7 @@
         </dict>
         <dict>
             <key>Arguments</key>
-            <dict>
-                <key>input_plist_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/MathType/MathType.app/Contents/Info.plist</string>
-                <key>plist_version_key</key>
-                <string>CFBundleVersion</string>
-            </dict>
-            <key>Processor</key>
-            <string>Versioner</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
             <dict/>
-            <key>Processor</key>
-            <string>MunkiPkginfoMerger</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>additional_pkginfo</key>
-                <dict>
-                    <key>version</key>
-                    <string>%version%</string>
-                </dict>
-            </dict>
             <key>Processor</key>
             <string>MunkiPkginfoMerger</string>
         </dict>
@@ -135,6 +142,7 @@
             <dict>
                 <key>path_list</key>
                 <array>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                     <string>%RECIPE_CACHE_DIR%/unpack</string>
                 </array>
             </dict>
