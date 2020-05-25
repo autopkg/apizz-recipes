@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>Description</key>
+    <string>This recipe is deprecated.</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.DataBackupMac</string>
     <key>Input</key>
@@ -38,6 +40,15 @@
     <string>com.github.apizz.download.DataBackupMac</string>
     <key>Process</key>
     <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>warning_message</key>
+                <string>THIS PRODUCT HAS BEEN DISCONTINUED AND NO LONGER AVAILABLE</string>
+            </dict>
+            <key>Processor</key>
+            <string>DeprecationWarning</string>
+        </dict>
         <dict>
             <key>Arguments</key>
             <dict>
