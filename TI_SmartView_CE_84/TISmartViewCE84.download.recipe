@@ -10,8 +10,6 @@
     <dict>
         <key>NAME</key>
         <string>TISmartViewCE84</string>
-        <key>URL</key>
-        <string>https://education.ti.com/smartview/downloads/84cemac</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.4.0</string>
@@ -20,13 +18,17 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>url</key>
-                <string>%URL%</string>
                 <key>filename</key>
                 <string>%NAME%.dmg</string>
+                <key>url</key>
+                <string>https://education.ti.com/smartview/downloads/84cemac</string>
             </dict>
             <key>Processor</key>
             <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
         </dict>
         <dict>
             <key>Arguments</key>
@@ -42,10 +44,6 @@
             </dict>
             <key>Processor</key>
             <string>CodeSignatureVerifier</string>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>EndOfCheckPhase</string>
         </dict>
     </array>
 </dict>
