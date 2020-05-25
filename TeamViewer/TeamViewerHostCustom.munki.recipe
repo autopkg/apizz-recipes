@@ -96,7 +96,7 @@ fi</string>
                 <key>pkg_ids_set_optional_true</key>
                 <array>
                     <string>com.teamviewer.RemotePrintingPackage</string>
-                    <string>com.teamviewer.teamviewerhost14SilentInstaller</string>
+                    <string>com.teamviewer.teamviewerhostSilentInstaller</string>
                 </array>
             </dict>
             <key>Processor</key>
