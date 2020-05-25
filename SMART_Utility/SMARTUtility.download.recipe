@@ -12,8 +12,6 @@
         <string>enclosure url="(?P&lt;url&gt;https\:\/\/cloudfront\.volitans-software\.com\/smartutility[\d]+\.zip)" sparkle:version=".*" sparkle:shortVersionString="(?P&lt;version&gt;[\d\.]+)"</string>
         <key>NAME</key>
         <string>SMARTUtility</string>
-        <key>SPARKLE_URL</key>
-        <string>https://www.volitans-software.com/stats/smart-utility/profileInfo.php</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
@@ -25,7 +23,7 @@
                 <key>re_pattern</key>
                 <string>%DOWNLOAD_PATTERN%</string>
                 <key>url</key>
-                <string>%SPARKLE_URL%</string>
+                <string>https://www.volitans-software.com/stats/smart-utility/profileInfo.php</string>
             </dict>
             <key>Processor</key>
             <string>URLTextSearcher</string>
@@ -34,7 +32,7 @@
             <key>Arguments</key>
             <dict>
                 <key>filename</key>
-                <string>%NAME%-%version%.zip</string>
+                <string>%NAME%.zip</string>
                 <key>url</key>
                 <string>%url%</string>
             </dict>
@@ -65,6 +63,8 @@
                 <string>%RECIPE_CACHE_DIR%/%NAME%/SMART Utility/SMART Utility.app</string>
                 <key>requirement</key>
                 <string>anchor apple generic and identifier "com.volitans-software.smartutility" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = YJ65CCRY6B)</string>
+                <key>strict_verification</key>
+                <true/>
             </dict>
             <key>Processor</key>
             <string>CodeSignatureVerifier</string>
