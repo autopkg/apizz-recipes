@@ -8,8 +8,6 @@
     <string>com.github.apizz.download.timing</string>
     <key>Input</key>
     <dict>
-        <key>DOWNLOAD_URL</key>
-        <string>https://timingapp.com/download/Timing.dmg</string>
         <key>NAME</key>
         <string>Timing</string>
     </dict>
@@ -23,7 +21,7 @@
                 <key>filename</key>
                 <string>%NAME%.dmg</string>
                 <key>url</key>
-                <string>%DOWNLOAD_URL%</string>
+                <string>https://timingapp.com/download/Timing.dmg</string>
             </dict>
             <key>Processor</key>
             <string>URLDownloader</string>
