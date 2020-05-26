@@ -8,9 +8,9 @@
     <string>com.github.apizz.download.VSCodium</string>
     <key>Input</key>
     <dict>
-    	<key>NAME</key>
-    	<string>VSCodium</string>
-    	<key>PRERELEASE</key>
+        <key>NAME</key>
+        <string>VSCodium</string>
+        <key>PRERELEASE</key>
         <string></string>
     </dict>
     <key>MinimumVersion</key>
@@ -18,30 +18,43 @@
     <key>Process</key>
     <array>
         <dict>
-    	    <key>Arguments</key>
-    	    <dict>
+            <key>Arguments</key>
+            <dict>
                 <key>asset_regex</key>
-                <string>^VSCodium-darwin-[\d.]+.zip$</string>
-    	        <key>github_repo</key>
-    	        <string>VSCodium/vscodium</string>
-    	        <key>include_preleases</key>
-    	        <string>%PRERELEASE%</string>
-    	    </dict>
-    	    <key>Processor</key>
-    	    <string>GitHubReleasesInfoProvider</string>
+                <string>^VSCodium.[\d.]+.dmg$</string>
+                <key>github_repo</key>
+                <string>VSCodium/vscodium</string>
+                <key>include_preleases</key>
+                <string>%PRERELEASE%</string>
+            </dict>
+            <key>Processor</key>
+            <string>GitHubReleasesInfoProvider</string>
         </dict>
         <dict>
             <key>Arguments</key>
             <dict>
                 <key>filename</key>
-                <string>%NAME%.zip</string>
-	       </dict>
-    	    <key>Processor</key>
-    	    <string>URLDownloader</string>
-    	</dict>
+                <string>%NAME%.dmg</string>
+           </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
         <dict>
-    	    <key>Processor</key>
-    	    <string>EndOfCheckPhase</string>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%pathname%/VSCodium.app</string>
+                <key>requirement</key>
+                <string>identifier "com.visualstudio.code.oss" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = C7S3ZQ2B8V</string>
+                <key>strict_verification</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
         </dict>
     </array>
 </dict>
