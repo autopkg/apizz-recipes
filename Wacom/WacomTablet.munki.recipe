@@ -29,7 +29,7 @@
             <key>name</key>
             <string>%NAME%</string>
             <key>minimum_os_version</key>
-            <string>10.11</string>
+            <string>10.12</string>
             <key>postuninstall_script</key>
             <string>#!/bin/bash
 
@@ -111,6 +111,45 @@ fi</string>
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>input_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Library/PreferencePanes/WacomTablet.prefPane</string>
+                <key>requirement</key>
+                <string>anchor apple generic and identifier "com.wacom.ProfessionalControlPanel" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = EG27766DY7)</string>
+                <key>strict_verification</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>info_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Library/PreferencePanes/WacomTablet.prefPane</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleVersion</key>
+                    <string>version</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PlistReader</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>additional_pkginfo</key>
+                <dict>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
                 <key>faux_root</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>installs_item_paths</key>
@@ -124,18 +163,6 @@ fi</string>
         <dict>
             <key>Arguments</key>
             <dict/>
-            <key>Processor</key>
-            <string>MunkiPkginfoMerger</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>additional_pkginfo</key>
-                <dict>
-                    <key>version</key>
-                    <string>%version%</string>
-                </dict>
-            </dict>
             <key>Processor</key>
             <string>MunkiPkginfoMerger</string>
         </dict>
