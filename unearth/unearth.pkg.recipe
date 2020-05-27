@@ -103,8 +103,22 @@
             <string>Copier</string>
         </dict>
         <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%pkgroot%/usr/local/bin/unearth/unearth</string>
+            </dict>
             <key>Processor</key>
-            <string>com.github.apizz.apizz-recipes.SharedProcessors/unearthVersioner</string>
+            <string>FileFinder</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>version_argument</key>
+                <string>-v</string>
+            </dict>
+            <key>Processor</key>
+            <string>com.github.apizz.apizz-recipes.SharedProcessors/ExecutableFileVersioner</string>
         </dict>
         <dict>
             <key>Arguments</key>
