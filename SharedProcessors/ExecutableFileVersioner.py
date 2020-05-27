@@ -14,22 +14,29 @@ class ExecutableFileVersioner(Processor):
     input_variables = {
         "found_filename": {
             "required": True,
-            "description": "Full path to the executable file collected by FileFinder. "
+            "description": (
+                "Full path to the executable file collected "
+                "by FileFinder. "
+            ),
         },
         "interpreter_path": {
             "required": False,
             "default": "/usr/bin/python",
-            "description": "Full path to the interpreter to call the executable file, if needed. "
+            "description": (
+                "Full path to the interpreter to call the executable "
+                "file, if needed. "
+            ),
         },
         "version_argument": {
             "required": True,
-            "description": "Argument passed to executable file to collect its version. "
+            "description": (
+                "Argument passed to executable file to collect "
+                "its version. "
+            ),
         }
     }
     output_variables = {
-        "version": {
-            "description": "The executable file version"
-        }
+        "version": { "description": "The executable file version" }
     }
 
     __doc__ = description
