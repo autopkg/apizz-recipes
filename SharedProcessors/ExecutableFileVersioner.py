@@ -35,17 +35,19 @@ class ExecutableFileVersioner(Processor):
     __doc__ = description
 
     def main(self):
-        if os.path.exists(self.env['found_filename']):
+        if not os.path.exists(self.env['found_filename']):
+            raise ProcessorError("\nCould not find executable at %s" % (self.env['found_filename']))
+        else: 
             self.output("Found executable at %s" % self.env['found_filename'])
-            try:
-                cmd = subprocess.check_output([ self.env['interpreter_path'], self.env['found_filename'], self.env['version_argument']])
-                # Get version and remove offending new line at the end
-                self.env['version'] = cmd.replace('\n', '')
-                self.output("Version: %s" % self.env['version'])
-            except OSError:
-                raise ProcessorError("Can't find %s" % (self.env['found_filename']))
-        else:
-            raise ProcessorError("Could not find executable at %s" % (self.env['found_filename']))
+
+        try:
+            cmd = subprocess.check_output([ self.env['interpreter_path'], self.env['found_filename'], self.env['version_argument']])
+            # Get version and remove offending new line at the end
+            self.env['version'] = cmd.rstrip('\n')
+            self.output("Version: %s" % self.env['version'])
+        except OSError:
+            raise ProcessorError("Can't find %s" % (self.env['found_filename']))
+            
 
 if __name__ == '__main__':
     processor = ExecutableFileVersioner()
