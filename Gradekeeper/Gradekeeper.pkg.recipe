@@ -42,8 +42,6 @@
                 <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Gradekeeper Folder</string>
                 <key>overwrite</key>
                 <true/>
-                <key>purge_destination</key>
-                <true/>
             </dict>
             <key>Processor</key>
             <string>Copier</string>
