@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest release of ETCnomad and extracts a PKG.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.download.ETCnomad</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>ETCnomad</string>
+        <key>REGEX</key>
+        <string>href="(?P&lt;url&gt;.*)"\sclass="title">Eos\sETCnomad\sMAC\sSoftware\sv[\d.]+</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.6.1</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>re_pattern</key>
+                <string>%REGEX%</string>
+                <key>url</key>
+                <string>https://www.etcconnect.com/Products/Consoles/Eos-Family/ETCnomad-ETCnomad-Puck/Software.aspx</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>filename</key>
+                <string>%NAME%.zip</string>
+                <key>url</key>
+                <string>https://www.etcconnect.com%url%</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unzip</string>
+            </dict>
+            <key>Processor</key>
+            <string>Unarchiver</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>expected_authority_names</key>
+                <array>
+                    <string>Developer ID Installer: Electronic Theatre Controls, Inc. (8AVSFD7ZED)</string>
+                    <string>Developer ID Certification Authority</string>
+                    <string>Apple Root CA</string>
+                </array>
+                <key>input_path</key>
+                <string>%RECIPE_CACHE_DIR%/unzip/*.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
+                <key>source_pkg</key>
+                <string>%RECIPE_CACHE_DIR%/unzip/*.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgCopier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/unzip</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
+        </dict>
+    </array>
+</dict>
+</plist>
