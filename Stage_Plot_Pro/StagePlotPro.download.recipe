@@ -51,8 +51,17 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>input_path</key>
+                <key>pattern</key>
                 <string>%pathname%/StagePlotPro*.app</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%pathname%/%dmg_found_filename%</string>
                 <key>requirement</key>
                 <string>identifier "com.divertisma.StagePlotPro" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "584DQZP443"</string>
                 <key>strict_verification</key>
