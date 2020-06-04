@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of StagePlotPro for the desired X-place licenses and installs it. The possible values for X_PLACE are 5, 10, 20, or 30.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.install.stageplotpro-xplace</string>
+    <key>Input</key>
+    <dict>
+        <key>X_PLACE</key>
+        <string>5</string>
+        <key>NAME</key>
+        <string>StagePlotPro_XPlace</string>
+        <key>INSTALL_DESTINATION</key>
+        <string>/Applications</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>1.0.0</string>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.download.stageplotpro-xplace</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>dmg_path</key>
+                <string>%pathname%</string>
+                <key>items_to_copy</key>
+                <array>
+                    <dict>
+                        <key>destination_path</key>
+                        <string>%INSTALL_DESTINATION%</string>
+                        <key>source_item</key>
+                        <string>%dmg_found_filename%</string>
+                    </dict>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>InstallFromDMG</string>
+        </dict>
+    </array>
+</dict>
+</plist>
