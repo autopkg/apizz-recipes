@@ -6,6 +6,7 @@
     <string>Downloads the latest version of the Unity macOS Target Support installer and installs it.</string>
     <key>Identifier</key>
     <string>com.github.apizz.install.Unity3DmacOS</string>
+    <key>Input</key>
     <dict>
         <key>NAME</key>
         <string>Unity3D_macOSSupport</string>
