@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of TeacherGaming and installs it.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.install.TeacherGaming</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>TeacherGaming</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>1.0.0</string>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.download.TeacherGaming</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>dmg_path</key>
+                <string>%pathname%</string>
+                <key>items_to_copy</key>
+                <array>
+                    <dict>
+                        <key>source_item</key>
+                        <string>TeacherGaming.app</string>
+                        <key>destination_path</key>
+                        <string>%INSTALL_DESTINATION%</string>
+                    </dict>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>InstallFromDMG</string>
+        </dict>
+    </array>
+</dict>
+</plist>
