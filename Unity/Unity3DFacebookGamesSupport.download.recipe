@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of the Unity Apple TV Target Support installer.</string>
+    <string>Downloads the latest version of the Unity Facebook Support installer.</string>
     <key>Identifier</key>
     <string>com.github.apizz.autopkg.download.Unity3DFacebook</string>
     <key>Input</key>
