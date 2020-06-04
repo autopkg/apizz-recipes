@@ -8,8 +8,8 @@
     <string>com.github.apizz.download.YamahaCLEditor</string>
     <key>Input</key>
     <dict>
-    	<key>DOWNLOAD_URL</key>
-    	<string>https://usa.yamaha.com</string>
+        <key>DOWNLOAD_URL</key>
+        <string>https://usa.yamaha.com</string>
         <key>NAME</key>
         <string>CLEditor</string>
         <key>SEARCH_PATTERN</key>
@@ -23,17 +23,17 @@
     <string>1.0.0</string>
     <key>Process</key>
     <array>
-    	<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>re_pattern</key>
-				<string>%SEARCH_PATTERN%</string>
-				<key>url</key>
-				<string>%SEARCH_URL%</string>
-			</dict>
-			<key>Processor</key>
-			<string>URLTextSearcher</string>
-		</dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>re_pattern</key>
+                <string>%SEARCH_PATTERN%</string>
+                <key>url</key>
+                <string>%SEARCH_URL%</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+        </dict>
         <dict>
             <key>Arguments</key>
             <dict>
@@ -55,33 +55,33 @@
             <string>EndOfCheckPhase</string>
         </dict>
         <dict>
-        	<key>Arguments</key>
-        	<dict>
-        		<key>purge_destination</key>
-        		<true/>
-        	</dict>
-        	<key>Processor</key>
-        	<string>Unarchiver</string>
+            <key>Arguments</key>
+            <dict>
+                <key>purge_destination</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>Unarchiver</string>
         </dict>
         <dict>
-        	<key>Arguments</key>
-        	<dict>
-        		<key>pattern</key>
-        		<string>%RECIPE_CACHE_DIR%/%NAME%/*/*.pkg</string>
-        	</dict>
-        	<key>Processor</key>
-        	<string>FileFinder</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/*/*.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
         </dict>
         <dict>
-        	<key>Arguments</key>
-        	<dict>
-        		<key>source</key>
-        		<string>%found_filename%</string>
-        		<key>target</key>
-        		<string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
-        	</dict>
-        	<key>Processor</key>
-        	<string>FileMover</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source</key>
+                <string>%found_filename%</string>
+                <key>target</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileMover</string>
         </dict>
         <dict>
             <key>Arguments</key>
