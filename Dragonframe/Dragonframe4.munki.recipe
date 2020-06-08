@@ -41,32 +41,10 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>flat_pkg_path</key>
-                <string>%pathname%</string>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/unpack</string>
-            </dict>
-            <key>Processor</key>
-            <string>FlatPkgUnpacker</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
-                <key>pkg_payload_path</key>
-                <string>%RECIPE_CACHE_DIR%/unpack/Dragonframe 4.pkg/Payload</string>
-            </dict>
-            <key>Processor</key>
-            <string>PkgPayloadUnpacker</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
                 <key>expected_authority_names</key>
                 <array/>
                 <key>input_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Dragonframe 4/Dragonframe 4.app</string>
+                <string>%RECIPE_CACHE_DIR%/unpack/Applications/Dragonframe 4/Dragonframe 4.app</string>
                 <key>requirement</key>
                 <string>identifier "com.dzed.Dragonframe4" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = PG7SM8SD8M</string>
                 <key>strict_verification</key>
@@ -79,7 +57,7 @@
             <key>Arguments</key>
             <dict>
                 <key>faux_root</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
                 <key>installs_item_paths</key>
                 <array>
                     <string>/Applications/Dragonframe 4/Dragonframe 4.app</string>
@@ -98,7 +76,7 @@
             <key>Arguments</key>
             <dict>
                 <key>pkg_path</key>
-                <string>%pathname%</string>
+                <string>%pkg_path%</string>
                 <key>repo_subdirectory</key>
                 <string>%MUNKI_REPO_SUBDIR%</string>
             </dict>
@@ -110,7 +88,7 @@
             <dict>
                 <key>path_list</key>
                 <array>
-                    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                    <string>%RECIPE_CACHE_DIR%/expanded</string>
                     <string>%RECIPE_CACHE_DIR%/unpack</string>
                 </array>
             </dict>
