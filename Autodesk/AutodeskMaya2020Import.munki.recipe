@@ -27,11 +27,9 @@ To use this recipe:
         <key>NAME</key>
         <string>Maya2020</string>
         <key>PATH</key>
-        <string>/path/to/MayaDMG/folder</string>
-        <key>KEY</key>
-        <string>MAYA KEY HERE</string>
-        <key>SERIAL</key>
-        <string>MAYA SERIAL HERE</string>
+        <string>/Users/ap.orlebeke/Downloads</string>
+        <key>MAYA_DEPLOYMENT_FILE</key>
+        <string>%DESTINATION_PATH%/deployment_maya.xml</string>
         <key>pkginfo</key>
         <dict>
             <key>catalogs</key>
@@ -61,18 +59,12 @@ To use this recipe:
             <string>#!/bin/bash
 
 # Install path variables
-INSTALLERPATH="%DESTINATION_PATH%/Install Maya 2020.app"
-SETUP="${INSTALLERPATH}/Contents/MacOS/setup"
-ADLMREG="${INSTALLERPATH}/Contents/Resources/adlmreg"
-
-# Autodesk variables
-SERIAL="%SERIAL%"
-KEY="%KEY%"
-YEAR="2020"
-VERSION="${YEAR}.0.0.F"
+INSTALLERPATH="/private/tmp/Install Maya 2020.app"
+DEPLOY_FILE="/private/tmp/deployment_maya.xml"
+SETUP="${INSTALLERPATH}/Contents/Helper/Setup.app/Contents/MacOS/Setup"
 LGSDIR="/Library/Application Support/Autodesk/CLM/LGS/${KEY}_${VERSION}"
 LGSFILE="${LGSDIR}/LGS.data"
-PITFILE="/Library/Application Support/Autodesk/Adlm/PIT/${YEAR}/MayaConfig.pit"
+KEY="657L1"
 
 # Exit &amp; error if installer doesn't exist
 if [ ! -d "$INSTALLERPATH" ]; then
@@ -80,46 +72,65 @@ if [ ! -d "$INSTALLERPATH" ]; then
     exit 1
 fi
 
-# Run Maya 2020 installer
-"$SETUP" --noui
+# Exit &amp; error if deploy file doesn't exist
+if [ ! -f "$DEPLOY_FILE" ]; then
+    /bin/echo "${DEPLOY_FILE} does not exist. Exiting ..."
+    exit 1
+fi
 
-# Add license. Run twice because ¯\_(ツ)_/¯
-# https://www.jamf.com/jamf-nation/discussions/10267/packaging-autodesk-maya#responseChild171427
-# ONCE
-"$ADLMREG" -i S $KEY $KEY $VERSION $SERIAL "$PITFILE"
-# TWICE
-"$ADLMREG" -i S $KEY $KEY $VERSION $SERIAL "$PITFILE"
+# Run Maya 2020 installer
+"$SETUP" --silent --deployment "$DEPLOY_FILE"
 
 # Make LGSDIR
 /bin/mkdir -p "$LGSDIR"
 
 # Write LGS.data file
-/bin/echo "_STANDALONE" >> "$LGSFILE"</string>
+/bin/echo "_STANDALONE" >> "$LGSFILE"
+
+</string>
             <key>uninstall_method</key>
             <string>uninstall_script</string>
             <key>uninstall_script</key>
             <string>#!/bin/bash
 
-# FLEXnet Files to Remove
-FLEXNETDIR="/Library/Preferences/FLEXnet Publisher/FLEXnet"
-FLEXNET_EVENT_LOG="${FLEXNETDIR}/adskflex_*_event.log"
-FLEXNET_TSF_DATA="${FLEXNETDIR}/adskflex_*_tsf.data"
-FLEXNET_BACKUP="${FLEXNETDIR}/adskflex_*_backup"
+# Per https://knowledge.autodesk.com/support/maya/troubleshooting/caas/sfdcarticles/sfdcarticles/How-to-uninstall-Maya-2020-on-macOS.html?v=2020%26st=install%20macos
 
-# Autodesk Application Support
-AUTODESKDIR="/Library/Application Support/Autodesk"
+MAYA="/Applications/Autodesk"
+APPSUPPORT="/Library/Application Support/Autodesk"
+PKGRECEIPTS=$(/usr/sbin/pkgutil --pkgs | /usr/bin/grep autodesk)
+ROKOKO="/Applications/Rokoko Motion Library"
+SUBSTANCE="/Applications/Substance in Maya"
 
-# Maya 2020
-MAYA="/Applications/Autodesk/maya2020"
+# Remove Maya
+if [ -d "$MAYA" ]; then
+    /bin/rm -rf "$MAYA"
+fi
 
-# Remove FLEXnet files
-/bin/rm "$FLEXNET_EVENT_LOG"
-/bin/rm "$FLEXNET_TSF_DATA"
-/bin/rm "$FLEXNET_BACKUP"
-# Remove Application Support
-/bin/rm -rf "$AUTODESKDIR"
-# Remove Maya 2020 app
-/bin/rm -rf "$MAYA"</string>
+# Remove App Support
+if [ -d "$APPSUPPORT" ]; then
+    /bin/rm -rf "$APPSUPPORT"
+fi
+
+# Remove Rokoko Library
+if [ -d "$ROKOKO" ]; then
+    /bin/rm -rf "$ROKOKO"
+fi
+
+# Remove Substance
+if [ -d "$SUBSTANCE" ]; then
+    /bin/rm -rf "$SUBSTANCE"
+fi
+
+# Unload LaunchDaemons
+/bin/launchctl unload /Library/LaunchDaemons/com.autodesk*
+
+# Remove LaunchDaemons
+/bin/rm -rf /Library/LaunchDaemons/com.autodesk*
+
+# Forget PKGs
+for i in $PKGRECEIPTS; do
+    /usr/sbin/pkgutil --forget $i
+done</string>
             <key>unattended_install</key>
             <true/>
             <key>unattended_uninstall</key>
@@ -192,41 +203,30 @@ MAYA="/Applications/Autodesk/maya2020"
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>faux_root</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
-                <key>installs_item_paths</key>
-                <array>
-                    <string>/Applications/Autodesk/maya2020/Maya.app</string>
-                </array>
+                <key>package_info_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/PackageInfo</string>
             </dict>
             <key>Processor</key>
-            <string>MunkiInstallsItemsCreator</string>
+            <string>com.facebook.autopkg.shared/PackageInfoVersioner</string>
         </dict>
         <dict>
-            <key>Arguments</key>
-            <dict/>
-            <key>Processor</key>
-            <string>MunkiPkginfoMerger</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>info_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Autodesk/maya2020/Maya.app</string>
-                <key>plist_keys</key>
-                <dict>
-                    <key>CFBundleShortVersionString</key>
-                    <string>version</string>
-                </dict>
-            </dict>
-            <key>Processor</key>
-            <string>PlistReader</string>
-        </dict>
-        <dict>
+            <key>Comment</key>
+            <string>Create a receipt based on the Maya core PKG, since this is the only place the major and minor versions are listed. Also write blank installs array to avoid undesirably having the installer app serve as an indicator of the item being installed.</string>
             <key>Arguments</key>
             <dict>
                 <key>additional_pkginfo</key>
                 <dict>
+                    <key>installs</key>
+                    <array/>
+                    <key>receipts</key>
+                    <array>
+                        <dict>
+                            <key>packageid</key>
+                            <string>%pkg_id%</string>
+                            <key>version</key>
+                            <string>%version%</string>
+                        </dict>
+                    </array>
                     <key>version</key>
                     <string>%version%</string>
                 </dict>
