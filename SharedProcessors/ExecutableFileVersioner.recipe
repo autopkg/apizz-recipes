@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Stub recipe reference to use the Shared Processors in this repo.</string>
+    <string>This is a stub recipe that can be used as a reference when referring to the ExecutableFileVersioner shared processor.</string>
     <key>Identifier</key>
-    <string>com.github.apizz.apizz-recipes.SharedProcessors</string>
+    <string>com.github.apizz.ExecutableFileVersioner</string>
     <key>Input</key>
     <dict/>
     <key>MinimumVersion</key>
