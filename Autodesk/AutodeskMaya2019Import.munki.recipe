@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Imports a DMG with an Autodesk Maya installer app inside. Install requires copying the install app to a desired location on the endpoint and using a postinstall script to trigger the install.
+
+To use this recipe:
+
+1) Download a copy of Autodesk Maya 2019.
+2) Create a recipe override of this recipe.
+3) Specify a PATH where the recipe will look for a Maya 2019 DMG.
+4) Specify a DESTINATION_PATH which munki will copy the install app to on endpoints. This will also be inserted in the postinstall script for installation.
+5) Enter your Maya's KEY and SERIAL to be used in the postinstall script to active the software.
+6) Run the recipe.
+7) Profit.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.AutdoeskMayaImport</string>
+    <key>Input</key>
+    <dict>
+        <key>DESTINATION_PATH</key>
+        <string>/private/tmp</string>
+        <key>MUNKI_CATEGORY</key>
+        <string>Video</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/maya</string>
+        <key>NAME</key>
+        <string>Maya2019</string>
+        <key>PATH</key>
+        <!-- <string>/path/to/MayaDMG/folder</string> -->
+        <string>/Users/ap.orlebeke/Downloads</string>
+        <key>KEY</key>
+        <!-- <string>MAYA KEY HERE</string> -->
+        <string>657K1</string>
+        <key>SERIAL</key>
+        <!-- <string>MAYA SERIAL HERE</string> -->
+        <string>399-54557347</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>3D computer animation, modeling, simulation, and rendering software.</string>
+            <key>developer</key>
+            <string>Autodesk</string>
+            <key>display_name</key>
+            <string>Autodesk Maya 2019</string>
+            <key>items_to_copy</key>
+            <array>
+                <dict>
+                    <key>destination_path</key>
+                    <string>%DESTINATION_PATH%</string>
+                    <key>source_item</key>
+                    <string>Install Maya 2019.app</string>
+                </dict>
+            </array>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>postinstall_script</key>
+            <string>#!/bin/bash
+
+# Install path variables
+INSTALLERPATH="%DESTINATION_PATH%/Install Maya 2019.app"
+SETUP="${INSTALLERPATH}/Contents/MacOS/setup"
+ADLMREG="${INSTALLERPATH}/Contents/Resources/adlmreg"
+
+# Autodesk variables
+SERIAL="%SERIAL%"
+KEY="%KEY%"
+YEAR="2019"
+VERSION="${YEAR}.0.0.F"
+LGSDIR="/Library/Application Support/Autodesk/CLM/LGS/${KEY}_${VERSION}"
+LGSFILE="${LGSDIR}/LGS.data"
+PITFILE="/Library/Application Support/Autodesk/Adlm/PIT/${YEAR}/MayaConfig.pit"
+
+# Exit &amp; error if installer doesn't exist
+if [ ! -d "$INSTALLERPATH" ]; then
+    /bin/echo "${INSTALLERPATH} does not exist. Exiting ..."
+    exit 1
+fi
+
+# Run Maya 2019 installer
+"$SETUP" --noui
+
+# Add license. Run twice because ¯\_(ツ)_/¯
+# https://www.jamf.com/jamf-nation/discussions/10267/packaging-autodesk-maya#responseChild171427
+# ONCE
+"$ADLMREG" -i S $KEY $KEY $VERSION $SERIAL "$PITFILE"
+# TWICE
+"$ADLMREG" -i S $KEY $KEY $VERSION $SERIAL "$PITFILE"
+
+# Make LGSDIR
+/bin/mkdir -p "$LGSDIR"
+
+# Write LGS.data file
+/bin/echo "_STANDALONE" >> "$LGSFILE"</string>
+            <key>uninstall_method</key>
+            <string>uninstall_script</string>
+            <key>uninstall_script</key>
+            <string>#!/bin/bash
+
+# FLEXnet Files to Remove
+FLEXNETDIR="/Library/Preferences/FLEXnet Publisher/FLEXnet"
+FLEXNET_EVENT_LOG="${FLEXNETDIR}/adskflex_*_event.log"
+FLEXNET_TSF_DATA="${FLEXNETDIR}/adskflex_*_tsf.data"
+FLEXNET_BACKUP="${FLEXNETDIR}/adskflex_*_backup"
+
+# Autodesk Application Support
+AUTODESKDIR="/Library/Application Support/Autodesk"
+
+# Maya 2019
+MAYA="/Applications/Autodesk/maya2019"
+
+# Remove FLEXnet files
+/bin/rm "$FLEXNET_EVENT_LOG"
+/bin/rm "$FLEXNET_TSF_DATA"
+/bin/rm "$FLEXNET_BACKUP"
+# Remove Application Support
+/bin/rm -rf "$AUTODESKDIR"
+# Remove Maya 2019 app
+/bin/rm -rf "$MAYA"</string>
+            <key>unattended_install</key>
+            <true/>
+            <key>unattended_uninstall</key>
+            <true/>
+        </dict>
+    </dict>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Comment</key>
+            <string>Gets the Autodesk Maya DMG filename located in the PATH</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%PATH%/*Maya*2019*.dmg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%found_filename%/Install Maya 2019.app</string>
+                <key>requirement</key>
+                <string>identifier "com.autodesk.pcwsetup" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = XXKJ396S2Y</string>
+                <key>strict_verification</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>flat_pkg_path</key>
+                <string>%found_filename%/*/Install Maya 2019.app/Contents/Packages/Maya/Maya_core2019.pkg</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+            </dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Autodesk/maya2019</string>
+                <key>pkg_payload_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/Payload</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>expected_authority_names</key>
+                <array/>
+                <key>input_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Autodesk/maya2019/Maya.app</string>
+                <key>requirement</key>
+                <string>identifier "com.autodesk.Maya.2019" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = XXKJ396S2Y</string>
+                <key>strict_verification</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>faux_root</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>installs_item_paths</key>
+                <array>
+                    <string>/Applications/Autodesk/maya2019/Maya.app</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiInstallsItemsCreator</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict/>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>info_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Autodesk/maya2019/Maya.app</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleShortVersionString</key>
+                    <string>version</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PlistReader</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>additional_pkginfo</key>
+                <dict>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%found_filename%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                    <string>%RECIPE_CACHE_DIR%/unpack</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
+        </dict>
+
+    </array>
+</dict>
+</plist>

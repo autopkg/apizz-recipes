@@ -48,7 +48,7 @@ class ExecutableFileVersioner(Processor):
             self.output("Found executable at %s" % self.env['found_filename'])
 
         try:
-            cmd = subprocess.check_output([ self.env['interpreter_path'], self.env['found_filename'], self.env['version_argument']])
+            cmd = subprocess.check_output([ self.env['interpreter_path'], self.env['found_filename'], self.env['version_argument']].encode("utf-8"))
             # Get version and remove offending new line at the end
             self.env['version'] = cmd.rstrip('\n')
             self.output("Version: %s" % self.env['version'])

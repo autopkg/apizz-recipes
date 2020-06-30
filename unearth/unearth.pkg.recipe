@@ -118,7 +118,8 @@
                 <string>-v</string>
             </dict>
             <key>Processor</key>
-            <string>com.github.apizz.apizz-recipes.SharedProcessors/ExecutableFileVersioner</string>
+            <string>/Users/ap.orlebeke/Documents/GitHub/autopkg-apizz-recipes/SharedProcessors/ExecutableFileVersioner.py</string>
+            <!-- <string>com.github.apizz.apizz-recipes.SharedProcessors/ExecutableFileVersioner</string> -->
         </dict>
         <dict>
             <key>Arguments</key>
