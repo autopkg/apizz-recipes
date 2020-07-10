@@ -79,7 +79,6 @@ SERIAL="%MAYA_SERIAL%"
 SETUP="${INSTALLERPATH}/Contents/Helper/Setup.app/Contents/MacOS/Setup"
 VERSION="%MAYA_VERSION%"
 
-
 # Exit &amp; error if installer doesn't exist
 if [ ! -d "$INSTALLERPATH" ]; then
     /bin/echo "${INSTALLERPATH} does not exist. Exiting ..."
