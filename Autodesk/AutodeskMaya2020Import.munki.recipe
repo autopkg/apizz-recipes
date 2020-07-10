@@ -9,29 +9,37 @@ To use this recipe:
 
 1) Download a copy of Autodesk Maya 2020.
 2) Create a recipe override of this recipe.
-3) Specify a PATH where the recipe will look for a Maya 2020 DMG.
-4) Specify a DESTINATION_PATH which munki will copy the install app to on endpoints. This will also be inserted in the postinstall script for installation.
-5) Enter your Maya's KEY and SERIAL to be used in the postinstall script to active the software.
-6) Run the recipe.
-7) Profit.</string>
+3) Specify a PATH where the recipe will look for a Maya 2020 DMG. If applicable, move your downloaded Maya 2020 to this location.
+4) Specify a DESTINATION_PATH which munki will copy the install app to on endpoints. This will also be inserted in the required places in the postinstall script for installation.
+5) Enter your license type in MAYA_LICENSE_TYPE. Valid options are USER, STANDALONE, and NETWORK.
+6) If applicable, update the MAYA_LOCALE. Default is 'US'.
+7) Enter your Maya's SERIAL to be used in the postinstall script to activate the software.
+8) Run the recipe.
+9) Profit.</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.AutdoeskMayaImport</string>
     <key>Input</key>
     <dict>
         <key>DESTINATION_PATH</key>
         <string>/private/tmp</string>
+        <key>PATH</key>
+        <string>/path/to/MayaDMG/folder</string>
+        <key>MAYA_LICENSE_TYPE</key>
+        <string>STANDALONE</string>
+        <key>MAYA_LOCALE</key>
+        <string>US</string>
+        <key>MAYA_KEY</key>
+        <string>657L1</string>
+        <key>MAYA_SERIAL</key>
+        <string>YOUR_SERIAL_HERE</string>
+        <key>MAYA_VERSION</key>
+        <string>2020.0.0.F</string>
         <key>MUNKI_CATEGORY</key>
         <string>Video</string>
         <key>MUNKI_REPO_SUBDIR</key>
         <string>apps/maya</string>
         <key>NAME</key>
         <string>Maya2020</string>
-        <key>PATH</key>
-        <string>/path/to/MayaDMG/folder</string>
-        <key>KEY</key>
-        <string>MAYA KEY HERE</string>
-        <key>SERIAL</key>
-        <string>MAYA SERIAL HERE</string>
         <key>pkginfo</key>
         <dict>
             <key>catalogs</key>
@@ -62,17 +70,14 @@ To use this recipe:
 
 # Install path variables
 INSTALLERPATH="%DESTINATION_PATH%/Install Maya 2020.app"
-SETUP="${INSTALLERPATH}/Contents/MacOS/setup"
-ADLMREG="${INSTALLERPATH}/Contents/Resources/adlmreg"
-
-# Autodesk variables
-SERIAL="%SERIAL%"
-KEY="%KEY%"
-YEAR="2020"
-VERSION="${YEAR}.0.0.F"
-LGSDIR="/Library/Application Support/Autodesk/CLM/LGS/${KEY}_${VERSION}"
-LGSFILE="${LGSDIR}/LGS.data"
-PITFILE="/Library/Application Support/Autodesk/Adlm/PIT/${YEAR}/MayaConfig.pit"
+CONFIG="${INSTALLERPATH}/Contents/Helper/MayaConfig.pit"
+KEY="%MAYA_KEY%"
+LICENSE_EXE="/Library/Application Support/Autodesk/AdskLicensing/Current/helper/AdskLicensingInstHelper"
+LICENSE_TYPE="%MAYA_LICENSE_TYPE%"
+LOCALE="%MAYA_LOCALE%"
+SERIAL="%MAYA_SERIAL%"
+SETUP="${INSTALLERPATH}/Contents/Helper/Setup.app/Contents/MacOS/Setup"
+VERSION="%MAYA_VERSION%"
 
 # Exit &amp; error if installer doesn't exist
 if [ ! -d "$INSTALLERPATH" ]; then
@@ -81,45 +86,94 @@ if [ ! -d "$INSTALLERPATH" ]; then
 fi
 
 # Run Maya 2020 installer
-"$SETUP" --noui
+"$SETUP" --silent
 
-# Add license. Run twice because ¯\_(ツ)_/¯
-# https://www.jamf.com/jamf-nation/discussions/10267/packaging-autodesk-maya#responseChild171427
-# ONCE
-"$ADLMREG" -i S $KEY $KEY $VERSION $SERIAL "$PITFILE"
-# TWICE
-"$ADLMREG" -i S $KEY $KEY $VERSION $SERIAL "$PITFILE"
-
-# Make LGSDIR
-/bin/mkdir -p "$LGSDIR"
-
-# Write LGS.data file
-/bin/echo "_STANDALONE" >> "$LGSFILE"</string>
+# Verify AdskLicensingInstHelper exists
+if [ -f "$LICENSE_EXE" ]; then
+	# Register Maya 2020
+	"$LICENSE_EXE" register --pk "$KEY" --pv "$VERSION" --cf "$CONFIG" --el "$LOCALE" --lm "$LICENSE_TYPE" --sn "$SERIAL"
+else
+	/bin/echo "${LICENSE_EXE} does not exist. Exiting ..."
+	exit 1
+fi</string>
             <key>uninstall_method</key>
             <string>uninstall_script</string>
             <key>uninstall_script</key>
             <string>#!/bin/bash
 
-# FLEXnet Files to Remove
-FLEXNETDIR="/Library/Preferences/FLEXnet Publisher/FLEXnet"
-FLEXNET_EVENT_LOG="${FLEXNETDIR}/adskflex_*_event.log"
-FLEXNET_TSF_DATA="${FLEXNETDIR}/adskflex_*_tsf.data"
-FLEXNET_BACKUP="${FLEXNETDIR}/adskflex_*_backup"
+# Per https://knowledge.autodesk.com/support/maya/troubleshooting/caas/sfdcarticles/sfdcarticles/How-to-uninstall-Maya-2020-on-macOS.html?v=2020%26st=install%20macos
 
-# Autodesk Application Support
-AUTODESKDIR="/Library/Application Support/Autodesk"
+MAYA="/Applications/Autodesk"
+APPSUPPORT="/Library/Application Support/Autodesk"
+FLEXNET="/Library/Application Support/FLEXnet Publisher"
+FRAMEWORK="/Library/Frameworks/Adlm.framework"
+PKGRECEIPTS=$(/usr/sbin/pkgutil --pkgs | /usr/bin/grep autodesk)
+ROKOKO="/Applications/Rokoko Motion Library"
+SHARED="/Users/Shared/Autodesk"
+SOLIDANGLE="/Applications/solidangle"
+SUBSTANCE="/Applications/Substance in Maya"
 
-# Maya 2020
-MAYA="/Applications/Autodesk/maya2020"
+# Remove Maya
+if [ -d "$MAYA" ]; then
+	/bin/echo "Removing Maya app folder ..."
+	/bin/rm -rf "$MAYA"
+fi
 
-# Remove FLEXnet files
-/bin/rm "$FLEXNET_EVENT_LOG"
-/bin/rm "$FLEXNET_TSF_DATA"
-/bin/rm "$FLEXNET_BACKUP"
-# Remove Application Support
-/bin/rm -rf "$AUTODESKDIR"
-# Remove Maya 2020 app
-/bin/rm -rf "$MAYA"</string>
+# Remove Shared Autodesk folder
+if [ -d "$SHARED" ]; then
+	/bin/echo "Removing Autodesk Shared folder ..."
+	/bin/rm -rf "$SHARED"
+fi
+
+# Remove App Support
+if [ -d "$APPSUPPORT" ]; then
+	/bin/echo "Removing Autodesk App Support folder ..."
+	/bin/rm -rf "$APPSUPPORT"
+fi
+
+# Remove Flex Net
+if [ -d "$FLEXNET" ]; then
+	/bin/echo "Removing FLEXnet Publisher folder ..."
+	/bin/rm -rf "$FLEXNET"
+fi
+
+# Remove solidangle
+if [ -d "$SOLIDANGLE" ]; then
+	/bin/echo "Removing solidangle ..."
+	/bin/rm -rf "$SOLIDANGLE"
+fi
+
+# Remove framework
+if [ -d "$FRAMEWORK" ]; then
+	/bin/echo "Removing framework ..."
+	/bin/rm -rf "$FRAMEWORK"
+fi
+
+# Remove Rokoko Library
+if [ -d "$ROKOKO" ]; then
+	/bin/echo "Removing Rokoko ..."
+	/bin/rm -rf "$ROKOKO"
+fi
+
+# Remove Substance
+if [ -d "$SUBSTANCE" ]; then
+	/bin/echo "Removing Substance ..."
+	/bin/rm -rf "$SUBSTANCE"
+fi
+
+# Kill Licensing service
+killall AdskLicensingService
+
+# Unload LaunchDaemons
+/bin/launchctl unload /Library/LaunchDaemons/com.autodesk*
+
+# Remove LaunchDaemons
+/bin/rm -rf /Library/LaunchDaemons/com.autodesk*
+
+# Forget PKGs
+for i in $PKGRECEIPTS; do
+	/usr/sbin/pkgutil --forget $i
+done</string>
             <key>unattended_install</key>
             <true/>
             <key>unattended_uninstall</key>
@@ -192,41 +246,30 @@ MAYA="/Applications/Autodesk/maya2020"
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>faux_root</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
-                <key>installs_item_paths</key>
-                <array>
-                    <string>/Applications/Autodesk/maya2020/Maya.app</string>
-                </array>
+                <key>package_info_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/PackageInfo</string>
             </dict>
             <key>Processor</key>
-            <string>MunkiInstallsItemsCreator</string>
+            <string>com.facebook.autopkg.shared/PackageInfoVersioner</string>
         </dict>
         <dict>
-            <key>Arguments</key>
-            <dict/>
-            <key>Processor</key>
-            <string>MunkiPkginfoMerger</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>info_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Autodesk/maya2020/Maya.app</string>
-                <key>plist_keys</key>
-                <dict>
-                    <key>CFBundleShortVersionString</key>
-                    <string>version</string>
-                </dict>
-            </dict>
-            <key>Processor</key>
-            <string>PlistReader</string>
-        </dict>
-        <dict>
+            <key>Comment</key>
+            <string>Create a receipt based on the Maya core PKG, since this is the only place the major and minor versions are listed. Also write blank installs array to avoid undesirably having the installer app serve as an indicator of the item being installed.</string>
             <key>Arguments</key>
             <dict>
                 <key>additional_pkginfo</key>
                 <dict>
+                    <key>installs</key>
+                    <array/>
+                    <key>receipts</key>
+                    <array>
+                        <dict>
+                            <key>packageid</key>
+                            <string>%pkg_id%</string>
+                            <key>version</key>
+                            <string>%version%</string>
+                        </dict>
+                    </array>
                     <key>version</key>
                     <string>%version%</string>
                 </dict>
