@@ -108,6 +108,7 @@ FLEXNET="/Library/Application Support/FLEXnet Publisher"
 FRAMEWORK="/Library/Frameworks/Adlm.framework"
 PKGRECEIPTS=$(/usr/sbin/pkgutil --pkgs | /usr/bin/grep autodesk)
 ROKOKO="/Applications/Rokoko Motion Library"
+SHARED="/Users/Shared/Autodesk"
 SOLIDANGLE="/Applications/solidangle"
 SUBSTANCE="/Applications/Substance in Maya"
 
@@ -115,6 +116,12 @@ SUBSTANCE="/Applications/Substance in Maya"
 if [ -d "$MAYA" ]; then
 	/bin/echo "Removing Maya app folder ..."
 	/bin/rm -rf "$MAYA"
+fi
+
+# Remove Shared Autodesk folder
+if [ -d "$SHARED" ]; then
+	/bin/echo "Removing Autodesk Shared folder ..."
+	/bin/rm -rf "$SHARED"
 fi
 
 # Remove App Support
