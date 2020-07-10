@@ -32,6 +32,8 @@ To use this recipe:
         <string>657L1</string>
         <key>MAYA_SERIAL</key>
         <string>YOUR_SERIAL_HERE</string>
+        <key>MAYA_VERSION</key>
+        <string>2020.0.0.F</string>
         <key>MUNKI_CATEGORY</key>
         <string>Video</string>
         <key>MUNKI_REPO_SUBDIR</key>
