@@ -54,6 +54,17 @@ To use this recipe:
             <string>10.13.6</string>
             <key>name</key>
             <string>%NAME%</string>
+            <key>postinstall_script</key>
+            <string>#!/bin/bash
+
+# Remove Avid Link LaunchAgent
+AGENT="/Library/LaunchAgents/com.avid.avidlink.plist"
+
+if [ -f "$AGENT" ]; then
+    /bin/rm -f "$AGENT"
+fi
+
+exit</string>
             <key>preinstall_script</key>
             <string>#!/bin/bash
 
