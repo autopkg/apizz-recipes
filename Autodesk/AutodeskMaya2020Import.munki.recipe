@@ -91,7 +91,7 @@ fi
 # Verify AdskLicensingInstHelper exists
 if [ -f "$LICENSE_EXE" ]; then
 	# Register Maya 2020
-	"$LICENSE_EXE" register --pk "$KEY" --pv "%MAYA_VERSION%" --cf "$CONFIG" --el "$LOCALE" --lm "$LICENSE_TYPE" --sn "$SERIAL"
+	"$LICENSE_EXE" register --pk "$KEY" --pv "$VERSION" --cf "$CONFIG" --el "$LOCALE" --lm "$LICENSE_TYPE" --sn "$SERIAL"
 else
 	/bin/echo "${LICENSE_EXE} does not exist. Exiting ..."
 	exit 1
