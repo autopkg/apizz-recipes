@@ -70,7 +70,7 @@
             <key>Processor</key>
             <string>PkgCopier</string>
         </dict>
-        <dict>
+<!--        <dict>
             <key>Arguments</key>
             <dict>
                 <key>path_list</key>
@@ -81,6 +81,6 @@
             <key>Processor</key>
             <string>PathDeleter</string>
         </dict>
-    </array>
+    </array>-->
 </dict>
 </plist>
