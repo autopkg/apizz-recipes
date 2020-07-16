@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest release copy of the SwiftDefaultApps from Lord Kamina on Github, creates a package with just the executable, and imports the package into a munki_repo.
+
+To import both the executable and preference pane, use SwiftDefaultApps.munki.recipe instead.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.SwiftDefaultAppsCLI</string>
+    <key>Input</key>
+    <dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>Github Tools</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>github-tools/swiftdefaultapps</string>
+        <key>NAME</key>
+        <string>SwiftDefaultApps</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>Replacement for RCDefaultApps, written in Swift, to change default application associations for any URI Scheme and/or file type on macOS.</string>
+            <key>developer</key>
+            <string>Lord Kamina</string>
+            <key>display_name</key>
+            <string>%NAME%</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.5.0</string>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.pkg.SwiftDefaultAppsCLI</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%pkg_path%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+    </array>
+</dict>
+</plist>
