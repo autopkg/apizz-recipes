@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the latest version of Google Drive File Stream and imports it into a munki repo.</string>
     <key>Identifier</key>
-    <string>com.github.apizz.munki.GoogleDriveFileStream</string>
+    <string>com.github.apizz.munki.Gifox</string>
     <key>Input</key>
     <dict>
         <key>MUNKI_CATEGORY</key>
