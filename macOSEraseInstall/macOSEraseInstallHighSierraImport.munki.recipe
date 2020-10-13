@@ -21,7 +21,7 @@ To use this recipe:
         <key>MUNKI_REPO_SUBDIR</key>
         <string>macos-installers/10.13</string>
         <key>NAME</key>
-        <string>macOS_HighSierra_Install</string>
+        <string>macOS_HighSierra_EraseInstall</string>
         <key>PATH</key>
         <string>/path/to/macOSDMG/folder</string>
         <key>pkginfo</key>
