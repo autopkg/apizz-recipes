@@ -20,17 +20,22 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>app_path</key>
-                <string>%found_filename%</string>
+                <key>pkgdirs</key>
+                <dict>
+                    <key>Applications</key>
+                    <string>0775</string>
+                </dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/pkgbuild</string>
             </dict>
             <key>Processor</key>
-            <string>AppPkgCreator</string>
+            <string>PkgRootCreator</string>
         </dict>
         <dict>
             <key>Arguments</key>
             <dict>
                 <key>info_path</key>
-                <string>%RECIPE_CACHE_DIR%/payload/Applications/Turbo Boost Switcher.app/Contents/Info.plist</string>
+                <string>%pathname%/Turbo Boost Switcher.app/Contents/Info.plist</string>
                 <key>plist_keys</key>
                 <dict>
                     <key>CFBundleShortVersionString</key>
@@ -45,13 +50,55 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>path_list</key>
-                <array>
-                    <string>%RECIPE_CACHE_DIR%/unpack</string>
-                </array>
+                <key>source_path</key>
+                <string>%pathname%/Turbo Boost Switcher.app</string>
+                <key>destination_path</key>
+                <string>%pkgroot%/Applications/Turbo Boost Switcher.app</string>
             </dict>
             <key>Processor</key>
-            <string>PathDeleter</string>
+            <string>Copier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>source_path</key>
+                <string>%pathname%/tbswitcher_resources</string>
+                <key>destination_path</key>
+                <string>%pkgroot%/Applications/tbswitcher_resources</string>
+            </dict>
+            <key>Processor</key>
+            <string>Copier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_request</key>
+                <dict>
+                    <key>chown</key>
+                    <array>
+                        <dict>
+                            <key>group</key>
+                            <string>wheel</string>
+                            <key>mode</key>
+                            <string>0755</string>
+                            <key>path</key>
+                            <string>Applications</string>
+                            <key>user</key>
+                            <string>root</string>
+                        </dict>
+                    </array>
+                    <key>id</key>
+                    <string>rugarciap.com.Turbo-Boost-Switcher</string>
+                    <key>options</key>
+                    <string>purge_ds_store</string>
+                    <key>pkgname</key>
+                    <string>%NAME%-%version%</string>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PkgCreator</string>
         </dict>
     </array>
 </dict>

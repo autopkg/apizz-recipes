@@ -21,7 +21,7 @@
             <key>Arguments</key>
             <dict>
                 <key>re_pattern</key>
-                <string>(?P&lt;url&gt;https\:\/\/s3\.amazonaws\.com\/turbo-boost-switcher\/Turbo\+Boost\+Switcher_(?P&lt;version&gt;[\d.]+)\.zip)</string>
+                <string>(?P&lt;url&gt;https\:\/\/turbo-boost-switcher\.s3\.amazonaws\.com\/Turbo_Boost_Switcher_v(?P&lt;version&gt;[\d.]+)\.dmg)</string>
                 <key>request_headers</key>
                 <dict>
                     <key>user-agent</key>
@@ -37,7 +37,7 @@
             <key>Arguments</key>
             <dict>
                 <key>filename</key>
-                <string>%NAME%.zip</string>
+                <string>%NAME%.dmg</string>
                 <key>url</key>
                 <string>%url%</string>
             </dict>
@@ -51,30 +51,8 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>archive_path</key>
-                <string>%pathname%</string>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/unpack</string>
-                <key>purge_destination</key>
-                <true/>
-            </dict>
-            <key>Processor</key>
-            <string>Unarchiver</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>pattern</key>
-                <string>%RECIPE_CACHE_DIR%/unpack/*.app</string>
-            </dict>
-            <key>Processor</key>
-            <string>FileFinder</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
                 <key>input_path</key>
-                <string>%found_filename%</string>
+                <string>%pathname%/Turbo Boost Switcher.app</string>
                 <key>requirement</key>
                 <string>anchor apple generic and identifier "rugarciap.com.Turbo-Boost-Switcher" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = A7JE7SS8Z7)</string>
                 <key>strict_verification</key>

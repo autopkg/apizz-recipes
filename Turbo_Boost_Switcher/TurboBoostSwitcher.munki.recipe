@@ -37,38 +37,49 @@
     <key>MinimumVersion</key>
     <string>1.0.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.apizz.download.TurboBoostSwitcher</string>
+    <string>com.github.apizz.pkg.TurboBoostSwitcher</string>
     <key>Process</key>
     <array>
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/Turbo Boost Switcher.app</string>
-                <key>source_path</key>
-                <string>%found_filename%</string>
+                <key>additional_pkginfo</key>
+                <dict>
+                    <key>minimum_os_version</key>
+                    <string>%min_os_version%</string>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
             </dict>
             <key>Processor</key>
-            <string>Copier</string>
+            <string>MunkiPkginfoMerger</string>
         </dict>
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>dmg_megabytes</key>
-                <string>200</string>
-                <key>dmg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
-                <key>dmg_root</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>faux_root</key>
+                <string>%RECIPE_CACHE_DIR%/pkgbuild</string>
+                <key>installs_item_paths</key>
+                <array>
+                    <string>/Applications/Turbo Boost Switcher.app</string>
+                    <string>/Applications/tbswitcher_resources/DisableTurboBoost.32bits.kext</string>
+                    <string>/Applications/tbswitcher_resources/DisableTurboBoost.64bits.kext</string>
+                </array>
             </dict>
             <key>Processor</key>
-            <string>DmgCreator</string>
+            <string>MunkiInstallsItemsCreator</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict/>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
         </dict>
         <dict>
             <key>Arguments</key>
             <dict>
                 <key>pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
+                <string>%pkg_path%</string>
                 <key>repo_subdirectory</key>
                 <string>%MUNKI_REPO_SUBDIR%</string>
             </dict>
@@ -80,8 +91,7 @@
             <dict>
                 <key>path_list</key>
                 <array>
-                    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
-                    <string>%RECIPE_CACHE_DIR%/unpack</string>
+                    <string>%RECIPE_CACHE_DIR%/pkgbuild</string>
                 </array>
             </dict>
             <key>Processor</key>
