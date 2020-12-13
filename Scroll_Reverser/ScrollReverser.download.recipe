@@ -19,7 +19,7 @@
             <key>Arguments</key>
             <dict>
                 <key>re_pattern</key>
-                <string>(For OS X 10\.7\+\: &lt;a href\="(?P&lt;url&gt;//pilotmoon.com/downloads/ScrollReverser-(?P&lt;version&gt;[\d.]+).zip)")</string>
+                <string>(For macOS 10\.12 and later.*&lt;a href\="(?P&lt;url&gt;//pilotmoon.com/downloads/ScrollReverser-(?P&lt;version&gt;[\d.]+).zip)")</string>
                 <key>url</key>
                 <string>https://pilotmoon.com/scrollreverser</string>
             </dict>
