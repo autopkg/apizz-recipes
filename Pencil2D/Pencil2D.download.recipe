@@ -29,7 +29,7 @@
           <string>%ASSET_REGEX%</string>
     	    <key>github_repo</key>
     	    <string>pencil2d/pencil</string>
-    	    <key>include_preleases</key>
+    	    <key>include_prereleases</key>
     	    <string>%PRERELEASE%</string>
     	  </dict>
     	  <key>Processor</key>

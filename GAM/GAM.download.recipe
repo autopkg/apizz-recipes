@@ -37,7 +37,7 @@
                 <string>^.*macos-.*(?P&lt;min_os_vers&gt;10.%OS_MAJOR_VERSION%.[\d.]+).*$</string>
                 <key>github_repo</key>
                 <string>jay0lee/GAM</string>
-                <key>include_preleases</key>
+                <key>include_prereleases</key>
                 <string>%PRERELEASE%</string>
             </dict>
             <key>Processor</key>
