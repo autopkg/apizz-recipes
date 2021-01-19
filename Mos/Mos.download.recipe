@@ -22,7 +22,7 @@
                 <string>^.*\.dmg$</string>
                 <key>github_repo</key>
                 <string>Caldis/Mos</string>
-                <key>include_preleases</key>
+                <key>include_prereleases</key>
                 <string>%PRERELEASE%</string>
             </dict>
             <key>Processor</key>
