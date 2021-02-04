@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of Google Drive File Stream and imports it into a munki repo.</string>
+    <string>Downloads the latest version of Google Drive (previously File Stream) and imports it into a munki repo.</string>
     <key>Identifier</key>
-    <string>com.github.apizz.munki.GoogleDriveFileStream</string>
+    <string>com.github.apizz.munki.GoogleDrive</string>
     <key>Input</key>
     <dict>
         <key>MUNKI_CATEGORY</key>
-        <string>Backup &amp; Sync</string>
+        <string>Backups</string>
         <key>MUNKI_REPO_SUBDIR</key>
-        <string>apps/googledrivefilestream</string>
+        <string>apps/googledrive</string>
         <key>NAME</key>
-        <string>GoogleDriveFileStream</string>
+        <string>GoogleDrive</string>
         <key>pkginfo</key>
         <dict>
             <key>catalogs</key>
@@ -23,13 +23,13 @@
             <key>category</key>
             <string>%MUNKI_CATEGORY%</string>
             <key>description</key>
-            <string>With Drive File Stream, you stream your Drive files directly from the cloud to your Mac or PC, freeing up disk space and network bandwidth. Because Drive files are stored in the cloud, any changes you or your collaborators make are automatically updated everywhere. You’ll always have the latest version.
+            <string>With Google Drive, you stream your Drive files directly from the cloud to your Mac or PC, freeing up disk space and network bandwidth. Because Drive files are stored in the cloud, any changes you or your collaborators make are automatically updated everywhere. You’ll always have the latest version.
 
     You can also make Drive files available for offline access. These cached files sync back to the cloud when you're online, so the latest version is available on all your devices.</string>
             <key>developer</key>
             <string>Google Inc.</string>
             <key>display_name</key>
-            <string>Google Drive File Stream</string>
+            <string>Google Drive</string>
             <key>name</key>
             <string>%NAME%</string>
             <key>unattended_install</key>
@@ -37,9 +37,23 @@
         </dict>
     </dict>
     <key>ParentRecipe</key>
-    <string>com.github.nstrauss.pkg.GoogleDriveFileStream</string>
+    <string>com.github.nstrauss.pkg.GoogleDrive</string>
     <key>Process</key>
     <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>additional_pkginfo</key>
+                <dict>
+                    <key>minimum_os_version</key>
+                    <string>%min_os_version%</string>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
         <dict>
             <key>Arguments</key>
             <dict>
