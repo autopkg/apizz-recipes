@@ -8,6 +8,8 @@
     <string>com.github.apizz.download.VSCodium</string>
     <key>Input</key>
     <dict>
+        <key>ARCH</key>
+        <string>x64</string>
         <key>NAME</key>
         <string>VSCodium</string>
         <key>PRERELEASE</key>
@@ -21,7 +23,7 @@
             <key>Arguments</key>
             <dict>
                 <key>asset_regex</key>
-                <string>^VSCodium.[\d.]+.dmg$</string>
+                <string>^VSCodium.%ARCH%.[\d.]+.dmg$</string>
                 <key>github_repo</key>
                 <string>VSCodium/vscodium</string>
                 <key>include_prereleases</key>
