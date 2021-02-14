@@ -10,8 +10,6 @@
 	<string>com.github.apizz.pkg.Lightwell</string>
 	<key>Input</key>
 	<dict>
-		<key>BUNDLE_ID</key>
-		<string>com.hullabalu.Lightwell.macOS</string>
 		<key>NAME</key>
 		<string>Lightwell</string>
 	</dict>
