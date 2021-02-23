@@ -47,7 +47,7 @@
                 <key>input_path</key>
                 <string>%pathname%/Mos.app</string>
                 <key>requirement</key>
-                <string>cdhash H"66f63c7f94b2e831d9e986794205cc0b4d63ed16" or cdhash H"043196f61f8fedf2d7c54cd7283bddd246b3e7a3"</string>
+                <string>cdhash H"eeac33535e8c15e6f681211e0f5b608100b5b8b9" or cdhash H"cc414f2e213cb441d902352c2923cd6a114ce8c7" or cdhash H"1305accb0e599f12ef47cecea0b9e06cb6ad9db4" or cdhash H"3570f0aa6a59714742f9ece46d849ba794974bcc"</string>
                 <key>strict_verification</key>
                 <true/>
             </dict>
