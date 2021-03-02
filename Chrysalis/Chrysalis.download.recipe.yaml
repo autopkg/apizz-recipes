@@ -1,0 +1,20 @@
+Description: "Downloads the latest version of the Chrysalis from Github. Set PRERELEASE to a non-empty string to download prereleases, either via Input in an override or via the -k option, i.e.: `-k PRERELEASE=yes`"
+Identifier: com.github.apizz.download.Chrysalis
+MinimumVersion: '2.3'
+
+Input:
+  NAME: Chrysalis
+  PRERELEASE: ''
+
+Process:
+  - Processor: GitHubReleasesInfoProvider
+    Arguments:
+      asset_regex: .*\.dmg$
+      github_repo: keyboardio/Chrysalis
+      include_prereleases: '%PRERELEASE%'
+
+  - Processor: URLDownloader
+    Arguments:
+      filename: '%NAME%.dmg'
+
+  - Processor: EndOfCheckPhase

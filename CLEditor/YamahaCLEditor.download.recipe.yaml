@@ -1,0 +1,63 @@
+Description: Downloads the latest version of the Yamaha CL Editor.
+Identifier: com.github.apizz.download.YamahaCLEditor
+Input:
+  DOWNLOAD_URL: https://usa.yamaha.com
+  NAME: CLEditor
+  SEARCH_PATTERN: (?P<url>\/files\/download\/software\/[\d]+\/[\d]+\/cl_[\w\d]+_mac\.zip)
+  SEARCH_URL: https://usa.yamaha.com/support/updates/cl_edt_mac.html
+  USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10
+MinimumVersion: '2.3'
+
+Process:
+- Processor: URLTextSearcher
+  Arguments:
+    re_pattern: '%SEARCH_PATTERN%'
+    url: '%SEARCH_URL%'
+
+- Processor: URLDownloader
+  Arguments:
+    filename: '%NAME%.zip'
+    request_headers:
+      user-agent: '%USER_AGENT%'
+    url: '%DOWNLOAD_URL%%url%'
+
+- Processor: EndOfCheckPhase
+
+- Processor: Unarchiver
+  Arguments:
+    purge_destination: True 
+
+- Processor: FileFinder
+  Arguments:
+    pattern: '%RECIPE_CACHE_DIR%/%NAME%/*/*.pkg' 
+
+- Processor: FileMover
+  Arguments:
+    source: '%found_filename%'
+    target: '%RECIPE_CACHE_DIR%/%NAME%.pkg'
+
+- Processor: CodeSignatureVerifier
+  Arguments:
+    expected_authority_names:
+      - 'Developer ID Installer: Yamaha Corporation (5LE7A8CF65)'
+      - Developer ID Certification Authority
+      - Apple Root CA
+    input_path: '%RECIPE_CACHE_DIR%/%NAME%.pkg'
+
+- Processor: FlatPkgUnpacker
+  Arguments:
+    destination_path: '%RECIPE_CACHE_DIR%/unpack'
+    flat_pkg_path: '%RECIPE_CACHE_DIR%/%NAME%.pkg'
+
+- Processor: PkgPayloadUnpacker
+  Arguments:
+    destination_path: '%RECIPE_CACHE_DIR%/%NAME%'
+    pkg_payload_path: '%RECIPE_CACHE_DIR%/unpack/CLEditor.pkg/Payload'
+
+- Processor: CodeSignatureVerifier
+  Arguments:
+    expected_authority_names: []
+    input_path: '%RECIPE_CACHE_DIR%/%NAME%/Applications/CL Editor.app'
+    requirement: identifier "com.yamaha.pa.cleditor" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "5LE7A8CF65"
+    strict_verification: True
+  

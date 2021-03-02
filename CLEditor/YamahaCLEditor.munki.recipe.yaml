@@ -1,0 +1,28 @@
+Description: Downloads the latest version of Yamaha's Cl Editor and imports it into a munki_repo
+Identifier: com.github.apizz.munki.YamahaCLEditor
+Input:
+  MUNKI_CATEGORY: Music
+  MUNKI_REPO_SUBDIR: apps/yamaha-cleditor
+  pkginfo:
+    catalogs:
+      - testing
+    category: '%MUNKI_CATEGORY%'
+    description: CL Editor enables you to remotely control a Yamaha CL mixing console.
+    developer: Yamaha Corporation
+    display_name: CLEditor
+    name: '%NAME%'
+    unattended_install: True
+MinimumVersion: '2.3'
+ParentRecipe: com.github.apizz.download.YamahaCLEditor
+
+Process:
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%RECIPE_CACHE_DIR%/%NAME%.pkg'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'
+
+- Processor: PathDeleter
+  Arguments:
+    path_list:
+      - '%RECIPE_CACHE_DIR%/unpack'
+      - '%RECIPE_CACHE_DIR%/%NAME%'

@@ -1,0 +1,23 @@
+Description: Downloads the latest version of Chrysalis from Github and imports it into a munki_repo.
+Identifier: com.github.apizz.munki.Chrysalis
+Input:
+  MUNKI_CATEGORY: Utilities
+  MUNKI_REPO_SUBDIR: apps/chrysalis
+  NAME: Chrysalis
+  pkginfo:
+    catalogs:
+    - testing
+    category: '%MUNKI_CATEGORY%'
+    description: "Chrysalis is a graphical configurator for Kaleidoscope-powered keyboards. While still under development, it is already usable for a number of tasks. To try it, you don't even need to flash Kaleidoscope beforehand, Chrysalis can do that for you, as it ships with reasonable default firmware for each supported board.\n\nThe primary purpose of the application is to allow one to configure their keyboard without having to compile or flash firmware, by storing the configuration on the keyboard itself, in EEPROM. There are no external tools required, just Chrysalis itself."
+    developer: Keyboardio
+    display_name: Chrysalis
+    name: '%NAME%'
+    unattended_install: True
+MinimumVersion: '2.3'
+ParentRecipe: com.github.apizz.download.Chrysalis
+
+Process:
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%pathname%'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'  
