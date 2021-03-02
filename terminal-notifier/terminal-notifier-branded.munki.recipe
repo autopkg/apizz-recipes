@@ -13,7 +13,7 @@
         <key>MUNKI_CATEGORY</key>
         <string>Github Tools</string>
         <key>MUNKI_REPO_SUBDIR</key>
-        <string>github-tools</string>
+        <string>github-tools/%NAME%</string>
         <key>NAME</key>
         <string>terminal-notifier</string>
         <key>pkginfo</key>
@@ -42,54 +42,54 @@
     <string>com.github.morgrowe.download.terminal-notifier</string>
     <key>Process</key>
     <array>
-    <dict>
-        <key>Arguments</key>
         <dict>
-            <key>archive_path</key>
-            <string>%pathname%</string>
-            <key>destination_path</key>
-            <string>%RECIPE_CACHE_DIR%/%NAME%</string>
-            <key>purge_destination</key>
-            <true/>
+            <key>Arguments</key>
+            <dict>
+                <key>archive_path</key>
+                <string>%pathname%</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>purge_destination</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>Unarchiver</string>
         </dict>
-        <key>Processor</key>
-        <string>Unarchiver</string>
-    </dict>
-    <dict>
-        <key>Arguments</key>
         <dict>
-            <key>destination_path</key>
-            <string>%RECIPE_CACHE_DIR%/%NAME%/terminal-notifier.app/Contents/Resources/Terminal.icns</string>
-            <key>source_path</key>
-            <string>%BRANDING_ICNS_PATH%</string>
-            <key>overwrite</key>
-            <true/>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/terminal-notifier.app/Contents/Resources/Terminal.icns</string>
+                <key>source_path</key>
+                <string>%BRANDING_ICNS_PATH%</string>
+                <key>overwrite</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>Copier</string>
         </dict>
-        <key>Processor</key>
-        <string>Copier</string>
-    </dict>
-    <dict>
-        <key>Arguments</key>
         <dict>
-            <key>dmg_path</key>
-            <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.dmg</string>
-            <key>dmg_root</key>
-            <string>%RECIPE_CACHE_DIR%/%NAME%/terminal-notifier.app</string>
+            <key>Arguments</key>
+            <dict>
+                <key>dmg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.dmg</string>
+                <key>dmg_root</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/terminal-notifier.app</string>
+            </dict>
+            <key>Processor</key>
+            <string>DmgCreator</string>
         </dict>
-        <key>Processor</key>
-        <string>DmgCreator</string>
-    </dict>
-    <dict>
-        <key>Arguments</key>
         <dict>
-            <key>pkg_path</key>
-            <string>%dmg_path%</string>
-            <key>repo_subdirectory</key>
-            <string>%MUNKI_REPO_SUBDIR%</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%dmg_path%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
         </dict>
-        <key>Processor</key>
-        <string>MunkiImporter</string>
-    </dict>
     </array>
 </dict>
 </plist>
