@@ -65,6 +65,20 @@
             <key>Processor</key>
             <string>MunkiImporter</string>
         </dict>
+        <dict>
+      <key>Arguments</key>
+        <dict>
+          <key>pkg_ids_set_optional_true</key>
+          <array>
+            <string>com.google.drivefs.filesystems.dfsfuse.arm64</string>
+            <string>com.google.drivefs.filesystems.dfsfuse.x86_64</string>
+            <string>com.google.drivefs.arm64</string>
+            <string>com.google.drivefs.x86_64</string>
+          </array>
+        </dict>
+        <key>Processor</key>
+        <string>com.github.keeleysam.recipes.GoogleTalkPlugin/MunkiPkginfoReceiptsEditor</string>
+      </dict>
     </array>
 </dict>
 </plist>
