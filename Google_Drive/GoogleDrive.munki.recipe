@@ -3,7 +3,11 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of Google Drive (previously File Stream) and imports it into a munki repo.</string>
+    <string>Downloads the latest version of Google Drive (previously File Stream) and imports it into a munki repo.
+
+Since Google Drive has macOS architecture specific PKGs that won't be installed, this will cause an endless install loop if the applicable PKG receipts aren't marked as optional. To address this, these items are added in the Input variable dictionary under the pkg_ids_set_optional_true key.
+
+If an admin wishes to use this same recipe to manage a single Google Drive PKG installer with 2 separate munki items - 1 for arm64, 1 for x86_64 - simply remove the applicable pkg ids from the pkg_ids_set_optional_true array.</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.GoogleDrive</string>
     <key>Input</key>
