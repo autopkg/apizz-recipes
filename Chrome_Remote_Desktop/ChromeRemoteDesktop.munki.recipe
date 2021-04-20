@@ -41,7 +41,7 @@
     <key>MinimumVersion</key>
     <string>1.0.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.autopkg.cgerke-recipes.pkg.ChromeRemoteDesktop</string>
+    <string>com.github.homebysix.pkg.ChromeRemoteDesktop</string>
     <key>Process</key>
     <array>
         <dict>
