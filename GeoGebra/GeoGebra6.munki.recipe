@@ -41,6 +41,15 @@
     <key>Process</key>
     <array>
         <dict>
+            <key>Processor</key>
+            <string>DeprecationWarning</string>
+            <key>Arguments</key>
+            <dict>
+                <key>warning_message</key>
+                <string>This recipe is deprecated as the available redirect to download this software returns a 404 error. You might try the freely available web-based version, or the Mac App Store app. If you opt for the Mac App Store version, look at nmcspadden's AppStore recipes.</string>
+            </dict>
+        </dict>
+        <dict>
             <key>Arguments</key>
             <dict>
                 <key>dmg_megabytes</key>
