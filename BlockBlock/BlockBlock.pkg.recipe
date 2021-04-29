@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of BlockBlock from GitHub and creates a PKG.
+
+The native BlockBlock Installer.app utilizes a shell script to install / uninstall BlockBlock. While most of software components are simply copied from within the installer app to their respective locations, the default preferences.plist is created on the fly. To address this, this recipe creates this defaults file via the PLIST_DEFAULTS input variable. If you wish to alter the defaults for your environment, simply add / update the applicable keys and values.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.pkg.BlockBlock</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>BlockBlock</string>
+        <key>PLIST_DEFAULTS</key>
+        <string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+    &lt;key&gt;disabled&lt;/key&gt;
+    &lt;false/&gt;
+    &lt;key&gt;gotFullDiskAccess&lt;/key&gt;
+    &lt;false/&gt;
+    &lt;key&gt;noAlertMode&lt;/key&gt;
+    &lt;false/&gt;
+    &lt;key&gt;noIconMode&lt;/key&gt;
+    &lt;false/&gt;
+    &lt;key&gt;noUpdateMode&lt;/key&gt;
+    &lt;false/&gt;
+    &lt;key&gt;notarizationMode&lt;/key&gt;
+    &lt;false/&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;</string>
+    </dict>
+    <key>ParentRecipe</key>
+    <string>com.github.zentralpro.download.blockblock</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgdirs</key>
+                <dict>
+                    <key>Applications</key>
+                    <string>0775</string>
+                    <key>Library</key>
+                    <string>0755</string>
+                    <key>Library/LaunchDaemons</key>
+                    <string>0755</string>
+                    <key>Library/Objective-See</key>
+                    <string>0755</string>
+                    <key>Library/Objective-See/BlockBlock</key>
+                    <string>0755</string>
+                </dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Copy the BlockBlock Helper.app</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpacked/BlockBlock Installer.app/Contents/Resources/BlockBlock Helper.app</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/BlockBlock Helper.app</string>
+                <key>overwrite</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>Copier</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Copy the LaunchDaemon</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpacked/BlockBlock Installer.app/Contents/Resources/com.objective-see.blockblock.plist</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Library/LaunchDaemons/com.objective-see.blockblock.plist</string>
+                <key>overwrite</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>Copier</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Copy the BlockBlock.app</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpacked/BlockBlock Installer.app/Contents/Resources/BlockBlock.app</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Library/Objective-See/BlockBlock/BlockBlock.app</string>
+                <key>overwrite</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>Copier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>info_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Library/Objective-See/BlockBlock/BlockBlock.app/Contents/Info.plist</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleIdentifier</key>
+                    <string>pkg_id</string>
+                    <key>CFBundleShortVersionString</key>
+                    <string>version</string>
+                    <key>LSMinimumSystemVersion</key>
+                    <string>min_os_version</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PlistReader</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Create the default preferences.plist file contents</string>
+            <key>Arguments</key>
+            <dict>
+                <key>file_content</key>
+                <string>%PLIST_DEFAULTS%</string>
+                <key>file_mode</key>
+                <string>0644</string>
+                <key>file_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Library/Objective-See/BlockBlock/preferences.plist</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileCreator</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_request</key>
+                <dict>
+                    <key>chown</key>
+                    <array>
+                        <dict>
+                            <key>group</key>
+                            <string>wheel</string>
+                            <key>path</key>
+                            <string>Applications</string>
+                            <key>user</key>
+                            <string>root</string>
+                        </dict>
+                        <dict>
+                            <key>group</key>
+                            <string>wheel</string>
+                            <key>mode</key>
+                            <string>0755</string>
+                            <key>path</key>
+                            <string>Applications/BlockBlock Helper.app</string>
+                            <key>user</key>
+                            <string>root</string>
+                        </dict>
+                        <dict>
+                            <key>group</key>
+                            <string>wheel</string>
+                            <key>path</key>
+                            <string>Library</string>
+                            <key>user</key>
+                            <string>root</string>
+                        </dict>
+                        <dict>
+                            <key>group</key>
+                            <string>wheel</string>
+                            <key>mode</key>
+                            <string>0644</string>
+                            <key>path</key>
+                            <string>Library/LaunchDaemons/com.objective-see.blockblock.plist</string>
+                            <key>user</key>
+                            <string>root</string>
+                        </dict>
+                        <dict>
+                            <key>group</key>
+                            <string>wheel</string>
+                            <key>mode</key>
+                            <string>0755</string>
+                            <key>path</key>
+                            <string>Library/Objective-See/BlockBlock/BlockBlock.app</string>
+                            <key>user</key>
+                            <string>root</string>
+                        </dict>
+                        <dict>
+                            <key>group</key>
+                            <string>wheel</string>
+                            <key>mode</key>
+                            <string>0644</string>
+                            <key>path</key>
+                            <string>Library/Objective-See/BlockBlock/preferences.plist</string>
+                            <key>user</key>
+                            <string>root</string>
+                        </dict>
+                    </array>
+                    <key>id</key>
+                    <string>%pkg_id%</string>
+                    <key>options</key>
+                    <string>purge_ds_store</string>
+                    <key>pkgname</key>
+                    <string>%NAME%-%version%</string>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PkgCreator</string>
+        </dict>
+    </array>
+</dict>
+</plist>

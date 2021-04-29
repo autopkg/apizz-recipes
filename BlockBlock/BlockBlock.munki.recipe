@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of BlockBlock from GitHub, creates a PKG, and imports it into a munki_repo.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.BlockBlock</string>
+    <key>Input</key>
+    <dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>Security</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/blockblock</string>
+        <key>NAME</key>
+        <string>BlockBlock</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>Malware installs itself persistently to ensure it's automatically (re)executed.
+BlockBlock monitors common persistence locations and alerts whenever a persistent component is added.</string>
+            <key>developer</key>
+            <string>Objective-See LLC</string>
+            <key>display_name</key>
+            <string>BlockBlock</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
+    </dict>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.pkg.BlockBlock</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>additional_pkginfo</key>
+                <dict>
+                    <key>minimum_os_version</key>
+                    <string>%min_os_version%</string>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>faux_root</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>installs_item_paths</key>
+                <array>
+                    <string>/Applications/BlockBlock Helper.app</string>
+                    <string>/Library/Objective-See/BlockBlock/BlockBlock.app</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiInstallsItemsCreator</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%pkg_path%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                    <string>%RECIPE_CACHE_DIR%/unpacked</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
+        </dict>
+    </array>
+</dict>
+</plist>
