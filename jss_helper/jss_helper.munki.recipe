@@ -37,7 +37,7 @@
     <key>MinimumVersion</key>
     <string>1.0.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.sheagcraig.download.jss_helper</string>
+    <string>com.github.homebysix.download.jss_helper</string>
     <key>Process</key>
     <array>
         <dict>
