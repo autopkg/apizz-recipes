@@ -11,7 +11,7 @@
         <key>MUNKI_CATEGORY</key>
         <string>Drivers</string>
         <key>MUNKI_REPO_SUBDIR</key>
-        <string>drivers</string>
+        <string>drivers/kensingtonworks</string>
         <key>NAME</key>
         <string>KensingtonWorks</string>
         <key>pkginfo</key>
@@ -70,6 +70,17 @@ exit</string>
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>pkg_payload_path</key>
                 <string>%RECIPE_CACHE_DIR%/unpack/kensingtonworks.pkg/Payload</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>pkg_payload_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/trackballworks2.pkg/Payload</string>
             </dict>
             <key>Processor</key>
             <string>PkgPayloadUnpacker</string>
