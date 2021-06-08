@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest Gifox disk image.</string>
+    <string>Downloads the latest Gifox 2 disk image.</string>
     <key>Identifier</key>
     <string>com.github.apizz.download.Gifox2</string>
     <key>Input</key>

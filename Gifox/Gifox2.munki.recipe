@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of Google Drive File Stream and imports it into a munki repo.</string>
+    <string>Downloads the latest version of Gifox 2 and imports it into a munki repo.</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.Gifox2</string>
     <key>Input</key>
