@@ -19,7 +19,7 @@
             <key>Arguments</key>
             <dict>
                 <key>re_pattern</key>
-                <string>(?P&lt;url&gt;\/.*\/kensingtonworks\_(?P&lt;version&gt;[\d.]+)\.pkg)</string>
+                <string>(?P&lt;url&gt;\/.*\/kensingtonworks\_(?P&lt;version&gt;[\d.]+)_[\d]+\.pkg)</string>
                 <key>url</key>
                 <string>https://www.kensington.com/software/kensingtonworks</string>
             </dict>
