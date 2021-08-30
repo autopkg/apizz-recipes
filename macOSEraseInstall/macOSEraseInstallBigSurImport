@@ -19,7 +19,7 @@ To use this recipe:
         <key>MUNKI_CATEGORY</key>
         <string>macOS Installers</string>
         <key>MUNKI_REPO_SUBDIR</key>
-        <string>macos-installers/11.4</string>
+        <string>macos-installers/11</string>
         <key>NAME</key>
         <string>macOS_BigSur_EraseInstall</string>
         <key>PATH</key>
@@ -60,11 +60,11 @@ exit 0</string>
     <array>
         <dict>
             <key>Comment</key>
-            <string>Gets the Catalina DMG filename located in the PATH</string>
+            <string>Gets the Big Sur DMG filename located in the PATH</string>
             <key>Arguments</key>
             <dict>
                 <key>pattern</key>
-                <string>%PATH%/*11.4*.dmg</string>
+                <string>%PATH%/*11\.*.dmg</string>
             </dict>
             <key>Processor</key>
             <string>FileFinder</string>
