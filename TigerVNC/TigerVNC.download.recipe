@@ -16,14 +16,16 @@
     <key>Process</key>
     <array>
         <dict>
+            <key>Comment</key>
+            <string>Get latest release version number from GitHub</string>
             <key>Arguments</key>
             <dict>
                 <key>re_pattern</key>
-                <string>/projects/tigervnc/files/latest/download" title="/stable/([\d.]+)</string>
+                <string>/releases/tag/v?([\d.]+)</string>
                 <key>result_output_var_name</key>
                 <string>version</string>
                 <key>url</key>
-                <string>https://sourceforge.net/projects/tigervnc/files/stable/</string>
+                <string>https://github.com/TigerVNC/tigervnc/releases/latest</string>
             </dict>
             <key>Processor</key>
             <string>URLTextSearcher</string>
