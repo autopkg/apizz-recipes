@@ -228,6 +228,25 @@ writelog "*****  Install CrowdStrike Process:  COMPLETE  *****"</string>
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>faux_root</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>installs_item_paths</key>
+                <array>
+                    <string>/Applications/Falcon.app</string>
+                </array>
+                <key>version_comparison_key</key>
+                <string>CFBundleShortVersionString</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiInstallsItemsCreator</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
                 <key>pkg_path</key>
                 <string>%pathname%</string>
                 <key>repo_subdirectory</key>
