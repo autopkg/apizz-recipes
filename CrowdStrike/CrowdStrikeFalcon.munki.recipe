@@ -137,6 +137,8 @@ writelog "*****  Install CrowdStrike Process:  COMPLETE  *****"</string>
             <string>FlatPkgUnpacker</string>
         </dict>
         <dict>
+            <key>Comment</key>
+            <string>Extract and examine the kext version of the app</string>
             <key>Arguments</key>
             <dict>
                 <key>destination_path</key>
@@ -163,6 +165,8 @@ writelog "*****  Install CrowdStrike Process:  COMPLETE  *****"</string>
             <string>CodeSignatureVerifier</string>
         </dict>
         <dict>
+            <key>Comment</key>
+            <string>Remove previously expanded kext version</string>
             <key>Arguments</key>
             <dict>
                 <key>path_list</key>
@@ -174,6 +178,8 @@ writelog "*****  Install CrowdStrike Process:  COMPLETE  *****"</string>
             <string>PathDeleter</string>
         </dict>
         <dict>
+            <key>Comment</key>
+            <string>Extract and examine the system extension version of the app</string>
             <key>Arguments</key>
             <dict>
                 <key>destination_path</key>
@@ -198,6 +204,25 @@ writelog "*****  Install CrowdStrike Process:  COMPLETE  *****"</string>
             </dict>
             <key>Processor</key>
             <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>faux_root</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>installs_item_paths</key>
+                <array>
+                    <string>/Applications/Falcon.app</string>
+                </array>
+                <key>version_comparison_key</key>
+                <string>CFBundleShortVersionString</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiInstallsItemsCreator</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
         </dict>
         <dict>
             <key>Arguments</key>
