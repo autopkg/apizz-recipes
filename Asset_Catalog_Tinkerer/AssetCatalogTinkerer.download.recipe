@@ -20,6 +20,8 @@
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>asset_regex</key>
+                <string>.*\.dmg$</string>
                 <key>github_repo</key>
                 <string>insidegui/AssetCatalogTinkerer</string>
                 <key>include_prereleases</key>
@@ -32,7 +34,7 @@
             <key>Arguments</key>
             <dict>
                 <key>filename</key>
-                <string>%NAME%.zip</string>
+                <string>%NAME%.dmg</string>
             </dict>
             <key>Processor</key>
             <string>URLDownloader</string>
@@ -44,17 +46,8 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
-            </dict>
-            <key>Processor</key>
-            <string>Unarchiver</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
                 <key>input_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/Asset Catalog Tinkerer.app</string>
+                <string>%pathname%/Asset Catalog Tinkerer.app</string>
                 <key>requirement</key>
                 <string>anchor apple generic and identifier "br.com.guilhermerambo.Asset-Catalog-Tinkerer" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "8C7439RJLG")</string>
                 <key>strict_verification</key>
