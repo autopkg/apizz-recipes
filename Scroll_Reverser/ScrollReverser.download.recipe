@@ -30,7 +30,7 @@
             <key>Arguments</key>
             <dict>
                 <key>filename</key>
-                <string>%NAME%-%version%.zip</string>
+                <string>%NAME%.zip</string>
                 <key>url</key>
                 <string>https://pilotmoon.com%url%</string>
             </dict>
