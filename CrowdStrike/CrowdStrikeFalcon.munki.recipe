@@ -206,6 +206,8 @@ writelog "*****  Install CrowdStrike Process:  COMPLETE  *****"</string>
             <string>CodeSignatureVerifier</string>
         </dict>
         <dict>
+            <key>Comment</key>
+            <string>Example full version: 6.33.14604. Historically have used CFBundleShortVersionString to compare (ex. 6.33), but with hotfix releases only the CFBundleVersion (146.04) is updated. This key seems to be properly incremented, so we use this instead.</string>
             <key>Arguments</key>
             <dict>
                 <key>faux_root</key>
@@ -215,7 +217,7 @@ writelog "*****  Install CrowdStrike Process:  COMPLETE  *****"</string>
                     <string>/Applications/Falcon.app</string>
                 </array>
                 <key>version_comparison_key</key>
-                <string>CFBundleShortVersionString</string>
+                <string>CFBundleVersion</string>
             </dict>
             <key>Processor</key>
             <string>MunkiInstallsItemsCreator</string>
