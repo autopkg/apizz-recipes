@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of Navicat Essentials for PostgreSQL.</string>
+    <string>Downloads the latest version of Navicat Essentials for PostgreSQL 15.</string>
     <key>Identifier</key>
     <string>com.github.apizz.download.NavicatEssentialsPostgreSQL</string>
     <key>Input</key>

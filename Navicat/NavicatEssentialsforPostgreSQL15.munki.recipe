@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of Navicat Essentials for PostgreSQL and imports it into a munki_repo.</string>
+    <string>Downloads the latest version of Navicat Essentials for PostgreSQL 15 and imports it into a munki_repo.</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.NavicatEssentialsPostgreSQL</string>
     <key>Input</key>
