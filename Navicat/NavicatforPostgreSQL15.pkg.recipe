@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of Navicat for PostgreSQL and creates a PKG.</string>
+    <string>Downloads the latest version of Navicat for PostgreSQL 15 and creates a PKG.</string>
     <key>Identifier</key>
     <string>com.github.apizz.pkg.NavicatPostgreSQL</string>
     <key>Input</key>
