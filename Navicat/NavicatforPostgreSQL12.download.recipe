@@ -18,8 +18,44 @@
     <key>Process</key>
     <array>
         <dict>
+            <key>Comment</key>
+            <string>Get most recent v12 version number. Navicat downloads appear to include both the major version and next number in the version in the download name scheme (ex. 150, 121), so with this info collected we can parse this out.</string>
             <key>Arguments</key>
             <dict>
+                <key>re_pattern</key>
+                <string>Navicat for PostgreSQL \(macOS\) version (?P&lt;version&gt;12[\d\.]+)</string>
+                <key>url</key>
+                <string>https://navicat.com/en/products/navicat-for-postgresql-release-note</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Get second part of version number. This we need to combine with the major version for our download.</string>
+            <key>Arguments</key>
+            <dict>
+                <key>full_version</key>
+                <string>%version%</string>
+                <key>version</key>
+                <string>%version%</string>
+                <key>index</key>
+                <integer>1</integer>
+                <key>split_on</key>
+                <string>.</string>
+            </dict>
+            <key>Processor</key>
+            <string>com.github.homebysix.VersionSplitter/VersionSplitter</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Set navicat_version, reset version var to our previously set full_version var</string>
+            <key>Arguments</key>
+            <dict>
+                <key>navicat_version</key>
+                <string>12%version%</string>
+                <key>version</key>
+                <string>%full_version%</string>
                 <key>filename</key>
                 <string>%NAME%.dmg</string>
                 <key>request_headers</key>
@@ -28,7 +64,7 @@
                     <string>%USER_AGENT%</string>
                 </dict>
                 <key>url</key>
-                <string>https://download3.navicat.com/download/navicat120_pgsql_en.dmg</string>
+                <string>https://download3.navicat.com/download/navicat%navicat_version%_pgsql_en.dmg</string>
             </dict>
             <key>Processor</key>
             <string>URLDownloader</string>
