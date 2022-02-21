@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of Navicat for MySQL 12 and imports it into a munki_repo.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.NavicatMySQL12</string>
+    <key>Input</key>
+    <dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>Developer Tools</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/navicat</string>
+        <key>NAME</key>
+        <string>NavicatMySQL12</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>developer</key>
+            <string>PremiumSoft</string>
+            <key>description</key>
+            <string>Navicat for MySQL is the ideal solution for MySQL/MariaDB administration and development. It is a single application that allows you to connect to MySQL and MariaDB databases simultaneously. Compatible with cloud databases like Amazon RDS, Amazon Aurora, Oracle Cloud, Google Cloud and Microsoft Azure. This all-inclusive frontend provides an intuitive and powerful graphical interface for database management, development, and maintenance.</string>
+            <key>display_name</key>
+            <string>Navicat for MySQL</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.3.1</string>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.download.NavicatMySQL12</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%pathname%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+    </array>
+</dict>
+</plist>
