@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of Navicat for MariaDB 16 and imports it into a munki_repo.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.NavicatMariaDB16</string>
+    <key>Input</key>
+    <dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>Developer Tools</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/navicat</string>
+        <key>NAME</key>
+        <string>NavicatMariaDB16</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>developer</key>
+            <string>PremiumSoft</string>
+            <key>description</key>
+            <string>Navicat for MariaDB provides a native environment for MariaDB database management and development. Connect to local/remote MariaDB servers, and compatible with Amazon RDS. Navicat for MariaDB supports most of the additional features like new storage engines, microseconds, virtual columns, and more.</string>
+            <key>display_name</key>
+            <string>Navicat for MariaDB</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.3.1</string>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.download.NavicatMariaDB16</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%pathname%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+    </array>
+</dict>
+</plist>
