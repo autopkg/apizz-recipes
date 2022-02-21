@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of Navicat Premium 12.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.download.NavicatPremium12</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>NavicatPremium12</string>
+        <key>USER_AGENT</key>
+        <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>1.0.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Comment</key>
+            <string>Get most recent v12 version number. Navicat downloads appear to include both the major version and next number in the version in the download name scheme (ex. 120, 121), so with this info collected we can parse this out.</string>
+            <key>Arguments</key>
+            <dict>
+                <key>re_pattern</key>
+                <string>Navicat Premium \(macOS\) version (?P&lt;version&gt;12[\d\.]+)</string>
+                <key>url</key>
+                <string>https://navicat.com/en/products/navicat-premium-release-note</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Get second part of version number. This we need to combine with the major version for our download.</string>
+            <key>Arguments</key>
+            <dict>
+                <key>full_version</key>
+                <string>%version%</string>
+                <key>version</key>
+                <string>%version%</string>
+                <key>index</key>
+                <integer>1</integer>
+                <key>split_on</key>
+                <string>.</string>
+            </dict>
+            <key>Processor</key>
+            <string>com.github.homebysix.VersionSplitter/VersionSplitter</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Set navicat_version, reset version var to our previously set full_version var</string>
+            <key>Arguments</key>
+            <dict>
+                <key>navicat_version</key>
+                <string>12%version%</string>
+                <key>version</key>
+                <string>%full_version%</string>
+                <key>filename</key>
+                <string>%NAME%.dmg</string>
+                <key>request_headers</key>
+                <dict>
+                    <key>user-agent</key>
+                    <string>%USER_AGENT%</string>
+                </dict>
+                <key>url</key>
+                <string>https://download3.navicat.com/download/navicat%navicat_version%_premium_en.dmg</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%pathname%/Navicat Premium.app</string>
+                <key>requirement</key>
+                <string>identifier "com.prect.NavicatPremium12" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = VH7G2MRF27</string>
+                <key>strict_verification</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+    </array>
+</dict>
+</plist>
