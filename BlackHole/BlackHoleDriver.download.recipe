@@ -16,6 +16,15 @@
     <key>Process</key>
     <array>
         <dict>
+            <key>Processor</key>
+            <string>DeprecationWarning</string>
+            <key>Arguments</key>
+            <dict>
+                <key>warning_message</key>
+                <string>This recipe is deprecated as the developer has moved download of the driver behind a subscription wall with download links in these emails.</string>
+            </dict>
+        </dict>
+        <dict>
             <key>Arguments</key>
             <dict>
                 <key>github_repo</key>
