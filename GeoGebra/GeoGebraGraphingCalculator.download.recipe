@@ -8,8 +8,6 @@
     <string>com.github.apizz.download.geogebragraphingcalculator</string>
     <key>Input</key>
     <dict>
-        <key>DOWNLOAD_URL</key>
-        <string>https://download.geogebra.org/package/mac-graphing</string>
         <key>NAME</key>
         <string>GeoGebraGraphingCalculator</string>
         <key>USER_AGENT</key>
@@ -30,7 +28,7 @@
                     <string>%USER_AGENT%</string>
                 </dict>
                 <key>url</key>
-                <string>%DOWNLOAD_URL%</string>
+                <string>https://download.geogebra.org/package/mac-graphing</string>
             </dict>
             <key>Processor</key>
             <string>URLDownloader</string>
@@ -54,12 +52,28 @@
                 <key>input_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/GeoGebra Graphing Calculator.app</string>
                 <key>requirement</key>
-                <string>identifier "org.geogebra.mac.graphing" and anchor apple generic and certificate leaf[subject.CN] = "3rd Party Mac Developer Application: Internationales GeoGebra Institut, \"IGI\" (T9W862P4D2)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+                <string>identifier "org.geogebra.mac.graphing" and anchor apple generic and certificate leaf[subject.CN] = "Apple Distribution: Internationales GeoGebra Institut, \"IGI\" (T9W862P4D2)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
                 <key>strict_verification</key>
                 <true/>
             </dict>
             <key>Processor</key>
             <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>info_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/GeoGebra Graphing Calculator.app/Contents/Info.plist</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleShortVersionString</key>
+                    <string>version</string>
+                    <key>LSMinimumSystemVersion</key>
+                    <string>min_os_version</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PlistReader</string>
         </dict>
     </array>
 </dict>
