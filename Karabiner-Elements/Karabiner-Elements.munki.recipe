@@ -43,6 +43,30 @@
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>faux_root</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>installs_item_paths</key>
+                <array>
+                    <string>/Applications/Karabiner-Elements.app</string>
+                    <string>/Applications/Karabiner-EventViewer.app</string>
+                    <string>/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-DriverKit-VirtualHIDDeviceClient.app</string>
+                    <string>/Library/Application Support/org.pqrs/Karabiner-Elements/Karabiner-Menu.app</string>
+                    <string>/Library/Application Support/org.pqrs/Karabiner-Elements/Karabiner-MultitouchExtension.app</string>
+                    <string>/Library/Application Support/org.pqrs/Karabiner-Elements/Karabiner-NotificationWindow.app</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiInstallsItemsCreator</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict/>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
                 <key>additional_pkginfo</key>
                 <dict>
                     <key>minimum_os_version</key>
