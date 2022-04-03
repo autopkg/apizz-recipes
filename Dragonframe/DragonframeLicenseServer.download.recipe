@@ -12,8 +12,6 @@
         <string>Dragonframe</string>
         <key>SEARCH_PATTERN</key>
         <string>(\/download\/DragonframeLicenseManager_(?P&lt;version&gt;[\d\.]+)\.pkg)</string>
-        <key>SEARCH_URL</key>
-        <string>https://www.dragonframe.com/downloads/</string>
     </dict>
     <key>Process</key>
     <array>
@@ -23,7 +21,7 @@
                 <key>re_pattern</key>
                 <string>%SEARCH_PATTERN%</string>
                 <key>url</key>
-                <string>%SEARCH_URL%</string>
+                <string>https://www.dragonframe.com/downloads/</string>
             </dict>
             <key>Processor</key>
             <string>URLTextSearcher</string>
@@ -54,6 +52,41 @@
                 </array>
                 <key>input_path</key>
                 <string>%pathname%</string>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>flat_pkg_path</key>
+                <string>%pathname%</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+            </dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>pkg_payload_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/DragonframeLicenseManager.pkg/Payload</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%RECIPE_CACHE_DIR%/Dragonframe/Library/Dragonframe License Manager/DragonframeLicenseManager</string>
+                <key>requirement</key>
+                <string>identifier DragonframeLicenseManager and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = PG7SM8SD8M</string>
+                <key>strict_verification</key>
+                <true />
             </dict>
             <key>Processor</key>
             <string>CodeSignatureVerifier</string>
