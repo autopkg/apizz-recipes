@@ -11,7 +11,7 @@
         <key>NAME</key>
         <string>ETCnomad</string>
         <key>REGEX</key>
-        <string>href="(?P&lt;url&gt;.*)"\sclass="title">Eos\sETCnomad\sMAC\sSoftware\sv[\d.]+</string>
+        <string>href="(?P&lt;url&gt;.*id=[\d]+)".*Eos\sETCnomad\sMac\sSoftware\sv[\d.]+</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.6.1</string>
@@ -23,7 +23,7 @@
                 <key>re_pattern</key>
                 <string>%REGEX%</string>
                 <key>url</key>
-                <string>https://www.etcconnect.com/Products/Consoles/Eos-Family/ETCnomad-ETCnomad-Puck/Software.aspx</string>
+                <string>https://www.etcconnect.com/Products/Consoles/Cobalt-Family/ETCnomad-ETCnomad-Puck/Software.aspx</string>
             </dict>
             <key>Processor</key>
             <string>URLTextSearcher</string>
@@ -48,9 +48,20 @@
             <dict>
                 <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/unzip</string>
+                <key>purge_destination</key>
+                <true/>
             </dict>
             <key>Processor</key>
             <string>Unarchiver</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%RECIPE_CACHE_DIR%/unzip/*.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
         </dict>
         <dict>
             <key>Arguments</key>
@@ -62,32 +73,10 @@
                     <string>Apple Root CA</string>
                 </array>
                 <key>input_path</key>
-                <string>%RECIPE_CACHE_DIR%/unzip/*.pkg</string>
+                <string>%found_filename%</string>
             </dict>
             <key>Processor</key>
             <string>CodeSignatureVerifier</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
-                <key>source_pkg</key>
-                <string>%RECIPE_CACHE_DIR%/unzip/*.pkg</string>
-            </dict>
-            <key>Processor</key>
-            <string>PkgCopier</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>path_list</key>
-                <array>
-                    <string>%RECIPE_CACHE_DIR%/unzip</string>
-                </array>
-            </dict>
-            <key>Processor</key>
-            <string>PathDeleter</string>
         </dict>
     </array>
 </dict>
