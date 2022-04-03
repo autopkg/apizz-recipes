@@ -41,7 +41,7 @@ It can serve as a primary controller, a backup, or a client device – or work o
     <key>MinimumVersion</key>
     <string>0.6.1</string>
     <key>ParentRecipe</key>
-    <string>com.github.apizz.download.ETCnomad</string>
+    <string>com.github.apizz.pkg.ETCnomad</string>
     <key>Process</key>
     <array>
         <dict>
@@ -54,6 +54,17 @@ It can serve as a primary controller, a backup, or a client device – or work o
             </dict>
             <key>Processor</key>
             <string>MunkiImporter</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/unzip</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
         </dict>
     </array>
 </dict>
