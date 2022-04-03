@@ -41,10 +41,6 @@
     <key>Process</key>
     <array>
       <dict>
-        <key>Processor</key>
-        <string>Unarchiver</string>
-      </dict>
-      <dict>
         <key>Arguments</key>
         <dict>
           <key>dmg_path</key>
