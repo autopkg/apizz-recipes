@@ -34,6 +34,20 @@
             <string>%NAME%</string>
             <key>unattended_install</key>
             <true/>
+            <key>uninstall_method</key>
+            <string>uninstall_script</string>
+            <key>uninstall_script</key>
+            <string>#!/bin/bash
+#
+# Taken from: https://macsupport.tuxera.com/hc/en-gb/articles/360021236379-How-to-uninstall-NTFS-for-Mac-using-the-provided-command-line-script
+#
+
+# Removal of the App, Preference Pane and Menu Bar Agent
+/Library/Filesystems/tuxera_ntfs.fs/Contents/Resources/Support/uninstall-package.sh
+
+# Removal of additional support files, including licence
+rm -rf '/Library/Application Support/Tuxera NTFS/'
+rm -f /Library/Preferences/com.tuxera.NTFS.plist</string>
         </dict>
     </dict>
     <key>MinimumVersion</key>
