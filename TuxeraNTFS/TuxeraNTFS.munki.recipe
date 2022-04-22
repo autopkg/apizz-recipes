@@ -46,10 +46,8 @@
 /Library/Filesystems/tuxera_ntfs.fs/Contents/Resources/Support/uninstall-package.sh
 
 # Removal of additional support files, including licence
-rm -r '/Library/Application Support/Tuxera NTFS/'
-rm /Library/Preferences/com.tuxera.NTFS.plist
-
-exit 0</string>
+rm -rf '/Library/Application Support/Tuxera NTFS/'
+rm -f /Library/Preferences/com.tuxera.NTFS.plist</string>
         </dict>
     </dict>
     <key>MinimumVersion</key>
