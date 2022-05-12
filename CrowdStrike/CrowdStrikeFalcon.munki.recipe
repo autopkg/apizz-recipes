@@ -57,7 +57,7 @@ readonly log_path="%LICENSE_INSTALL_LOG%"
 # Write to log
 writelog () {
     /bin/echo "${1}"
-    /bin/echo "${1}" >> "$logpath"
+    /bin/echo "${1}" >> "$log_path"
 }
 
 ##################################################
