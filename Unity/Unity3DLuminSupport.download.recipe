@@ -16,26 +16,26 @@
     <key>Process</key>
     <array>
         <dict>
-            <key>Processor</key>
-            <string>URLTextSearcher</string>
             <key>Arguments</key>
             <dict>
-                <key>url</key>
-                <string>https://unity3d.com/unity-release/latest</string>
                 <key>re_pattern</key>
                 <string>(?P&lt;url&gt;https:\/\/[a-z0-9]+\.unity3d\.com\/.*\/UnitySetup-Lumin-Support-for-Editor-(?P&lt;version&gt;[\d.f]+)\.pkg)</string>
+                <key>url</key>
+                <string>https://unity3d.com/unity-release/latest</string>
             </dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
         </dict>
         <dict>
-            <key>Processor</key>
-            <string>URLDownloader</string>
             <key>Arguments</key>
             <dict>
-                <key>url</key>
-                <string>%url%</string>
                 <key>filename</key>
                 <string>%NAME%.pkg</string>
+                <key>url</key>
+                <string>%url%</string>
             </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
         </dict>
         <dict>
             <key>Processor</key>

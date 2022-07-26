@@ -10,8 +10,6 @@
 	<string>com.github.apizz.pkg.TeacherGaming</string>
 	<key>Input</key>
 	<dict>
-		<key>BUNDLE_ID</key>
-		<string>teachergaming.app</string>
 		<key>NAME</key>
 		<string>TeacherGaming</string>
 	</dict>

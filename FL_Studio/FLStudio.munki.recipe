@@ -29,7 +29,7 @@
             <key>display_name</key>
             <string>FL Studio</string>
             <key>minimum_os_version</key>
-            <string>10.11</string>
+            <string>10.13.6</string>
             <key>name</key>
             <string>%NAME%</string>
             <key>unattended_install</key>
@@ -39,31 +39,9 @@
     <key>MinimumVersion</key>
     <string>0.6.1</string>
     <key>ParentRecipe</key>
-    <string>com.github.apizz.download.FLStudio</string>
+    <string>com.github.apizz.pkg.FLStudio</string>
     <key>Process</key>
     <array>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>flat_pkg_path</key>
-                <string>%pathname%/Install*.pkg</string>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/unpack</string>
-            </dict>
-            <key>Processor</key>
-            <string>FlatPkgUnpacker</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
-                <key>pkg_payload_path</key>
-                <string>%RECIPE_CACHE_DIR%/unpack/FL_Studio.pkg/Payload</string>
-            </dict>
-            <key>Processor</key>
-            <string>PkgPayloadUnpacker</string>
-        </dict>
         <dict>
             <key>Arguments</key>
             <dict>
@@ -76,17 +54,6 @@
             </dict>
             <key>Processor</key>
             <string>MunkiInstallsItemsCreator</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>input_plist_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/FL Studio 20.app/Contents/Info.plist</string>
-                <key>plist_version_key</key>
-                <string>CFBundleVersion</string>
-            </dict>
-            <key>Processor</key>
-            <string>Versioner</string>
         </dict>
         <dict>
             <key>Arguments</key>
@@ -110,7 +77,7 @@
             <key>Arguments</key>
             <dict>
                 <key>pkg_path</key>
-                <string>%pathname%</string>
+                <string>%pkg_path%</string>
                 <key>repo_subdirectory</key>
                 <string>%MUNKI_REPO_SUBDIR%</string>
             </dict>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Imports an Eu Control PKG into a munki repo.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.EuControlImport</string>
+    <key>Input</key>
+    <dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>Music</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/eucon</string>
+        <key>NAME</key>
+        <string>EuControl</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>The Avid® EUCONTM (Extended User Control) adapter enables fully integrated control of Pro Tools® with the following Avid control surfaces.
+• Avid Control app for iOS and Android
+• Avid Dock
+• Avid S3
+• Artist Series (Artist Control, Artist Mix, Artist Transport)
+• Avid S4 and S6
+• System 5</string>
+            <key>developer</key>
+            <string>Avid Technology, Inc.</string>
+            <key>display_name</key>
+            <string>EuControl</string>
+            <key>installer_choices_xml</key>
+            <array>
+                <dict>
+                    <key>attributeSetting</key>
+                    <integer>0</integer>
+                    <key>choiceAttribute</key>
+                    <string>selected</string>
+                    <key>choiceIdentifier</key>
+                    <string>choiceInstallEuCon</string>
+                </dict>
+                <dict>
+                    <key>attributeSetting</key>
+                    <integer>1</integer>
+                    <key>choiceAttribute</key>
+                    <string>selected</string>
+                    <key>choiceIdentifier</key>
+                    <string>choiceInstallEUControl</string>
+                </dict>
+                <dict>
+                    <key>attributeSetting</key>
+                    <integer>0</integer>
+                    <key>choiceAttribute</key>
+                    <string>selected</string>
+                    <key>choiceIdentifier</key>
+                    <string>choiceInstallEUCONUninstaller</string>
+                </dict>
+                <dict>
+                    <key>attributeSetting</key>
+                    <integer>0</integer>
+                    <key>choiceAttribute</key>
+                    <string>selected</string>
+                    <key>choiceIdentifier</key>
+                    <string>choiceInstallMCWorkstation</string>
+                </dict>
+                <dict>
+                    <key>attributeSetting</key>
+                    <integer>0</integer>
+                    <key>choiceAttribute</key>
+                    <string>selected</string>
+                    <key>choiceIdentifier</key>
+                    <string>choiceInstallS6Workstation</string>
+                </dict>
+                <dict>
+                    <key>attributeSetting</key>
+                    <integer>0</integer>
+                    <key>choiceAttribute</key>
+                    <string>selected</string>
+                    <key>choiceIdentifier</key>
+                    <string>choiceInstallUninstall</string>
+                </dict>
+                <dict>
+                    <key>attributeSetting</key>
+                    <integer>0</integer>
+                    <key>choiceAttribute</key>
+                    <string>selected</string>
+                    <key>choiceIdentifier</key>
+                    <string>choiceInstallUserPrefsUninstaller</string>
+                </dict>
+                <dict>
+                    <key>attributeSetting</key>
+                    <integer>0</integer>
+                    <key>choiceAttribute</key>
+                    <string>selected</string>
+                    <key>choiceIdentifier</key>
+                    <string>choiceInstallXMon</string>
+                </dict>
+            </array>
+            <key>preinstall_script</key>
+            <string>#!/bin/bash
+
+# Create a LaunchAgent for EuControl
+
+PLIST="/Library/LaunchAgents/com.avid.EuControl.plist"
+LABEL="com.avid.EuControl"
+PROGRAM="/Applications/EuControl.app/Contents/MacOS/EuControl"
+RUNATLOAD="true"
+
+/usr/bin/defaults write "$PLIST" Label "$LABEL"
+/usr/bin/defaults write "$PLIST" Program "$PROGRAM"
+/usr/bin/defaults write "$PLIST" RunAtLoad -bool "$RUNATLOAD"
+
+/bin/chmod +r "$PLIST"</string>
+            <key>postuninstall_script</key>
+            <string>#!/bin/bash
+
+# Remove the EuControl LaunchAgent
+
+PLIST="/Library/LaunchAgents/com.avid.EuControl.plist"
+
+if [ -f "$PLIST" ]; then
+    /bin/rm "$PLIST"
+fi</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
+    </dict>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.pkg.EuControlImport</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>info_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/EuControl.app/Contents/Info.plist</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleShortVersionString</key>
+                    <string>version</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PlistReader</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>additional_pkginfo</key>
+                <dict>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>faux_root</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>installs_item_paths</key>
+                <array>
+                    <string>/Applications/EuControl.app</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiInstallsItemsCreator</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict/>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/unpack</string>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
+        </dict>
+    </array>
+</dict>
+</plist>

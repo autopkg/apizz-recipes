@@ -3,17 +3,23 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of Shure Wireless Workbench.</string>
+    <string>Downloads the latest version of Shure Wireless Workbench 6 and extracts a PKG.</string>
     <key>Identifier</key>
     <string>com.github.apizz.download.ShureWirelessWorkbench6</string>
     <key>Input</key>
     <dict>
-        <key>SEARCH_PATTERN</key>
-        <string>&lt;a href="https?:\/\/www.shure.com(?P&lt;url&gt;[a-zA-Z\-\.\/]+)"&gt;Wireless Workbench (?P&lt;version&gt;[0-9\.]+) \(macOS\)&lt;/a&gt;</string>
-        <key>SEARCH_PAGE</key>
-        <string>https://www.shure.com/americas/products/software/wireless-workbench/wireless-workbench-6#downloads</string>
+        <key>FIRST_NAME</key>
+        <string>FIRST NAME HERE</string>
+        <key>LAST_NAME</key>
+        <string>LAST NAME HERE</string>
+        <key>EMAIL</key>
+        <string>EMAIL HERE</string>
         <key>NAME</key>
         <string>ShureWirelessWorkbench6</string>
+        <key>RE_PATTERN</key>
+        <string>href="(?P&lt;url&gt;https://p.shure.com/.*/eless-workbench-mac-[\d-]+-zip/[\w]+)"</string>
+        <key>USER_AGENT</key>
+        <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
@@ -22,10 +28,62 @@
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>curl_opts</key>
+                <array>
+                    <string>-F</string>
+                    <string>428102_251469pi_428102_251469=%FIRST_NAME%</string>
+                    <string>-F</string>
+                    <string>428102_251471pi_428102_251471=%LAST_NAME%</string>
+                    <string>-F</string>
+                    <string>428102_251473pi_428102_251473=%EMAIL%</string>
+                    <string>-F</string>
+                    <string>428102_251475pi_428102_251475=2328344</string>
+                    <string>-F</string>
+                    <string>428102_251717pi_428102_251717=2213591</string>
+                    <string>-F</string>
+                    <string>428102_251477pi_428102_251477[]=2206621</string>
+                    <string>-F</string>
+                    <string>428102_265060pi_428102_265060=</string>
+                    <string>-F</string>
+                    <string>428102_265062pi_428102_265062=</string>
+                    <string>-F</string>
+                    <string>428102_265064pi_428102_265064=</string>
+                    <string>-F</string>
+                    <string>428102_265066pi_428102_265066=</string>
+                    <string>-F</string>
+                    <string>428102_265068pi_428102_265068=</string>
+                    <string>-F</string>
+                    <string>428102_265070pi_428102_265070=</string>
+                    <string>-F</string>
+                    <string>428102_265072pi_428102_265072=</string>
+                    <string>-F</string>
+                    <string>428102_265074pi_428102_265074=</string>
+                    <string>-F</string>
+                    <string>428102_265076pi_428102_265076=</string>
+                    <string>-F</string>
+                    <string>428102_265078pi_428102_265078=</string>
+                    <string>-F</string>
+                    <string>428102_265080pi_428102_265080=</string>
+                    <string>-F</string>
+                    <string>428102_265082pi_428102_265082=</string>
+                    <string>-F</string>
+                    <string>428102_265084pi_428102_265084=</string>
+                    <string>-F</string>
+                    <string>pi_extra_field=</string>
+                    <string>-F</string>
+                    <string>_utf8=☃</string>
+                    <string>-F</string>
+                    <string>hiddenDependentFields=</string>
+                </array>
                 <key>re_pattern</key>
-                <string>%SEARCH_PATTERN%</string>
+                <string>%RE_PATTERN%</string>
+                <key>request_headers</key>
+                <dict>
+                    <key>user-agent</key>
+                    <string>%USER_AGENT%</string>
+                </dict>
                 <key>url</key>
-                <string>%SEARCH_PAGE%</string>
+                <string>https://p.shure.com/wwb</string>
             </dict>
             <key>Processor</key>
             <string>URLTextSearcher</string>
@@ -35,8 +93,11 @@
             <dict>
                 <key>filename</key>
                 <string>%NAME%.zip</string>
-                <key>url</key>
-                <string>https://www.shure.com%url%</string>
+                <key>request_headers</key>
+                <dict>
+                    <key>user-agent</key>
+                    <string>%USER_AGENT%</string>
+                </dict>
             </dict>
             <key>Processor</key>
             <string>URLDownloader</string>
@@ -49,7 +110,7 @@
             <key>Arguments</key>
             <dict>
                 <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/downloads</string>
+                <string>%RECIPE_CACHE_DIR%/unzip</string>
             </dict>
             <key>Processor</key>
             <string>Unarchiver</string>
@@ -57,17 +118,48 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>input_path</key>
-                <string>%RECIPE_CACHE_DIR%/downloads/wireless-workbench-mac-v%version%.pkg</string>
+                <key>pattern</key>
+                <string>%RECIPE_CACHE_DIR%/unzip/*/*.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
                 <key>expected_authority_names</key>
                 <array>
                     <string>Developer ID Installer: Shure Incorporated (4K6323CXC4)</string>
                     <string>Developer ID Certification Authority</string>
                     <string>Apple Root CA</string>
                 </array>
+                <key>input_path</key>
+                <string>%found_filename%</string>
             </dict>
             <key>Processor</key>
             <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
+                <key>source_path</key>
+                <string>%found_filename%</string>
+            </dict>
+            <key>Processor</key>
+            <string>Copier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/unzip</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
         </dict>
     </array>
 </dict>

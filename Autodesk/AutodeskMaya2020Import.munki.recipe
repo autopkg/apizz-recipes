@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Imports a DMG with an Autodesk Maya installer app inside. Install requires copying the install app to a desired location on the endpoint and using a postinstall script to trigger the install.
+
+To use this recipe:
+
+1) Download a copy of Autodesk Maya 2020.
+2) Create a recipe override of this recipe.
+3) Specify a PATH where the recipe will look for a Maya 2020 DMG. If applicable, move your downloaded Maya 2020 to this location.
+4) Specify a DESTINATION_PATH which munki will copy the install app to on endpoints. This will also be inserted in the required places in the postinstall script for installation.
+5) Enter your license type in MAYA_LICENSE_TYPE. Valid options are USER, STANDALONE, and NETWORK.
+6) If applicable, update the MAYA_LOCALE. Default is 'US'.
+7) Enter your Maya's SERIAL to be used in the postinstall script to activate the software.
+8) Run the recipe.
+9) Profit.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.AutdoeskMayaImport</string>
+    <key>Input</key>
+    <dict>
+        <key>DESTINATION_PATH</key>
+        <string>/private/tmp</string>
+        <key>PATH</key>
+        <string>/path/to/MayaDMG/folder</string>
+        <key>MAYA_LICENSE_TYPE</key>
+        <string>STANDALONE</string>
+        <key>MAYA_LOCALE</key>
+        <string>US</string>
+        <key>MAYA_KEY</key>
+        <string>657L1</string>
+        <key>MAYA_SERIAL</key>
+        <string>YOUR_SERIAL_HERE</string>
+        <key>MAYA_VERSION</key>
+        <string>2020.0.0.F</string>
+        <key>MUNKI_CATEGORY</key>
+        <string>Video</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/maya</string>
+        <key>NAME</key>
+        <string>Maya2020</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>3D computer animation, modeling, simulation, and rendering software.</string>
+            <key>developer</key>
+            <string>Autodesk</string>
+            <key>display_name</key>
+            <string>Autodesk Maya 2020</string>
+            <key>items_to_copy</key>
+            <array>
+                <dict>
+                    <key>destination_path</key>
+                    <string>%DESTINATION_PATH%</string>
+                    <key>source_item</key>
+                    <string>Install Maya 2020.app</string>
+                </dict>
+            </array>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>postinstall_script</key>
+            <string>#!/bin/bash
+
+# Install path variables
+INSTALLERPATH="%DESTINATION_PATH%/Install Maya 2020.app"
+CONFIG="${INSTALLERPATH}/Contents/Helper/MayaConfig.pit"
+KEY="%MAYA_KEY%"
+LICENSE_EXE="/Library/Application Support/Autodesk/AdskLicensing/Current/helper/AdskLicensingInstHelper"
+LICENSE_TYPE="%MAYA_LICENSE_TYPE%"
+LOCALE="%MAYA_LOCALE%"
+SERIAL="%MAYA_SERIAL%"
+SETUP="${INSTALLERPATH}/Contents/Helper/Setup.app/Contents/MacOS/Setup"
+VERSION="%MAYA_VERSION%"
+
+# Exit &amp; error if installer doesn't exist
+if [ ! -d "$INSTALLERPATH" ]; then
+    /bin/echo "${INSTALLERPATH} does not exist. Exiting ..."
+    exit 1
+fi
+
+# Run Maya 2020 installer
+"$SETUP" --silent
+
+# Verify AdskLicensingInstHelper exists
+if [ -f "$LICENSE_EXE" ]; then
+	# Register Maya 2020
+	"$LICENSE_EXE" register --pk "$KEY" --pv "$VERSION" --cf "$CONFIG" --el "$LOCALE" --lm "$LICENSE_TYPE" --sn "$SERIAL"
+else
+	/bin/echo "${LICENSE_EXE} does not exist. Exiting ..."
+	exit 1
+fi</string>
+            <key>uninstall_method</key>
+            <string>uninstall_script</string>
+            <key>uninstall_script</key>
+            <string>#!/bin/bash
+
+# Per https://knowledge.autodesk.com/support/maya/troubleshooting/caas/sfdcarticles/sfdcarticles/How-to-uninstall-Maya-2020-on-macOS.html?v=2020%26st=install%20macos
+
+MAYA="/Applications/Autodesk"
+APPSUPPORT="/Library/Application Support/Autodesk"
+FLEXNET="/Library/Application Support/FLEXnet Publisher"
+FRAMEWORK="/Library/Frameworks/Adlm.framework"
+PKGRECEIPTS=$(/usr/sbin/pkgutil --pkgs | /usr/bin/grep autodesk)
+ROKOKO="/Applications/Rokoko Motion Library"
+SHARED="/Users/Shared/Autodesk"
+SOLIDANGLE="/Applications/solidangle"
+SUBSTANCE="/Applications/Substance in Maya"
+
+# Remove Maya
+if [ -d "$MAYA" ]; then
+	/bin/echo "Removing Maya app folder ..."
+	/bin/rm -rf "$MAYA"
+fi
+
+# Remove Shared Autodesk folder
+if [ -d "$SHARED" ]; then
+	/bin/echo "Removing Autodesk Shared folder ..."
+	/bin/rm -rf "$SHARED"
+fi
+
+# Remove App Support
+if [ -d "$APPSUPPORT" ]; then
+	/bin/echo "Removing Autodesk App Support folder ..."
+	/bin/rm -rf "$APPSUPPORT"
+fi
+
+# Remove Flex Net
+if [ -d "$FLEXNET" ]; then
+	/bin/echo "Removing FLEXnet Publisher folder ..."
+	/bin/rm -rf "$FLEXNET"
+fi
+
+# Remove solidangle
+if [ -d "$SOLIDANGLE" ]; then
+	/bin/echo "Removing solidangle ..."
+	/bin/rm -rf "$SOLIDANGLE"
+fi
+
+# Remove framework
+if [ -d "$FRAMEWORK" ]; then
+	/bin/echo "Removing framework ..."
+	/bin/rm -rf "$FRAMEWORK"
+fi
+
+# Remove Rokoko Library
+if [ -d "$ROKOKO" ]; then
+	/bin/echo "Removing Rokoko ..."
+	/bin/rm -rf "$ROKOKO"
+fi
+
+# Remove Substance
+if [ -d "$SUBSTANCE" ]; then
+	/bin/echo "Removing Substance ..."
+	/bin/rm -rf "$SUBSTANCE"
+fi
+
+# Kill Licensing service
+killall AdskLicensingService
+
+# Unload LaunchDaemons
+/bin/launchctl unload /Library/LaunchDaemons/com.autodesk*
+
+# Remove LaunchDaemons
+/bin/rm -rf /Library/LaunchDaemons/com.autodesk*
+
+# Forget PKGs
+for i in $PKGRECEIPTS; do
+	/usr/sbin/pkgutil --forget $i
+done</string>
+            <key>unattended_install</key>
+            <true/>
+            <key>unattended_uninstall</key>
+            <true/>
+        </dict>
+    </dict>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Comment</key>
+            <string>Gets the Autodesk Maya DMG filename located in the PATH</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%PATH%/*Maya*2020*.dmg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%found_filename%/Install Maya 2020.app</string>
+                <key>requirement</key>
+                <string>identifier "com.autodesk.desktop.delivery" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = XXKJ396S2Y</string>
+                <key>strict_verification</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>flat_pkg_path</key>
+                <string>%found_filename%/Install Maya 2020.app/Contents/Helper/Packages/Maya/Maya_core2020.pkg</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+            </dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Autodesk/maya2020</string>
+                <key>pkg_payload_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/Payload</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>expected_authority_names</key>
+                <array/>
+                <key>input_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Autodesk/maya2020/Maya.app</string>
+                <key>requirement</key>
+                <string>identifier "com.autodesk.Maya.2020" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = XXKJ396S2Y</string>
+                <key>strict_verification</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>package_info_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/PackageInfo</string>
+            </dict>
+            <key>Processor</key>
+            <string>com.facebook.autopkg.shared/PackageInfoVersioner</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Create a receipt based on the Maya core PKG, since this is the only place the major and minor versions are listed. Also write blank installs array to avoid undesirably having the installer app serve as an indicator of the item being installed.</string>
+            <key>Arguments</key>
+            <dict>
+                <key>additional_pkginfo</key>
+                <dict>
+                    <key>installs</key>
+                    <array/>
+                    <key>receipts</key>
+                    <array>
+                        <dict>
+                            <key>packageid</key>
+                            <string>%pkg_id%</string>
+                            <key>version</key>
+                            <string>%version%</string>
+                        </dict>
+                    </array>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%found_filename%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                    <string>%RECIPE_CACHE_DIR%/unpack</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
+        </dict>
+
+    </array>
+</dict>
+</plist>

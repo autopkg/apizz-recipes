@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads a CrowdStrike Falcon Sensor pkg via CrowdStrike's API and imports it into a munki repo.
+
+You must provide a Client ID and Secret along with the Policy ID to determine which senor version to download.
+
+You must also specify a LICENSE_ID in order to license the Sensor post install. postinstall script based on https://github.com/autopkg/MLBZ521-recipes/blob/master/CrowdStrike%20Falcon/CrowdStrike%20Falcon.pkg.recipe</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.CrowdStrikeFalcon</string>
+    <key>Input</key>
+    <dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>Security</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/crowdstrikefalcon</string>
+        <key>LICENSE_ID</key>
+        <string>1234567890ABCDEF1234567890ABCDEF-12</string>
+        <key>LICENSE_INSTALL_LOG</key>
+        <string>/Library/Logs/csfalcon_license.log</string>
+        <key>NAME</key>
+        <string>CrowdStrikeFalcon</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>A complete cloud-native framework to protect endpoints with ease: Stop breaches and improve performance with the power of the cloud, artificial intelligence (AI) and an intelligent, lightweight agent.</string>
+            <key>developer</key>
+            <string>CrowdStrike</string>
+            <key>display_name</key>
+            <string>CrowdStrike Falcon</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>postinstall_script</key>
+            <string>#!/bin/bash
+
+##################################################
+# Define Variables
+
+# Unique customer ID checksum (CID)
+readonly licenseid="%LICENSE_ID%"
+
+# Possible falconctl binary locations
+readonly falconctl_new="/Applications/Falcon.app/Contents/Resources/falconctl"
+readonly falconctl_old="/Library/CS/falconctl"
+
+# Log path to write license output to
+readonly log_path="%LICENSE_INSTALL_LOG%"
+
+# Write to log
+writelog () {
+    /bin/echo "${1}"
+    /bin/echo "${1}" >> "$log_path"
+}
+
+##################################################
+
+writelog "*****  Install CrowdStrike Process:  START  *****"
+
+# Bits staged...
+
+# Check which location exists
+if  [[ -e "${falconctl_new}" &amp;&amp; -e "${falconctl_old}" ]]; then
+
+    # Multiple versions installed
+    writelog "ERROR:  Multiple versions installed!"
+    writelog "*****  Install CrowdStrike process:  FAILED  *****"
+    exit 2
+
+elif  [[ -e "${falconctl_new}" ]]; then
+
+    # Apply License
+    writelog "Applying License..."
+    exitStatus=$( "${falconctl_new}" license "${licenseid}" 2&gt;&amp;1 )
+    exitCode=$?
+
+elif  [[ -e "${falconctl_old}" ]]; then
+
+    # Apply License
+    writelog "Applying License..."
+    exitStatus=$( "${falconctl_old}" license "${licenseid}" 2&gt;&amp;1 )
+    exitCode=$?
+
+else
+
+    # Could not find a version
+    writelog "ERROR:  Unable to locate falconctl!"
+    writelog "*****  Install CrowdStrike process:  FAILED  *****"
+    exit 3
+
+fi
+
+# Verify licensing exit code
+if [[ $exitCode == 0 ]]; then
+
+    writelog "License applied successfully!"
+
+elif [[ $exitStatus == "Error: This machine is already licensed" ]]; then
+
+    writelog "This machine is already licensed!"
+
+else
+
+    writelog "ERROR: License failed to apply!"
+    writelog "Exit Code:    ${exitCode}"
+    writelog "Exit Status:  ${exitStatus}"
+    writelog "*****  Install CrowdStrike process:  FAILED  *****"
+    exit 4
+
+fi
+
+writelog "*****  Install CrowdStrike Process:  COMPLETE  *****"</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
+    </dict>
+    <key>ParentRecipe</key>
+    <string>com.github.mlbz521.download.CrowdStrikeFalcon</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+                <key>flat_pkg_path</key>
+                <string>%pathname%</string>
+            </dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Extract and examine the kext version of the app</string>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>pkg_payload_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/sensor-kext.pkg/Payload</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>expected_authority_names</key>
+                <array/>
+                <key>input_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Falcon.app</string>
+                <key>requirement</key>
+                <string>identifier "com.crowdstrike.falcon.App" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = X9E956P446</string>
+                <key>strict_verification</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Remove previously expanded kext version</string>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Extract and examine the system extension version of the app</string>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>pkg_payload_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/sensor-sysx.pkg/Payload</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>expected_authority_names</key>
+                <array/>
+                <key>input_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Falcon.app</string>
+                <key>requirement</key>
+                <string>identifier "com.crowdstrike.falcon.App" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = X9E956P446</string>
+                <key>strict_verification</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Example full version: 6.33.14604. Historically have used CFBundleShortVersionString to compare (ex. 6.33), but with hotfix releases only the CFBundleVersion (146.04) is updated. This key seems to be properly incremented, so we use this instead.</string>
+            <key>Arguments</key>
+            <dict>
+                <key>faux_root</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>installs_item_paths</key>
+                <array>
+                    <string>/Applications/Falcon.app</string>
+                </array>
+                <key>version_comparison_key</key>
+                <string>CFBundleVersion</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiInstallsItemsCreator</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>info_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Falcon.app/Contents/Info.plist</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>LSMinimumSystemVersion</key>
+                    <string>min_os_version</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PlistReader</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>additional_pkginfo</key>
+                <dict>
+                    <key>minimum_os_version</key>
+                    <string>%min_os_version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%pathname%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                    <string>%RECIPE_CACHE_DIR%/unpack</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
+        </dict>
+    </array>
+</dict>
+</plist>

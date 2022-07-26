@@ -70,6 +70,8 @@ fi</string>
             <dict>
                 <key>additional_pkginfo</key>
                 <dict>
+                    <key>minimum_os_version</key>
+                    <string>%min_os_version%</string>
                     <key>version</key>
                     <string>%version%</string>
                 </dict>
@@ -94,7 +96,7 @@ fi</string>
                 <key>pkg_ids_set_optional_true</key>
                 <array>
                     <string>com.teamviewer.RemotePrintingPackage</string>
-                    <string>com.teamviewer.teamviewerhost14SilentInstaller</string>
+                    <string>com.teamviewer.teamviewerhostSilentInstaller</string>
                 </array>
             </dict>
             <key>Processor</key>

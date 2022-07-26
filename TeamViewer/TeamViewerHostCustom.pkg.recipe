@@ -24,10 +24,10 @@
         <dict>
             <key>Arguments</key>
             <dict>
-            <key>destination_path</key>
-            <string>%RECIPE_CACHE_DIR%/unpack</string>
-            <key>flat_pkg_path</key>
-            <string>%pathname%</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+                <key>flat_pkg_path</key>
+                <string>%pathname%</string>
             </dict>
             <key>Processor</key>
             <string>FlatPkgUnpacker</string>
@@ -46,11 +46,18 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>input_plist_path</key>
+                <key>info_path</key>
                 <string>%RECIPE_CACHE_DIR%/unpack/TeamViewerHost.app/Contents/Info.plist</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleShortVersionString</key>
+                    <string>version</string>
+                    <key>LSMinimumSystemVersion</key>
+                    <string>min_os_version</string>
+                </dict>
             </dict>
             <key>Processor</key>
-            <string>Versioner</string>
+            <string>PlistReader</string>
         </dict>
         <dict>
             <key>Arguments</key>

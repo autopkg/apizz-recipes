@@ -8,8 +8,6 @@
     <string>com.github.apizz.download.unearth</string>
     <key>Input</key>
     <dict>
-        <key>DOWNLOAD_URL</key>
-        <string>https://github.com/chilcote/unearth/archive/master.zip</string>
         <key>NAME</key>
         <string>unearth</string>
     </dict>
@@ -23,7 +21,7 @@
                 <key>filename</key>
                 <string>%NAME%.zip</string>
                 <key>url</key>
-                <string>%DOWNLOAD_URL%</string>
+                <string>https://github.com/chilcote/unearth/archive/master.zip</string>
             </dict>
             <key>Processor</key>
             <string>URLDownloader</string>

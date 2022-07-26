@@ -12,8 +12,8 @@
         <string>Video</string>
         <key>MUNKI_REPO_SUBDIR</key>
         <string>apps/livestreamstudio</string>
-    	<key>NAME</key>
-    	<string>LivestreamStudio</string>
+        <key>NAME</key>
+        <string>LivestreamStudio</string>
         <key>pkginfo</key>
         <dict>
             <key>catalogs</key>
@@ -40,41 +40,6 @@
     <string>com.github.apizz.download.LivestreamStudio</string>
     <key>Process</key>
     <array>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>flat_pkg_path</key>
-				<string>%pathname%</string>
-				<key>destination_path</key>
-				<string>%RECIPE_CACHE_DIR%/unpack</string>
-			</dict>
-			<key>Processor</key>
-			<string>FlatPkgUnpacker</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>destination_path</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%/Livestream Studio.app</string>
-				<key>pkg_payload_path</key>
-				<string>%RECIPE_CACHE_DIR%/unpack/Payload</string>
-			</dict>
-			<key>Processor</key>
-			<string>PkgPayloadUnpacker</string>
-		</dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>expected_authority_names</key>
-                <array/>
-                <key>input_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/LiveStream Studio.app</string>
-                <key>requirement</key>
-                <string>identifier "com.Livestream.Livestream Studio" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "2QXDRH4YAW"</string>
-            </dict>
-            <key>Processor</key>
-            <string>CodeSignatureVerifier</string>
-        </dict>
         <dict>
             <key>Arguments</key>
             <dict>

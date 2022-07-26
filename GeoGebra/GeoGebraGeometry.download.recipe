@@ -8,8 +8,6 @@
     <string>com.github.apizz.download.geogebrageometry</string>
     <key>Input</key>
     <dict>
-        <key>DOWNLOAD_URL</key>
-        <string>https://download.geogebra.org/package/mac-geometry</string>
         <key>NAME</key>
         <string>GeoGebraGeometry</string>
         <key>USER_AGENT</key>
@@ -30,7 +28,7 @@
                     <string>%USER_AGENT%</string>
                 </dict>
                 <key>url</key>
-                <string>%DOWNLOAD_URL%</string>
+                <string>https://download.geogebra.org/package/mac-geometry</string>
             </dict>
             <key>Processor</key>
             <string>URLDownloader</string>
@@ -53,8 +51,10 @@
             <dict>
                 <key>input_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/GeoGebra Geometry.app</string>
-                <key>requirements</key>
-                <string>identifier "org.geogebra.mac.geometry" and anchor apple generic and certificate leaf[subject.CN] = "3rd Party Mac Developer Application: Internationales GeoGebra Institut, \"IGI\" (T9W862P4D2)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+                <key>requirement</key>
+                <string>identifier "org.geogebra.mac.geometry" and anchor apple generic and certificate leaf[subject.CN] = "Apple Distribution: Internationales GeoGebra Institut, \"IGI\" (T9W862P4D2)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+                <key>strict_verification</key>
+                <true/>
             </dict>
             <key>Processor</key>
             <string>CodeSignatureVerifier</string>
@@ -62,15 +62,18 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>dmg_megabytes</key>
-                <string>200</string>
-                <key>dmg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
-                <key>dmg_root</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>info_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/GeoGebra Geometry.app/Contents/Info.plist</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleShortVersionString</key>
+                    <string>version</string>
+                    <key>LSMinimumSystemVersion</key>
+                    <string>min_os_version</string>
+                </dict>
             </dict>
             <key>Processor</key>
-            <string>DmgCreator</string>
+            <string>PlistReader</string>
         </dict>
     </array>
 </dict>

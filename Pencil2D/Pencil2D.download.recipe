@@ -11,29 +11,27 @@
     <string>com.github.apizz.download.Pencil2D</string>
     <key>Input</key>
     <dict>
-    	<key>NAME</key>
-    	<string>Pencil2D</string>
-    	<key>PRERELEASE</key>
+      <key>NAME</key>
+      <string>Pencil2D</string>
+      <key>PRERELEASE</key>
       <string></string>
-      <key>ASSET_REGEX</key>
-      <string>^pencil2d-mac-[\d.]+.zip$</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.6.1</string>
     <key>Process</key>
     <array>
       <dict>
-    	  <key>Arguments</key>
-    	  <dict>
+        <key>Arguments</key>
+        <dict>
           <key>asset_regex</key>
-          <string>%ASSET_REGEX%</string>
-    	    <key>github_repo</key>
-    	    <string>pencil2d/pencil</string>
-    	    <key>include_preleases</key>
-    	    <string>%PRERELEASE%</string>
-    	  </dict>
-    	  <key>Processor</key>
-    	  <string>GitHubReleasesInfoProvider</string>
+          <string>^pencil2d-mac-[\d.]+.zip$</string>
+          <key>github_repo</key>
+          <string>pencil2d/pencil</string>
+          <key>include_prereleases</key>
+          <string>%PRERELEASE%</string>
+        </dict>
+        <key>Processor</key>
+        <string>GitHubReleasesInfoProvider</string>
       </dict>
       <dict>
         <key>Arguments</key>
@@ -41,13 +39,42 @@
           <key>filename</key>
           <string>%NAME%.zip</string>
         </dict>
-    	  <key>Processor</key>
-    	  <string>URLDownloader</string>
-    	</dict>
-      <dict>
-  	    <key>Processor</key>
-  	    <string>EndOfCheckPhase</string>
+        <key>Processor</key>
+        <string>URLDownloader</string>
       </dict>
+      <dict>
+        <key>Processor</key>
+        <string>EndOfCheckPhase</string>
+      </dict>
+      <dict>
+        <key>Arugments</key>
+        <dict>
+          <key>archive_path</key>
+          <string>%pathname%</string>
+          <key>destination_path</key>
+          <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+          <key>purge_destination</key>
+          <true/>
+        </dict>
+        <key>Processor</key>
+        <string>Unarchiver</string>
+    </dict>
+      <dict>
+        <key>Arguments</key>
+        <dict>
+          <key>info_path</key>
+          <string>%RECIPE_CACHE_DIR%/%NAME%/%NAME%/Pencil2D.app/Contents/Info.plist</string>
+          <key>plist_keys</key>
+          <dict>
+            <key>CFBundleShortVersionString</key>
+            <string>version</string>
+            <key>LSMinimumSystemVersion</key>
+            <string>min_os_version</string>
+          </dict>
+        </dict>
+        <key>Processor</key>
+        <string>PlistReader</string>
+    </dict>
     </array>
 </dict>
 </plist>

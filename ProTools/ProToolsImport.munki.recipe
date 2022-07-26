@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Copies the Pro Tools PKG out from a Pro Tools .dmg download, collects the version from the filename, and imports it into a munki_repo. Adds the specific Pro Tools Codecs and HD Driver versions to the `requires` array.
+
+Refer to this article on the supported minimum &amp; maximum supported macOS versions: http://avid.force.com/pkb/articles/en_US/Compatibility/Pro-Tools-System-Requirements
+
+To use this recipe:
+
+1) Create a recipe override of this recipe.
+2) Go to the Avid website and download the Pro Tools for Mac DMG.
+3) Copy the downloaded DMG onto your Mac running autopkg in the folder specified in the PATH variable. Don't include a trailing '/'.
+4) Specify the desired Pro Tools display name in the DISPLAY_NAME variable. The collected version will be appended to the name.
+5) Specify the munki item name for the HD Driver as listed in your munki repo in the PROTOOLS_DRIVER_NAME. This name and the detected PKG version of the HD Driver in the .dmg will be added to the `requires` array for Pro Tools.
+6) Specify the munki item name for the Codecs as listed in your munki repo in the PROTOOLS_CODECS_NAME input variable. This name and the detected PKG version of the Codecs in the .dmg will be added to the `requires` array for Pro Tools.
+7) Refer to Avid's KB article on supported macOS versions (https://avid.secure.force.com/pkb/articles/en_US/Compatibility/Pro-Tools-System-Requirements) and update the PROTOOLS_MACOS_SUPPORTED_LIST accordingly. This will use the defined supported versions to compare with the installed version via a preinstall_script. If a supported version is not found, an exit status of 1 is produced and the item is not installed.
+8) Run the recipe.
+9) Profit.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.ProToolsImport</string>
+    <key>Input</key>
+    <dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>Music</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/protools</string>
+        <key>DISPLAY_NAME</key>
+        <string>Pro Tools</string>
+        <key>NAME</key>
+        <string>ProTools2019</string>
+        <key>PROTOOLS_CODECS_NAME</key>
+        <string>ENTER CODECS MUNKI ITEM NAME HERE</string>
+        <key>PROTOOLS_DRIVER_NAME</key>
+        <string>ENTER DRIVER MUNKI ITEM NAME HERE</string>
+        <key>PROTOOLS_MACOS_SUPPORTED_LIST</key>
+        <string>10.13.6 10.14.6 10.15.3 10.15.5</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>The industry standard audio-production software for songwriters, musicians, producers, and engineers.</string>
+            <key>developer</key>
+            <string>Avid Technology, Inc.</string>
+            <key>maximum_os_version</key>
+            <string>10.15.5</string>
+            <key>minimum_os_version</key>
+            <string>10.13.6</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>postinstall_script</key>
+            <string>#!/bin/bash
+
+# Remove Avid Link LaunchAgent
+AGENT="/Library/LaunchAgents/com.avid.avidlink.plist"
+
+if [ -f "$AGENT" ]; then
+    /bin/rm -f "$AGENT"
+fi
+
+exit</string>
+            <key>preinstall_script</key>
+            <string>#!/bin/bash
+
+# Verify installed macOS version
+
+# Method inspired by:
+# https://stackoverflow.com/questions/12768265/bash-compare-a-string-vs-a-list-of-strings
+
+OSVERS=$(/usr/bin/sw_vers -productVersion)
+# Set blank value
+SUPPORTED=""
+SUPPORTED_VERS=( %PROTOOLS_MACOS_SUPPORTED_LIST% )
+VERS_LIST=$(/usr/bin/printf '%s\n' "${SUPPORTED_VERS[@]}")
+
+# Compare installed OS version to supported version list
+for v in $VERS_LIST; do
+    if [[ "$v" = "$OSVERS" ]]; then
+        SUPPORTED="yes"
+        break
+    fi
+done
+
+# Verify result
+if [ "$SUPPORTED" = "yes" ]; then
+    /bin/echo "VERIFIED: macOS version ${OSVERS} is listed in the supported OS list."
+    exit 0
+else
+    /bin/echo "FAILED: macOS version ${OSVERS} is not in the supported OS list."
+    exit 1
+fi</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.4.0</string>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.pkg.ProToolsImport</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Comment</key>
+            <string>Get the Pro Tools Codecs filename and assign the DMG path to dmg_path</string>
+            <key>Arguments</key>
+            <dict>
+                <key>dmg_path</key>
+                <string>%found_filename%</string>
+                <key>pattern</key>
+                <string>%dmg_path%/Codec Installers/*.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Unpack the Codecs PKG so we can get the version</string>
+            <key>Arguments</key>
+            <dict>
+                <key>flat_pkg_path</key>
+                <string>%dmg_path%/%dmg_found_filename%</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+            </dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Assign the previously collected Pro Tools version to protools_vers and collect the Codecs PKG version</string>
+            <key>Arguments</key>
+            <dict>
+                <key>protools_vers</key>
+                <string>%version%</string>
+                <key>package_info_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/AvidCodecsLE_component.pkg/PackageInfo</string>
+            </dict>
+            <key>Processor</key>
+            <string>com.facebook.autopkg.shared/PackageInfoVersioner</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Get the Pro Tools HD Driver filename</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%dmg_path%/Driver Installers/*.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Unpack the HD Driver PKG so we can get the version</string>
+            <key>Arguments</key>
+            <dict>
+                <key>flat_pkg_path</key>
+                <string>%dmg_path%/%dmg_found_filename%</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+            </dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Assign the previously collected Codecs version to codecs_vers and collect the HD Driver PKG version</string>
+            <key>Arguments</key>
+            <dict>
+                <key>codecs_vers</key>
+                <string>%version%</string>
+                <key>package_info_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/HD Driver AppMan.pkg/PackageInfo</string>
+            </dict>
+            <key>Processor</key>
+            <string>com.facebook.autopkg.shared/PackageInfoVersioner</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Assign the previously collected HD Driver version to driver_vers and import into munki.</string>
+            <key>Arguments</key>
+            <dict>
+                <key>driver_vers</key>
+                <string>%version%</string>
+                <key>additional_makepkginfo_options</key>
+                <array>
+                    <string>--displayname</string>
+                    <string>%DISPLAY_NAME% %protools_vers%</string>
+                    <string>--pkgvers</string>
+                    <string>%protools_vers%</string>
+                    <string>--requires</string>
+                    <string>%PROTOOLS_CODECS_NAME%-%codecs_vers%</string>
+                    <string>--requires</string>
+                    <string>%PROTOOLS_DRIVER_NAME%-%driver_vers%</string>
+                </array>
+                <key>pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%-%protools_vers%.pkg</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/unpack</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
+        </dict>
+    </array>
+</dict>
+</plist>

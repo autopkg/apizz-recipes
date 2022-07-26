@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest release copy of GAM (Google Admin command line manager) from Github. Set PRERELEASE to a non-empty string to download prereleases, either via Input in an override or via the -k option, i.e.: `-k PRERELEASE=yes`. Available major macOS versions can be found at https://github.com/jay0lee/GAM/releases/latest.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.download.gam</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>GAM</string>
+        <key>OS_MAJOR_VERSION</key>
+        <string>14</string>
+        <key>PRERELEASE</key>
+        <string></string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.6.1</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>re_pattern</key>
+                <string>macos-.*(?P&lt;min_os_vers&gt;10.%OS_MAJOR_VERSION%.[\d]+)</string>
+                <key>url</key>
+                <string>https://github.com/jay0lee/GAM/releases/latest</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>asset_regex</key>
+                <string>^.*macos-.*(?P&lt;min_os_vers&gt;10.%OS_MAJOR_VERSION%.[\d.]+).*$</string>
+                <key>github_repo</key>
+                <string>jay0lee/GAM</string>
+                <key>include_prereleases</key>
+                <string>%PRERELEASE%</string>
+            </dict>
+            <key>Processor</key>
+            <string>GitHubReleasesInfoProvider</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>filename</key>
+                <string>%NAME%.tar.xz</string>
+           </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+    </array>
+</dict>
+</plist>

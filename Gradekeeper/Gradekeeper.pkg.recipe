@@ -20,6 +20,15 @@
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>warning_message</key>
+                <string>Apple no longer supports running 32-bit apps on Mac OS. Gradekeeper for Mac is a 32-bit app and is no longer under active development. To use Gradekeeper on a Mac, you will need to use the Gradekeeper web app (https://www.gradekeeper.com/app/).</string>
+            </dict>
+            <key>Processor</key>
+            <string>DeprecationWarning</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
                 <key>pkgdirs</key>
                 <dict>
                     <key>Applications</key>
@@ -41,8 +50,6 @@
                 <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Gradekeeper Folder</string>
                 <key>overwrite</key>
-                <true/>
-                <key>purge_destination</key>
                 <true/>
             </dict>
             <key>Processor</key>

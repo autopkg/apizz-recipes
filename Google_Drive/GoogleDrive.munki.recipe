@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of Google Drive (previously File Stream) and imports it into a munki repo.
+
+Since Google Drive has macOS architecture specific PKGs that won't be installed, this will cause an endless install loop if the applicable PKG receipts aren't marked as optional. To address this, these items are added in the Input variable dictionary under the pkg_ids_set_optional_true key.
+
+If an admin wishes to use this same recipe to manage a single Google Drive PKG installer with 2 separate munki items - 1 for arm64, 1 for x86_64 - simply remove the applicable pkg ids from the pkg_ids_set_optional_true array.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.GoogleDrive</string>
+    <key>Input</key>
+    <dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>Backups</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/googledrive</string>
+        <key>NAME</key>
+        <string>GoogleDrive</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>With Google Drive, you stream your Drive files directly from the cloud to your Mac or PC, freeing up disk space and network bandwidth. Because Drive files are stored in the cloud, any changes you or your collaborators make are automatically updated everywhere. You’ll always have the latest version.
+
+    You can also make Drive files available for offline access. These cached files sync back to the cloud when you're online, so the latest version is available on all your devices.</string>
+            <key>developer</key>
+            <string>Google Inc.</string>
+            <key>display_name</key>
+            <string>Google Drive</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
+        <key>pkg_ids_set_optional_true</key>
+        <array>
+            <string>com.google.drivefs.filesystems.dfsfuse.arm64</string>
+            <string>com.google.drivefs.filesystems.dfsfuse.x86_64</string>
+            <string>com.google.drivefs.arm64</string>
+            <string>com.google.drivefs.x86_64</string>
+        </array>
+    </dict>
+    <key>ParentRecipe</key>
+    <string>com.github.nstrauss.pkg.GoogleDrive</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>additional_pkginfo</key>
+                <dict>
+                    <key>minimum_os_version</key>
+                    <string>%min_os_version%</string>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%pathname%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>com.github.keeleysam.recipes.GoogleTalkPlugin/MunkiPkginfoReceiptsEditor</string>
+        </dict>
+    </array>
+</dict>
+</plist>

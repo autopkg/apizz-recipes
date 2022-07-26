@@ -19,9 +19,12 @@
     <array>
         <dict>
             <key>Arguments</key>
-            <dict/>
+            <dict>
+                <key>pkg_path</key>
+                <string>%pathname%</string>
+            </dict>
             <key>Processor</key>
-            <string>com.github.dataJAR-recipes.munki.JumpCloud Agent/PkgInfo</string>
+            <string>com.github.dataJAR-recipes.Shared Processors/DistributionPkgInfo</string>
         </dict>
         <dict>
             <key>Arguments</key>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of ETCnomad, extracts a PKG, and imports it into a munki_repo.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.ETCnomad</string>
+    <key>Input</key>
+    <dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>Lighting</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/etcnomad</string>
+        <key>NAME</key>
+        <string>ETCnomad</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>developer</key>
+            <string>Electronic Theatre Controls, Inc.</string>
+            <key>description</key>
+            <string>Hopping from gig to gig and can't bring your console with you? Doing the lighting in a venue whose desk has seen better days? Want to unlock multiple platforms with just one device? That's where ETCnomad control comes in. Small enough to fit on your keychain, the ETCnomad USB plugs into your computer and opens up the power of Eos, Cobalt, and High End Systems' Hog 4 PC software, so you can program and run shows anywhere.
+
+It can serve as a primary controller, a backup, or a client device – or work offline entirely – operating on either a PC platform running Microsoft Windows® 7 or higher, or natively on a Mac running Mojave (v10.14) or later.</string>
+            <key>display_name</key>
+            <string>ETCnomad</string>
+            <key>minimum_os_version</key>
+            <string>10.14</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.6.1</string>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.pkg.ETCnomad</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%pkg_path%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/unzip</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
+        </dict>
+    </array>
+</dict>
+</plist>

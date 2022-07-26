@@ -47,10 +47,19 @@
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>pattern</key>
+                <string>%RECIPE_CACHE_DIR%/unarchive/*/postflight/postflight</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
                 <key>destination_path</key>
                 <string>%pkgroot%/usr/local/munki/</string>
                 <key>source_path</key>
-                <string>%RECIPE_CACHE_DIR%/unarchive/%NAME%-%version%/postflight/postflight</string>
+                <string>%found_filename%</string>
             </dict>
             <key>Processor</key>
             <string>Copier</string>

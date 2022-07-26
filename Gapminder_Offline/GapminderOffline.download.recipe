@@ -10,10 +10,8 @@
     <string>com.github.apizz.download.gapminderoffline</string>
     <key>Input</key>
     <dict>
-        <key>DOWNLOAD_URL</key>
-        <string>https://s3-eu-west-1.amazonaws.com/gapminder-offline/Gapminder+Offline.dmg</string>
         <key>NAME</key>
-        <string>Gapminder Offline</string>
+        <string>GapminderOffline</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
@@ -25,7 +23,7 @@
                 <key>filename</key>
                 <string>%NAME%.dmg</string>
                 <key>url</key>
-                <string>%DOWNLOAD_URL%</string>
+                <string>https://s3-eu-west-1.amazonaws.com/gapminder-offline/Gapminder+Offline.dmg</string>
             </dict>
             <key>Processor</key>
             <string>URLDownloader</string>
@@ -41,9 +39,27 @@
                 <string>%pathname%/Gapminder Offline.app</string>
                 <key>requirement</key>
                 <string>identifier "com.electron.gapminder-offline" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = J7SD4Z498H</string>
+                <key>strict_verification</key>
+                <true/>
             </dict>
             <key>Processor</key>
             <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>info_path</key>
+                <string>%pathname%/Gapminder Offline.app/Contents/Info.plist</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleShortVersionString</key>
+                    <string>version</string>
+                    <key>LSMinimumSystemVersion</key>
+                    <string>min_os_version</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PlistReader</string>
         </dict>
     </array>
 </dict>

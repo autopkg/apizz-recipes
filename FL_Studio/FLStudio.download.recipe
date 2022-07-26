@@ -8,8 +8,6 @@
     <string>com.github.apizz.download.FLStudio</string>
     <key>Input</key>
     <dict>
-        <key>DOWNLOAD_URL</key>
-        <string>https://support.image-line.com/redirect/flstudio20_mac_installer</string>
         <key>NAME</key>
         <string>FLStudio</string>
     </dict>
@@ -23,7 +21,7 @@
                 <key>filename</key>
                 <string>%NAME%.dmg</string>
                 <key>url</key>
-                <string>%DOWNLOAD_URL%</string>
+                <string>https://support.image-line.com/redirect/flstudio20_mac_installer</string>
             </dict>
             <key>Processor</key>
             <string>URLDownloader</string>
@@ -35,6 +33,15 @@
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>pattern</key>
+                <string>%pathname%/Install*.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
                 <key>expected_authority_names</key>
                 <array>
                     <string>Developer ID Installer: image-line (N68WEP5ZZZ)</string>
@@ -42,10 +49,46 @@
                     <string>Apple Root CA</string>
                 </array>
                 <key>input_path</key>
-                <string>%pathname%/Install*.pkg</string>
+                <string>%pathname%/%dmg_found_filename%</string>
             </dict>
             <key>Processor</key>
             <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>flat_pkg_path</key>
+                <string>%pathname%/%dmg_found_filename%</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+            </dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>pkg_payload_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/FL_Studio.pkg/Payload</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>info_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/FL Studio 20.app/Contents/Info.plist</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleVersion</key>
+                    <string>version</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PlistReader</string>
         </dict>
     </array>
 </dict>

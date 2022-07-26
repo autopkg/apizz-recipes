@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the current release version of VSCodium and imports into Munki.</string>
+    <string>Downloads the current release version of VSCodium and imports it into a munk_repo.</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.VSCodium</string>
     <key>Input</key>
@@ -20,10 +20,10 @@
             <array>
                 <string>testing</string>
             </array>
-           	<key>category</key>
-			<string>%MUNKI_CATEGORY%</string>
-			<key>developer</key>
-			<string>Peter Squicciarini</string>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>developer</key>
+            <string>Peter Squicciarini</string>
             <key>description</key>
             <string>Binary releases of VS Code without MS branding/telemetry/licensing.</string>
             <key>display_name</key>
@@ -37,35 +37,20 @@
     <key>MinimumVersion</key>
     <string>1.0</string>
     <key>ParentRecipe</key>
-	<string>com.github.apizz.download.VSCodium</string>
+    <string>com.github.apizz.download.VSCodium</string>
     <key>Process</key>
-	<array>
-		<dict>
-            <key>Processor</key>
-            <string>Unarchiver</string>
-        </dict>
+    <array>
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>dmg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.dmg</string>
-                <key>dmg_root</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>pkg_path</key>
+                <string>%pathname%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
             </dict>
             <key>Processor</key>
-            <string>DmgCreator</string>
+            <string>MunkiImporter</string>
         </dict>
-        <dict>
-			<key>Arguments</key>
-			<dict>
-				<key>pkg_path</key>
-				<string>%dmg_path%</string>
-				<key>repo_subdirectory</key>
-				<string>%MUNKI_REPO_SUBDIR%</string>
-			</dict>
-			<key>Processor</key>
-			<string>MunkiImporter</string>
-		</dict>
     </array>
 </dict>
 </plist>

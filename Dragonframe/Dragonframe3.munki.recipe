@@ -75,8 +75,7 @@
         </dict>
         <dict>
             <key>Arguments</key>
-            <dict>
-            </dict>
+            <dict/>
             <key>Processor</key>
             <string>MunkiPkginfoMerger</string>
         </dict>

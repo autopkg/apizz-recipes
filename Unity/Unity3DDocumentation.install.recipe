@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of the Unity Documentation installer, unpacks it, repackages it, and installs it. Documentation packages distributed by Unity all have a pkgreceipt version of 0</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.install.Unity3DDocumentation</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>Unity3D_Documentation</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>1.0.0</string>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.pkg.Unity3DDocumentation</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>Installer</string>
+        </dict>
+    </array>
+</dict>
+</plist>

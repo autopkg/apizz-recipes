@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Download the latest version of the MochaSoft TN3270 IBM terminal emulator.
+
+The MochaSoft website requires several headers in order to return content. ACCEPT, ACCEPT_ENCODING, and USER_AGENT are all required. If this stops working for you, tweak these input variable values.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.download.MochaTN3270</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>MochaTN3270</string>
+        <key>ACCEPT</key>
+        <string>text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</string>
+        <key>ACCEPT_ENCODING</key>
+        <string>gzip, deflate, br</string>
+        <key>USER_AGENT</key>
+        <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36</string>
+    </dict>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>filename</key>
+                <string>%NAME%.zip</string>
+                <key>request_headers</key>
+                <dict>
+                    <key>accept</key>
+                    <string>%ACCEPT%</string>
+                    <key>accept-encoding</key>
+                    <string>%ACCEPT_ENCODING%</string>
+                    <key>user-agent</key>
+                    <string>%USER_AGENT%</string>
+                </dict>
+                <key>url</key>
+                <string>https://mochasoft.dk/tn3270.dmg.zip</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>purge_destination</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>Unarchiver</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Rename the unzipped file to match what's set in the 'NAME' input variable. Set this path to 'dmg_path'</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/tn3270.dmg</string>
+                <key>target</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/%NAME%.dmg</string>
+                <key>dmg_path</key>
+                <string>%target%</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileMover</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%dmg_path%/TN3270.app</string>
+                <key>requirement</key>
+                <string>anchor apple generic and identifier "dk.mochasoft.tn3270" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = RR9F5EPNVW)</string>
+                <key>strict_verification</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>info_path</key>
+                <string>%dmg_path%/TN3270.app</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleShortVersionString</key>
+                    <string>version</string>
+                    <key>LSMinimumSystemVersion</key>
+                    <string>min_os_version</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PlistReader</string>
+        </dict>
+    </array>
+</dict>
+</plist>        

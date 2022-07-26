@@ -8,8 +8,8 @@
     <string>com.github.apizz.download.YamahaCLEditor</string>
     <key>Input</key>
     <dict>
-    	<key>DOWNLOAD_URL</key>
-    	<string>https://usa.yamaha.com</string>
+        <key>DOWNLOAD_URL</key>
+        <string>https://usa.yamaha.com</string>
         <key>NAME</key>
         <string>CLEditor</string>
         <key>SEARCH_PATTERN</key>
@@ -23,17 +23,17 @@
     <string>1.0.0</string>
     <key>Process</key>
     <array>
-    	<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>re_pattern</key>
-				<string>%SEARCH_PATTERN%</string>
-				<key>url</key>
-				<string>%SEARCH_URL%</string>
-			</dict>
-			<key>Processor</key>
-			<string>URLTextSearcher</string>
-		</dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>re_pattern</key>
+                <string>%SEARCH_PATTERN%</string>
+                <key>url</key>
+                <string>%SEARCH_URL%</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+        </dict>
         <dict>
             <key>Arguments</key>
             <dict>
@@ -55,33 +55,33 @@
             <string>EndOfCheckPhase</string>
         </dict>
         <dict>
-        	<key>Arguments</key>
-        	<dict>
-        		<key>purge_destination</key>
-        		<true/>
-        	</dict>
-        	<key>Processor</key>
-        	<string>Unarchiver</string>
+            <key>Arguments</key>
+            <dict>
+                <key>purge_destination</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>Unarchiver</string>
         </dict>
         <dict>
-        	<key>Arguments</key>
-        	<dict>
-        		<key>pattern</key>
-        		<string>%RECIPE_CACHE_DIR%/%NAME%/*/*.pkg</string>
-        	</dict>
-        	<key>Processor</key>
-        	<string>FileFinder</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/*/*.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
         </dict>
         <dict>
-        	<key>Arguments</key>
-        	<dict>
-        		<key>source</key>
-        		<string>%found_filename%</string>
-        		<key>target</key>
-        		<string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
-        	</dict>
-        	<key>Processor</key>
-        	<string>FileMover</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source</key>
+                <string>%found_filename%</string>
+                <key>target</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileMover</string>
         </dict>
         <dict>
             <key>Arguments</key>
@@ -97,6 +97,57 @@
             </dict>
             <key>Processor</key>
             <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>flat_pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+            </dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>pkg_payload_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/CLEditor.pkg/Payload</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>expected_authority_names</key>
+                <array/>
+                <key>input_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/CL Editor.app</string>
+                <key>requirement</key>
+                <string>identifier "com.yamaha.pa.cleditor" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "5LE7A8CF65"</string>
+                <key>strict_verification</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>info_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/CL Editor.app/Contents/Info.plist</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleShortVersionString</key>
+                    <string>version</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PlistReader</string>
         </dict>
     </array>
 </dict>
