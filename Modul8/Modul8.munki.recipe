@@ -3,11 +3,13 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest verison of Modul8 and imports it into a munki_repo. Final munki item will copy the entire contents of the modul8vX folder, including documentation, modules, etc. Requires making an override and supplying your Modul8 license serial number in order to get the latest download URL.</string>
+    <string>Downloads the latest verison of Modul8 and imports it into a munki_repo. Final munki item will copy the entire contents of the modul8vX folder, including documentation, modules, etc. Requires making an override and supplying your Modul8 license serial number in order to get the latest download URL. Set DERIVE_MIN_OS to a non-empty string to derive the minimum os version from MunkiInstallsItemsCreator, either via Input in an override or via the -k option, i.e.: `-k DERIVE_MIN_OS=yes`</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.modul8</string>
     <key>Input</key>
     <dict>
+        <key>DERIVE_MIN_OS</key>
+        <string></string>
         <key>MAJOR_VERSION</key>
         <string>3</string>
         <key>MUNKI_CATEGORY</key>
@@ -88,6 +90,8 @@ An extremely responsive, flexible, and easy-to-use tool. Used for multiple modes
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>derive_minimum_os_version</key>
+                <string>%DERIVE_MIN_OS%</string>
                 <key>faux_root</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>installs_item_paths</key>

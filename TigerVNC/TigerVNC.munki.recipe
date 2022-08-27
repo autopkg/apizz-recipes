@@ -3,11 +3,13 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of TigerVNC and imports it into a munki_repo. Since TigerVNC is distributed with the version number in the app name, this recipe makes sure the app is copied in the form of %DESTINATION_PATH%/%NAME%.app, thereby stripping out the version, in order to maintain a single TigerVNC app in the desired location.</string>
+    <string>Downloads the latest version of TigerVNC and imports it into a munki_repo. Since TigerVNC is distributed with the version number in the app name, this recipe makes sure the app is copied in the form of %DESTINATION_PATH%/%NAME%.app, thereby stripping out the version, in order to maintain a single TigerVNC app in the desired location. Set DERIVE_MIN_OS to a non-empty string to derive the minimum os version from MunkiInstallsItemsCreator, either via Input in an override or via the -k option, i.e.: `-k DERIVE_MIN_OS=yes`</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.TigerVNC</string>
     <key>Input</key>
     <dict>
+        <key>DERIVE_MIN_OS</key>
+        <string></string>
         <key>DESTINATION_PATH</key>
         <string>/Applications</string>
         <key>MUNKI_CATEGORY</key>
@@ -58,6 +60,8 @@
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>derive_minimum_os_version</key>
+                <string>%DERIVE_MIN_OS%</string>
                 <key>faux_root</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>installs_item_paths</key>

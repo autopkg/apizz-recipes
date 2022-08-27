@@ -3,11 +3,13 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of KensingtonWorks and imports it into a munki_repo.</string>
+    <string>Downloads the latest version of KensingtonWorks and imports it into a munki_repo. Set DERIVE_MIN_OS to a non-empty string to derive the minimum os version from MunkiInstallsItemsCreator, either via Input in an override or via the -k option, i.e.: `-k DERIVE_MIN_OS=yes`</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.KensingtonTrackballWorks</string>
     <key>Input</key>
     <dict>
+        <key>DERIVE_MIN_OS</key>
+        <string></string>
         <key>MUNKI_CATEGORY</key>
         <string>Drivers</string>
         <key>MUNKI_REPO_SUBDIR</key>
@@ -67,6 +69,8 @@ exit</string>
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>derive_minimum_os_version</key>
+                <string>%DERIVE_MIN_OS%</string>
                 <key>faux_root</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>installs_item_paths</key>
