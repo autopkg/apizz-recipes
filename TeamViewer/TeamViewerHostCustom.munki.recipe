@@ -100,7 +100,7 @@ fi</string>
                 </array>
             </dict>
             <key>Processor</key>
-            <string>com.github.keeleysam.recipes.GoogleTalkPlugin/MunkiPkginfoReceiptsEditor</string>
+            <string>MunkiOptionalReceiptEditor</string>
         </dict>
     </array>
 </dict>
