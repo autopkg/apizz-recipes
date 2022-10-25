@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of the desired major TeamViewer Host version (v15 or later) with your custom pkg ID.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.download.TeamViewerHostCustom</string>
+    <key>Input</key>
+    <dict>
+        <key>TEAMVIEWER_VERSION</key>
+        <string>15</string>
+        <key>TEAMVIEWER_CUSTOM_ID</key>
+        <string>CUSTOM_ID_NUMBER</string>
+        <key>NAME</key>
+        <string>TeamViewerHostCustom</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.5.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Comment</key>
+            <string>Ensure we're processing v15 or later</string>
+            <key>Arguments</key>
+            <dict>
+                <key>predicate</key>
+                <string>%TEAMVIEWER_VERSION% &lt; 15</string>
+            </dict>
+            <key>Processor</key>
+            <string>StopProcessingIf</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>filename</key>
+                <string>%NAME%-%TEAMVIEWER_CUSTOM_ID%.pkg</string>
+                <key>url</key>
+                <string>https://dl.tvcdn.de//download/version_%TEAMVIEWER_VERSION%x/CustomDesign/Install%20TeamViewerHost-%TEAMVIEWER_CUSTOM_ID%.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>expected_authority_names</key>
+                <array>
+                    <string>Developer ID Installer: TeamViewer Germany GmbH (H7UGFBUGV6)</string>
+                    <string>Developer ID Certification Authority</string>
+                    <string>Apple Root CA</string>
+                </array>
+                <key>input_path</key>
+                <string>%pathname%</string>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+    </array>
+</dict>
+</plist>

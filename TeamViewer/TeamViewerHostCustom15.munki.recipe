@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of the desired major TeamViewer Host version (v15 or later) and imports it into a munki_repo.
+
+The postinstall_script depends on supplying your custom module's config ID (ex. idc1a2b3c4)</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.TeamViewerHostCustom</string>
+    <key>Input</key>
+    <dict>
+        <key>TEAMVIEWER_VERSION</key>
+        <string>15</string>
+        <key>TEAMVIEWER_CUSTOM_ID</key>
+        <string>CUSTOM_ID</string>
+        <key>MUNKI_CATEGORY</key>
+        <string>Support Tools</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/teamviewerhost</string>
+        <key>NAME</key>
+        <string>TeamViewerHostCustom</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string>TeamViewer helps you remotely connect to desktop computers, mobile devices, and IoT devices from anywhere at any time.</string>
+            <key>developer</key>
+            <string>TeamViewer GmbH</string>
+            <key>display_name</key>
+            <string>TeamViewer Host</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>postinstall_script</key>
+            <string>#!/bin/bash
+
+ATTR="com.TeamViewer.ConfigurationId"
+CONFIG_ID="YOUR_TV_CONFIG_ID"
+TVHOST="/Applications/TeamViewerHost.app"
+STATUS=$(/usr/bin/xattr -l "$TVHOST" | /usr/bin/awk '{print $NF}')
+
+# Write custom TV Host ID for configuration if not present
+if [ "$STATUS" = "" ] || [ "$STATUS" != "$CONFIG_ID" ]; then
+    /bin/echo "Writing TeamViewer Host configuration ID ..."
+    /usr/bin/xattr -w "$ATTR" "$CONFIG_ID" "$TVHOST"
+elif [ "$STATUS" = "$CONFIG_ID" ]; then
+    /bin/echo "TeamViewer Host config ID already present."
+else
+    /bin/echo "Unknown error with config."
+    exit 1
+fi</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>2.7</string>
+    <key>ParentRecipe</key>
+    <string>com.github.apizz.pkg.TeamViewerHostCustom</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>additional_pkginfo</key>
+                <dict>
+                    <key>minimum_os_version</key>
+                    <string>%min_os_version%</string>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%pathname%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_ids_set_optional_true</key>
+                <array>
+                    <string>com.teamviewer.RemotePrintingPackage</string>
+                    <string>com.teamviewer.teamviewerhostSilentInstaller</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiOptionalReceiptEditor</string>
+        </dict>
+    </array>
+</dict>
+</plist>
