@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of the desired major TeamViewer version (pre v15) with your custom pkg ID.</string>
+    <string>Downloads the latest version of the desired major TeamViewer Host version (pre v15) with your custom pkg ID.</string>
     <key>Identifier</key>
     <string>com.github.apizz.download.TeamViewerHostCustom</string>
     <key>Input</key>
