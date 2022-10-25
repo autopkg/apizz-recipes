@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of the desired major TeamViewer version with your custom pkg ID.</string>
+    <string>Downloads the latest version of the desired major TeamViewer version (pre v15) with your custom pkg ID.</string>
     <key>Identifier</key>
     <string>com.github.apizz.download.TeamViewerHostCustom</string>
     <key>Input</key>
@@ -12,8 +12,6 @@
         <string>12</string>
         <key>TEAMVIEWER_CUSTOM_ID</key>
         <string>CUSTOM_ID_NUMBER</string>
-        <key>DOWNLOAD_URL</key>
-        <string>https://dl.tvcdn.de//download/version_%TEAMVIEWER_VERSION%x/CustomDesign/Install%20TeamViewerHost-%TEAMVIEWER_CUSTOM_ID%.pkg</string>
         <key>NAME</key>
         <string>TeamViewerHostCustom</string>
     </dict>
@@ -27,7 +25,7 @@
                 <key>filename</key>
                 <string>%NAME%-%TEAMVIEWER_CUSTOM_ID%.pkg</string>
                 <key>url</key>
-                <string>%DOWNLOAD_URL%</string>
+                <string>https://dl.tvcdn.de//download/version_%TEAMVIEWER_VERSION%x/CustomDesign/Install%20TeamViewerHost-%TEAMVIEWER_CUSTOM_ID%.pkg</string>
             </dict>
             <key>Processor</key>
             <string>URLDownloader</string>
