@@ -20,6 +20,17 @@
     <key>Process</key>
     <array>
         <dict>
+            <key>Comment</key>
+            <string>Ensure we're processing v14 or earier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>predicate</key>
+                <string>%TEAMVIEWER_VERSION% &gt;= 15</string>
+            </dict>
+            <key>Processor</key>
+            <string>StopProcessingIf</string>
+        </dict>
+        <dict>
             <key>Arguments</key>
             <dict>
                 <key>filename</key>
