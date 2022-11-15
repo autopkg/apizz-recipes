@@ -3,19 +3,23 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of BlockBlock from GitHub, creates a PKG, and imports it into a munki_repo. Set DERIVE_MIN_OS to a non-empty string to derive the minimum os version from MunkiInstallsItemsCreator, either via Input in an override or via the -k option, i.e.: `-k DERIVE_MIN_OS=yes`</string>
+    <string>Downloads the latest version of the desired major TeamViewer Host version (v15 or later) and imports it into a munki_repo.
+
+The postinstall_script depends on supplying your custom module's config ID (ex. idc1a2b3c4)</string>
     <key>Identifier</key>
-    <string>com.github.apizz.munki.BlockBlock</string>
+    <string>com.github.apizz.munki.TeamViewerHostCustom</string>
     <key>Input</key>
     <dict>
-        <key>DERIVE_MIN_OS</key>
-        <string></string>
+        <key>TEAMVIEWER_VERSION</key>
+        <string>15</string>
+        <key>TEAMVIEWER_CUSTOM_ID</key>
+        <string>CUSTOM_ID</string>
         <key>MUNKI_CATEGORY</key>
-        <string>Security</string>
+        <string>Support Tools</string>
         <key>MUNKI_REPO_SUBDIR</key>
-        <string>apps/blockblock</string>
+        <string>apps/teamviewerhost</string>
         <key>NAME</key>
-        <string>BlockBlock</string>
+        <string>TeamViewerHostCustom</string>
         <key>pkginfo</key>
         <dict>
             <key>catalogs</key>
@@ -25,20 +29,39 @@
             <key>category</key>
             <string>%MUNKI_CATEGORY%</string>
             <key>description</key>
-            <string>Malware installs itself persistently to ensure it's automatically (re)executed.
-BlockBlock monitors common persistence locations and alerts whenever a persistent component is added.</string>
+            <string>TeamViewer helps you remotely connect to desktop computers, mobile devices, and IoT devices from anywhere at any time.</string>
             <key>developer</key>
-            <string>Objective-See LLC</string>
+            <string>TeamViewer GmbH</string>
             <key>display_name</key>
-            <string>BlockBlock</string>
+            <string>TeamViewer Host</string>
             <key>name</key>
             <string>%NAME%</string>
+            <key>postinstall_script</key>
+            <string>#!/bin/bash
+
+ATTR="com.TeamViewer.ConfigurationId"
+CONFIG_ID="YOUR_TV_CONFIG_ID"
+TVHOST="/Applications/TeamViewerHost.app"
+STATUS=$(/usr/bin/xattr -l "$TVHOST" | /usr/bin/awk '{print $NF}')
+
+# Write custom TV Host ID for configuration if not present
+if [ "$STATUS" = "" ] || [ "$STATUS" != "$CONFIG_ID" ]; then
+    /bin/echo "Writing TeamViewer Host configuration ID ..."
+    /usr/bin/xattr -w "$ATTR" "$CONFIG_ID" "$TVHOST"
+elif [ "$STATUS" = "$CONFIG_ID" ]; then
+    /bin/echo "TeamViewer Host config ID already present."
+else
+    /bin/echo "Unknown error with config."
+    exit 1
+fi</string>
             <key>unattended_install</key>
             <true/>
         </dict>
     </dict>
+    <key>MinimumVersion</key>
+    <string>2.7</string>
     <key>ParentRecipe</key>
-    <string>com.github.apizz.pkg.BlockBlock</string>
+    <string>com.github.apizz.pkg.TeamViewerHostCustom</string>
     <key>Process</key>
     <array>
         <dict>
@@ -58,28 +81,8 @@ BlockBlock monitors common persistence locations and alerts whenever a persisten
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>derive_minimum_os_version</key>
-                <string>%DERIVE_MIN_OS%</string>
-                <key>faux_root</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
-                <key>installs_item_paths</key>
-                <array>
-                    <string>/Applications/BlockBlock Helper.app</string>
-                    <string>/Library/Objective-See/BlockBlock/BlockBlock.app</string>
-                </array>
-            </dict>
-            <key>Processor</key>
-            <string>MunkiInstallsItemsCreator</string>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>MunkiPkginfoMerger</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
                 <key>pkg_path</key>
-                <string>%pkg_path%</string>
+                <string>%pathname%</string>
                 <key>repo_subdirectory</key>
                 <string>%MUNKI_REPO_SUBDIR%</string>
             </dict>
@@ -89,14 +92,14 @@ BlockBlock monitors common persistence locations and alerts whenever a persisten
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>path_list</key>
+                <key>pkg_ids_set_optional_true</key>
                 <array>
-                    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
-                    <string>%RECIPE_CACHE_DIR%/unpacked</string>
+                    <string>com.teamviewer.RemotePrintingPackage</string>
+                    <string>com.teamviewer.teamviewerhostSilentInstaller</string>
                 </array>
             </dict>
             <key>Processor</key>
-            <string>PathDeleter</string>
+            <string>MunkiOptionalReceiptEditor</string>
         </dict>
     </array>
 </dict>

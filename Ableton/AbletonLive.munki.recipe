@@ -50,7 +50,7 @@ Create in a traditional linear arrangement, or improvise without the constraints
     			<key>additional_pkginfo</key>
     			<dict>
     				<key>version</key>
-    				<string>%version%</string>
+    				<string>%long_version%</string>
     			</dict>
     		</dict>
     		<key>Processor</key>

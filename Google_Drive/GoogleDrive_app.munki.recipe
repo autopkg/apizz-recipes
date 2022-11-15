@@ -3,13 +3,15 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of Google Drive (previously File Stream) and imports it into a munki repo.
+    <string>Downloads the latest version of Google Drive (previously File Stream) and imports it into a munki_repo. Set DERIVE_MIN_OS to a non-empty string to derive the minimum os version from MunkiInstallsItemsCreator, either via Input in an override or via the -k option, i.e.: `-k DERIVE_MIN_OS=yes`
 
 Since Google Drive has macOS architecture specific PKGs that won't be installed, this will cause an endless install loop if the applicable PKG receipts aren't marked as optional. Unlike the sister GoogleDrive.munki.recipe which uses the PKG receipts to determine the install status, this recipe instead refers to the installed app version.</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.GoogleDrive_app</string>
     <key>Input</key>
     <dict>
+        <key>DERIVE_MIN_OS</key>
+        <string></string>
         <key>MUNKI_CATEGORY</key>
         <string>Backups</string>
         <key>MUNKI_REPO_SUBDIR</key>
@@ -83,6 +85,8 @@ Since Google Drive has macOS architecture specific PKGs that won't be installed,
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>derive_minimum_os_version</key>
+                <string>%DERIVE_MIN_OS%</string>
                 <key>faux_root</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>installs_item_paths</key>

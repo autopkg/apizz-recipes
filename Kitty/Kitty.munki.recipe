@@ -2,16 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>Description</key>
+    <string>Downloads the latest version of Kitty and imports it into a munki_repo.</string>
     <key>Identifier</key>
-    <string>com.github.apizz.munki.SuspiciousPackage</string>
+    <string>com.github.apizz.munki.Kitty</string>
     <key>Input</key>
     <dict>
         <key>MUNKI_CATEGORY</key>
-        <string>Utilities</string>
+        <string>Developer Tools</string>
         <key>MUNKI_REPO_SUBDIR</key>
-        <string>apps</string>
+        <string>apps/kitty</string>
         <key>NAME</key>
-        <string>SuspiciousPackage</string>
+        <string>Kitty</string>
         <key>pkginfo</key>
         <dict>
             <key>catalogs</key>
@@ -21,11 +23,11 @@
             <key>category</key>
             <string>%MUNKI_CATEGORY%</string>
             <key>description</key>
-            <string>Peek inside macOS Installer packages, see what they install, what they do, and more.</string>
+            <string>Cross-platform, fast, feature-rich, GPU based terminal.</string>
             <key>developer</key>
-            <string>Mothers Ruin Software</string>
+            <string>Kovid Goyal</string>
             <key>display_name</key>
-            <string>%NAME%</string>
+            <string>Kitty</string>
             <key>name</key>
             <string>%NAME%</string>
             <key>unattended_install</key>
@@ -33,9 +35,9 @@
         </dict>
     </dict>
     <key>MinimumVersion</key>
-    <string>0.5.0</string>
+    <string>1.0.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.novaksam.download.SuspiciousPackage</string>
+    <string>com.github.apizz.download.Kitty</string>
     <key>Process</key>
     <array>
         <dict>

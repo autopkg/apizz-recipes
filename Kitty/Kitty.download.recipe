@@ -3,27 +3,27 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest release copy of the Safe Exam Browser from Github. Set PRERELEASE to a non-empty string to download prereleases, either via Input in an override or via the -k option, i.e.: `-k PRERELEASE=yes`</string>
+    <string>Downloads the latest version of Kitty.</string>
     <key>Identifier</key>
-    <string>com.github.apizz.download.seb-github</string>
+    <string>com.github.apizz.download.Kitty</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string>SafeExamBrowser</string>
+        <string>Kitty</string>
         <key>PRERELEASE</key>
         <string></string>
     </dict>
     <key>MinimumVersion</key>
-    <string>0.6.1</string>
+    <string>1.0.0</string>
     <key>Process</key>
     <array>
         <dict>
             <key>Arguments</key>
             <dict>
                 <key>asset_regex</key>
-                <string>SafeExamBrowser-[\d.]+\.dmg</string>
+                <string>.*\.dmg$</string>
                 <key>github_repo</key>
-                <string>SafeExamBrowser/seb-mac</string>
+                <string>kovidgoyal/kitty</string>
                 <key>include_prereleases</key>
                 <string>%PRERELEASE%</string>
             </dict>
@@ -47,14 +47,30 @@
             <key>Arguments</key>
             <dict>
                 <key>input_path</key>
-                <string>%pathname%/Safe Exam Browser.app</string>
+                <string>%pathname%/Kitty.app</string>
                 <key>requirement</key>
-                <string>anchor apple generic and identifier "org.safeexambrowser.SafeExamBrowser" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "6F38DNSC7X")</string>
+                <string>identifier "net.kovidgoyal.kitty" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = NTY7FVCEKP</string>
                 <key>strict_verification</key>
-                <true/>
+                <true />
             </dict>
             <key>Processor</key>
             <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>info_path</key>
+                <string>%pathname%/Kitty.app/Contents/Info.plist</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleShortVersionString</key>
+                    <string>version</string>
+                    <key>LSMinimumSystemVersion</key>
+                    <string>min_os_version</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PlistReader</string>
         </dict>
     </array>
 </dict>

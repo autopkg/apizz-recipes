@@ -3,13 +3,15 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest FileMaker Pro Advanced full installer given the supplied MAJOR_VERSION and imports it into a munki_repo.
+    <string>Downloads the latest FileMaker Pro Advanced full installer given the supplied MAJOR_VERSION and imports it into a munki_repo. Set DERIVE_MIN_OS to a non-empty string to derive the minimum os version from MunkiInstallsItemsCreator, either via Input in an override or via the -k option, i.e.: `-k DERIVE_MIN_OS=yes`
     
 When purchasing FileMaker, the order confirmation email includes a URL which takes you to a page to download the latest full installer. Despite indicating the link will expire, almost a year later and our own account purchase link still works. You will need to supply that link in the SEARCH_URL variable.</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.FileMakerAdvanced</string>
     <key>Input</key>
     <dict>
+        <key>DERIVE_MIN_OS</key>
+        <string></string>
         <key>MUNKI_CATEGORY</key>
         <string>Software</string>
         <key>MUNKI_REPO_SUBDIR</key>
@@ -114,6 +116,8 @@ When purchasing FileMaker, the order confirmation email includes a URL which tak
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>derive_minimum_os_version</key>
+                <string>%DERIVE_MIN_OS%</string>
                 <key>faux_root</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>installs_item_paths</key>

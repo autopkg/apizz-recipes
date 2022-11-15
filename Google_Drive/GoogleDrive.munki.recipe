@@ -47,6 +47,8 @@ If an admin wishes to use this same recipe to manage a single Google Drive PKG i
             <string>com.google.drivefs.x86_64</string>
         </array>
     </dict>
+    <key>MinimumVersion</key>
+    <string>2.7</string>
     <key>ParentRecipe</key>
     <string>com.github.nstrauss.pkg.GoogleDrive</string>
     <key>Process</key>
@@ -77,8 +79,13 @@ If an admin wishes to use this same recipe to manage a single Google Drive PKG i
             <string>MunkiImporter</string>
         </dict>
         <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkginfo_repo_path</key>
+                <string>%pkginfo_repo_path%</string>
+            </dict>
             <key>Processor</key>
-            <string>com.github.keeleysam.recipes.GoogleTalkPlugin/MunkiPkginfoReceiptsEditor</string>
+            <string>MunkiOptionalReceiptEditor</string>
         </dict>
     </array>
 </dict>

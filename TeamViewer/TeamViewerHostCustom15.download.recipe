@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of the desired major TeamViewer Host version (pre v15) with your custom pkg ID.</string>
+    <string>Downloads the latest version of the desired major TeamViewer Host version (v15 or later) with your custom pkg ID.</string>
     <key>Identifier</key>
     <string>com.github.apizz.download.TeamViewerHostCustom</string>
     <key>Input</key>
     <dict>
         <key>TEAMVIEWER_VERSION</key>
-        <string>12</string>
+        <string>15</string>
         <key>TEAMVIEWER_CUSTOM_ID</key>
         <string>CUSTOM_ID_NUMBER</string>
         <key>NAME</key>
@@ -21,11 +21,11 @@
     <array>
         <dict>
             <key>Comment</key>
-            <string>Ensure we're processing v14 or earier</string>
+            <string>Ensure we're processing v15 or later</string>
             <key>Arguments</key>
             <dict>
                 <key>predicate</key>
-                <string>%TEAMVIEWER_VERSION% &gt;= 15</string>
+                <string>%TEAMVIEWER_VERSION% &lt; 15</string>
             </dict>
             <key>Processor</key>
             <string>StopProcessingIf</string>
@@ -50,7 +50,7 @@
             <dict>
                 <key>expected_authority_names</key>
                 <array>
-                    <string>Developer ID Installer: TeamViewer GmbH (H7UGFBUGV6)</string>
+                    <string>Developer ID Installer: TeamViewer Germany GmbH (H7UGFBUGV6)</string>
                     <string>Developer ID Certification Authority</string>
                     <string>Apple Root CA</string>
                 </array>

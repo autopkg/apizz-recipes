@@ -2,16 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>Description</key>
+    <string>Downloads the latest version of RedisInsight and imports it into a munki_repo.</string>
     <key>Identifier</key>
-    <string>com.github.apizz.munki.DataRescue4</string>
+    <string>com.github.apizz.munki.RedisInsight</string>
     <key>Input</key>
     <dict>
         <key>MUNKI_CATEGORY</key>
-        <string>Utilities</string>
+        <string>Developer Tools</string>
         <key>MUNKI_REPO_SUBDIR</key>
-        <string>apps/datarescue</string>
+        <string>apps/redisinsight</string>
         <key>NAME</key>
-        <string>DataRescue4</string>
+        <string>RedisInsight</string>
         <key>pkginfo</key>
         <dict>
             <key>catalogs</key>
@@ -21,32 +23,21 @@
             <key>category</key>
             <string>%MUNKI_CATEGORY%</string>
             <key>description</key>
-            <string>Data Rescue is a data recovery software for Mac. Find, recover, and preview accidentally deleted files, lost data, and reformatted drives with ease. Go beyond hard drive recovery software. Data Rescue recovers files from a multitude of devices including SD cards, USB drives, CF cards, solid state drives, and more.</string>
+            <string>Welcome to a new level of productivity when developing with Redis using the completely redesigned and open source RedisInsight 2.0 which provides an updated UI, browser tool, advanced CLI, custom data visualization, and built-in guides to help with using Redis data models like JSON and time series.</string>
             <key>developer</key>
-            <string>Prosoft Engineering, Inc.</string>
+            <string>Redis Ltd.</string>
             <key>display_name</key>
-            <string>Data Rescue 4</string>
+            <string>Redis Insight 2.0</string>
             <key>name</key>
             <string>%NAME%</string>
             <key>unattended_install</key>
             <true/>
         </dict>
     </dict>
-    <key>MinimumVersion</key>
-    <string>1.0.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.apizz.download.DataRescue4</string>
+    <string>com.github.apizz.download.RedisInsight</string>
     <key>Process</key>
     <array>
-        <dict>
-            <key>Processor</key>
-            <string>DeprecationWarning</string>
-            <key>Arguments</key>
-            <dict>
-                <key>warning_message</key>
-                <string>This recipe is deprecated. Please remove it from your list of recipes. Use com.github.flammable.munki.DataRescue4 instead.</string>
-            </dict>
-        </dict>
         <dict>
             <key>Arguments</key>
             <dict>

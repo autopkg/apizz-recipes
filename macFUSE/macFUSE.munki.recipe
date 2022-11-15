@@ -3,19 +3,19 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of Karabiner-Elements from Github and imports it into a munki_repo. Set DERIVE_MIN_OS to a non-empty string to derive the minimum os version from MunkiInstallsItemsCreator, either via Input in an override or via the -k option, i.e.: `-k DERIVE_MIN_OS=yes`</string>
+    <string>Downloads latest the macFUSE from Github and imports it into a munki_repo. Set DERIVE_MIN_OS to a non-empty string to derive the minimum os version from MunkiInstallsItemsCreator, either via Input in an override or via the -k option, i.e.: `-k DERIVE_MIN_OS=yes`</string>
     <key>Identifier</key>
-    <string>com.github.apizz.munki.Karabiner-Elements</string>
+    <string>com.github.apizz.munki.macFUSE</string>
     <key>Input</key>
     <dict>
         <key>DERIVE_MIN_OS</key>
         <string></string>
         <key>MUNKI_CATEGORY</key>
-        <string>Utilities</string>
+        <string>Drivers</string>
         <key>MUNKI_REPO_SUBDIR</key>
-        <string>apps/karabiner-elements</string>
+        <string>drivers/macfuse</string>
         <key>NAME</key>
-        <string>Karabiner-Elements</string>
+        <string>macFUSE</string>
         <key>pkginfo</key>
         <dict>
             <key>catalogs</key>
@@ -25,21 +25,38 @@
             <key>category</key>
             <string>%MUNKI_CATEGORY%</string>
             <key>description</key>
-            <string>Karabiner-Elements is a powerful utility for keyboard customization on macOS.</string>
-            <key>developer</key>
-            <string>pqrs.org</string>
+            <string>macFUSE allows you to extend OS X's native file handling capabilities via third-party file systems. macFUSE (v4) is a successor to OSXFUSE (v3), which has been used as a software building block by dozens of products, but is no longer being maintained.</string>
             <key>display_name</key>
-            <string>Karabiner-Elements</string>
+            <string>macFUSE</string>
             <key>name</key>
             <string>%NAME%</string>
+            <key>installer_choices_xml</key>
+            <array>
+                <dict>
+                    <key>attributeSetting</key>
+                    <integer>1</integer>
+                    <key>choiceAttribute</key>
+                    <string>selected</string>
+                    <key>choiceIdentifier</key>
+                    <string>io.macfuse.installer.components.core</string>
+                </dict>
+                <dict>
+                    <key>attributeSetting</key>
+                    <integer>1</integer>
+                    <key>choiceAttribute</key>
+                    <string>selected</string>
+                    <key>choiceIdentifier</key>
+                    <string>io.macfuse.installer.components.preferencepane</string>
+                </dict>
+            </array>
             <key>unattended_install</key>
             <true/>
         </dict>
     </dict>
     <key>MinimumVersion</key>
-    <string>1.0.0</string>
+    <string>0.2.9</string>
     <key>ParentRecipe</key>
-    <string>com.github.apizz.pkg.Karabiner-Elements</string>
+    <string>com.github.apizz.pkg.macFUSE</string>
     <key>Process</key>
     <array>
         <dict>
@@ -51,24 +68,24 @@
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>installs_item_paths</key>
                 <array>
-                    <string>/Applications/Karabiner-Elements.app</string>
-                    <string>/Applications/Karabiner-EventViewer.app</string>
-                    <string>/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-DriverKit-VirtualHIDDeviceClient.app</string>
-                    <string>/Library/Application Support/org.pqrs/Karabiner-Elements/Karabiner-Menu.app</string>
-                    <string>/Library/Application Support/org.pqrs/Karabiner-Elements/Karabiner-MultitouchExtension.app</string>
-                    <string>/Library/Application Support/org.pqrs/Karabiner-Elements/Karabiner-NotificationWindow.app</string>
+                    <string>/Library/Filesystems/macfuse.fs</string>
+                    <string>/Library/Frameworks/macFUSE.framework</string>
                 </array>
             </dict>
             <key>Processor</key>
             <string>MunkiInstallsItemsCreator</string>
         </dict>
         <dict>
+            <key>Comment</key>
+            <string>Import items</string>
             <key>Arguments</key>
             <dict/>
             <key>Processor</key>
             <string>MunkiPkginfoMerger</string>
         </dict>
         <dict>
+            <key>Comment</key>
+            <string>Import version and min os version</string>
             <key>Arguments</key>
             <dict>
                 <key>additional_pkginfo</key>
@@ -86,7 +103,7 @@
             <key>Arguments</key>
             <dict>
                 <key>pkg_path</key>
-                <string>%pathname%</string>
+                <string>%pkg_path%</string>
                 <key>repo_subdirectory</key>
                 <string>%MUNKI_REPO_SUBDIR%</string>
             </dict>
@@ -94,6 +111,8 @@
             <string>MunkiImporter</string>
         </dict>
         <dict>
+            <key>Comment</key>
+            <string>Cleanup</string>
             <key>Arguments</key>
             <dict>
                 <key>path_list</key>

@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads latest version of the desired major TeamViewer Host version (pre v15) and creates a pkg.</string>
+    <string>Downloads latest version of the desired major TeamViewer Host version (v15 or later) and creates a pkg.</string>
     <key>Identifier</key>
     <string>com.github.apizz.pkg.TeamViewerHostCustom</string>
     <key>Input</key>
     <dict>
         <key>TEAMVIEWER_VERSION</key>
-        <string>12</string>
+        <string>15</string>
         <key>TEAMVIEWER_CUSTOM_ID</key>
         <string>CUSTOM_ID</string>
         <key>NAME</key>

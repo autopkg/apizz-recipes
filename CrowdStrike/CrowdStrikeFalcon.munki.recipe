@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads a CrowdStrike Falcon Sensor pkg via CrowdStrike's API and imports it into a munki repo.
+    <string>Downloads a CrowdStrike Falcon Sensor pkg via CrowdStrike's API and imports it into a munki repo. Set DERIVE_MIN_OS to a non-empty string to derive the minimum os version from MunkiInstallsItemsCreator, either via Input in an override or via the -k option, i.e.: `-k DERIVE_MIN_OS=yes`
 
 You must provide a Client ID and Secret along with the Policy ID to determine which senor version to download.
 
@@ -12,6 +12,8 @@ You must also specify a LICENSE_ID in order to license the Sensor post install. 
     <string>com.github.apizz.munki.CrowdStrikeFalcon</string>
     <key>Input</key>
     <dict>
+        <key>DERIVE_MIN_OS</key>
+        <string></string>
         <key>MUNKI_CATEGORY</key>
         <string>Security</string>
         <key>MUNKI_REPO_SUBDIR</key>
@@ -57,7 +59,7 @@ readonly log_path="%LICENSE_INSTALL_LOG%"
 # Write to log
 writelog () {
     /bin/echo "${1}"
-    /bin/echo "${1}" >> "$logpath"
+    /bin/echo "${1}" >> "$log_path"
 }
 
 ##################################################
@@ -210,6 +212,8 @@ writelog "*****  Install CrowdStrike Process:  COMPLETE  *****"</string>
             <string>Example full version: 6.33.14604. Historically have used CFBundleShortVersionString to compare (ex. 6.33), but with hotfix releases only the CFBundleVersion (146.04) is updated. This key seems to be properly incremented, so we use this instead.</string>
             <key>Arguments</key>
             <dict>
+                <key>derive_minimum_os_version</key>
+                <string>%DERIVE_MIN_OS%</string>
                 <key>faux_root</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>installs_item_paths</key>

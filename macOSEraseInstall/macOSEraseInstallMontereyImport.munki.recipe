@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Imports a DMG with a macOS Monterey installer inside into a munki repo. This would be built with a tool like installinstallmacos.py. Meant to be imported as an erase &amp; install, but these options can be removed if desired.
+
+To use this recipe:
+
+1) Create a recipe override of this recipe.
+2) Use installinstallmacos.py to create a compressed DMG of the desired macOS installer.
+3) Copy the downloaded DMG onto your Mac running autopkg in the folder specified in the PATH variable. Don't include a trailing '/'.
+4) Run the recipe.
+5) Profit.</string>
+    <key>Identifier</key>
+    <string>com.github.apizz.munki.macOSEraseInstallMontereyImport</string>
+    <key>Input</key>
+    <dict>
+        <key>MUNKI_CATEGORY</key>
+        <string>macOS Installers</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>macos-installers/12.0</string>
+        <key>NAME</key>
+        <string>macOS_Monterey_EraseInstall</string>
+        <key>PATH</key>
+        <string>/path/to/macOSDMG/folder</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>additional_startosinstall_options</key>
+            <array>
+                <string>--eraseinstall</string>
+                <string>--newvolumename</string>
+                <string>Macintosh HD</string>
+            </array>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>%MUNKI_CATEGORY%</string>
+            <key>description</key>
+            <string></string>
+            <key>developer</key>
+            <string>Apple Inc.</string>
+            <key>display_name</key>
+            <string>macOS Monterey Erase &amp; Install</string>
+            <key>installcheck_script</key>
+            <string>#!/bin/sh
+
+# Force munki to run macOS installer, even though the machine may already have the same major macOS version installed.
+
+exit 0</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+        </dict>
+    </dict>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Comment</key>
+            <string>Gets the Monterey DMG filename located in the PATH</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%PATH%/*12.*.dmg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Assign the Monterey DMG path to dmg_path and collect the app path</string>
+            <key>Arguments</key>
+            <dict>
+                <key>dmg_path</key>
+                <string>%found_filename%</string>
+                <key>pattern</key>
+                <string>%found_filename%/*.app</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Disable strict verification given running codesign --verify on the installer .app produces the following error: resource envelope is obsolete (custom omit rules)</string>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%dmg_path%/%dmg_found_filename%</string>
+                <key>requirement</key>
+                <string>identifier "com.apple.InstallAssistant.macOSMonterey" and anchor apple</string>
+                <key>strict_verification</key>
+                <false/>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%dmg_path%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+    </array>
+</dict>
+</plist>

@@ -3,14 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of TeamViewer Host and imports it into a munki_repo.
+    <string>Downloads the latest version of the desired major TeamViewer Host version (pre v15) and imports it into a munki_repo.
 
-The postinstall_script depends on supplying your custom module's config ID (ex. idc1a2b3c4)
-
-NOTE:
-- This recipe depends on keeleysam's MunkiPkginfoReceiptsEditor for marking certain pkg receipts as optional.  Add the repo via:
-
-autopkg repo-add keeleysam-recipes</string>
+The postinstall_script depends on supplying your custom module's config ID (ex. idc1a2b3c4)</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.TeamViewerHostCustom</string>
     <key>Input</key>
@@ -60,7 +55,7 @@ fi</string>
         </dict>
     </dict>
     <key>MinimumVersion</key>
-    <string>0.5.0</string>
+    <string>2.7</string>
     <key>ParentRecipe</key>
     <string>com.github.apizz.pkg.TeamViewerHostCustom</string>
     <key>Process</key>
@@ -100,7 +95,7 @@ fi</string>
                 </array>
             </dict>
             <key>Processor</key>
-            <string>com.github.keeleysam.recipes.GoogleTalkPlugin/MunkiPkginfoReceiptsEditor</string>
+            <string>MunkiOptionalReceiptEditor</string>
         </dict>
     </array>
 </dict>
