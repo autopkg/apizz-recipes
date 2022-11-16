@@ -10,6 +10,8 @@
     <dict>
         <key>NAME</key>
         <string>FLStudio</string>
+        <key>USER_AGENT</key>
+        <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.6.1</string>
@@ -18,6 +20,13 @@
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>request_headers</key>
+                <dict>
+                    <key>user-agent</key>
+                    <string>%USER_AGENT%</string>
+                    <key>Referer</key>
+                    <string>https://www.image-line.com/fl-studio-download/;auto</string>
+                </dict>
                 <key>filename</key>
                 <string>%NAME%.dmg</string>
                 <key>url</key>
