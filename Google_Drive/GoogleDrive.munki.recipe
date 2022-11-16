@@ -81,6 +81,15 @@ If an admin wishes to use this same recipe to manage a single Google Drive PKG i
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>predicate</key>
+                <string>pkginfo_repo_path == ''</string>
+            </dict>
+            <key>Processor</key>
+            <string>StopProcessingIf</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
                 <key>pkginfo_repo_path</key>
                 <string>%pkginfo_repo_path%</string>
             </dict>
