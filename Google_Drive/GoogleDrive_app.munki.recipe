@@ -80,7 +80,7 @@ Since Google Drive has macOS architecture specific PKGs that won't be installed,
                 <string>%RECIPE_CACHE_DIR%/unpack/GoogleDrive_x86_64.pkg/Payload</string>
             </dict>
             <key>Processor</key>
-            <string>PkgPayloadUnpacker</string>
+            <string>com.github.nstrauss.DrivePayloadUnpacker/DrivePayloadUnpacker</string>
         </dict>
         <dict>
             <key>Arguments</key>
