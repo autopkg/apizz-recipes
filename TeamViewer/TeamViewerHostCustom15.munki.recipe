@@ -90,6 +90,17 @@ fi</string>
             <string>MunkiImporter</string>
         </dict>
         <dict>
+            <key>Comment</key>
+            <string>Ensure we actually imported something</string>
+            <key>Arguments</key>
+            <dict>
+                <key>predicate</key>
+                <string>munki_repo_changed == FALSE</string>
+            </dict>
+            <key>Processor</key>
+            <string>StopProcessingIf</string>
+        </dict>
+        <dict>
             <key>Arguments</key>
             <dict>
                 <key>pkg_ids_set_optional_true</key>
