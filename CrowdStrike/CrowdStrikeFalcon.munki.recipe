@@ -140,47 +140,6 @@ writelog "*****  Install CrowdStrike Process:  COMPLETE  *****"</string>
         </dict>
         <dict>
             <key>Comment</key>
-            <string>Extract and examine the kext version of the app</string>
-            <key>Arguments</key>
-            <dict>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
-                <key>pkg_payload_path</key>
-                <string>%RECIPE_CACHE_DIR%/unpack/sensor-kext.pkg/Payload</string>
-            </dict>
-            <key>Processor</key>
-            <string>PkgPayloadUnpacker</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>expected_authority_names</key>
-                <array/>
-                <key>input_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Falcon.app</string>
-                <key>requirement</key>
-                <string>identifier "com.crowdstrike.falcon.App" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = X9E956P446</string>
-                <key>strict_verification</key>
-                <true/>
-            </dict>
-            <key>Processor</key>
-            <string>CodeSignatureVerifier</string>
-        </dict>
-        <dict>
-            <key>Comment</key>
-            <string>Remove previously expanded kext version</string>
-            <key>Arguments</key>
-            <dict>
-                <key>path_list</key>
-                <array>
-                    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
-                </array>
-            </dict>
-            <key>Processor</key>
-            <string>PathDeleter</string>
-        </dict>
-        <dict>
-            <key>Comment</key>
             <string>Extract and examine the system extension version of the app</string>
             <key>Arguments</key>
             <dict>
