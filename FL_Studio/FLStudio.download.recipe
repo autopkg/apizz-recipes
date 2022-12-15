@@ -89,7 +89,7 @@
             <key>Arguments</key>
             <dict>
                 <key>info_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/FL Studio 20.app/Contents/Info.plist</string>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/FL Studio 21.app/Contents/Info.plist</string>
                 <key>plist_keys</key>
                 <dict>
                     <key>CFBundleVersion</key>

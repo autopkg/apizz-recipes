@@ -53,7 +53,7 @@
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>installs_item_paths</key>
                 <array>
-                    <string>/Applications/FL Studio 20.app</string>
+                    <string>/Applications/FL Studio 21.app</string>
                 </array>
             </dict>
             <key>Processor</key>
