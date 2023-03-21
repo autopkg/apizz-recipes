@@ -29,7 +29,7 @@ If an admin wishes to use this same recipe to manage a single Google Drive PKG i
             <key>description</key>
             <string>With Google Drive, you stream your Drive files directly from the cloud to your Mac or PC, freeing up disk space and network bandwidth. Because Drive files are stored in the cloud, any changes you or your collaborators make are automatically updated everywhere. You’ll always have the latest version.
 
-    You can also make Drive files available for offline access. These cached files sync back to the cloud when you're online, so the latest version is available on all your devices.</string>
+You can also make Drive files available for offline access. These cached files sync back to the cloud when you're online, so the latest version is available on all your devices.</string>
             <key>developer</key>
             <string>Google Inc.</string>
             <key>display_name</key>
@@ -48,11 +48,64 @@ If an admin wishes to use this same recipe to manage a single Google Drive PKG i
         </array>
     </dict>
     <key>MinimumVersion</key>
-    <string>2.7</string>
+    <string>2.7.1</string>
     <key>ParentRecipe</key>
-    <string>com.github.nstrauss.pkg.GoogleDrive</string>
+    <string>com.github.nstrauss.download.GoogleDrive</string>
     <key>Process</key>
     <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/GoogleDrive.pkg</string>
+                <key>overwrite</key>
+                <true/>
+                <key>source_path</key>
+                <string>%pathname%/GoogleDrive.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>Copier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+                <key>flat_pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/GoogleDrive.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Expand the arm64 app version. Assumes info is same as for x86_64.</string>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/payload</string>
+                <key>pkg_payload_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/GoogleDrive_arm64.pkg/Payload</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>info_path</key>
+                <string>%RECIPE_CACHE_DIR%/payload/Google Drive.app/Contents/Info.plist</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleVersion</key>
+                    <string>version</string>
+                    <key>LSMinimumSystemVersion</key>
+                    <string>min_os_version</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PlistReader</string>
+        </dict>
         <dict>
             <key>Arguments</key>
             <dict>
@@ -71,12 +124,25 @@ If an admin wishes to use this same recipe to manage a single Google Drive PKG i
             <key>Arguments</key>
             <dict>
                 <key>pkg_path</key>
-                <string>%pathname%</string>
+                <string>%RECIPE_CACHE_DIR%/GoogleDrive.pkg</string>
                 <key>repo_subdirectory</key>
                 <string>%MUNKI_REPO_SUBDIR%</string>
             </dict>
             <key>Processor</key>
             <string>MunkiImporter</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/GoogleDrive.pkg</string>
+                    <string>%RECIPE_CACHE_DIR%/payload</string>
+                    <string>%RECIPE_CACHE_DIR%/unpack</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
         </dict>
         <dict>
             <key>Comment</key>
