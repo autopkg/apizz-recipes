@@ -15,7 +15,7 @@ To use this recipe, go to https://www.filemaker.com/redirects/ss.txt and find th
         <key>NAME</key>
         <string>FileMakerPro</string>
         <key>SEARCH_PATTERN</key>
-        <string>("%PRODUCT_ID%","url":"(?P&lt;url&gt;https://downloads.claris.com/esd/fmp_(?P&lt;version&gt;[\d.]+).dmg)")</string>
+        <string>("%PRODUCT_ID%","url":"(?P&lt;url&gt;https://downloads\.claris\.com/[esdTBU\d/]+/fm[sp_trial]+(?P&lt;version&gt;[\d.]+)\.dmg)")</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.6.1</string>
