@@ -21,7 +21,7 @@
 				<key>re_pattern</key>
 				<string>(?P&lt;url&gt;https\:\/\/www\.mozdevgroup.com\/.*\/openkiosk-(?P&lt;version&gt;[\d.]+)-(?P&lt;date&gt;[\d-]+)\.dmg)</string>
 				<key>url</key>
-				<string>http://openkiosk.mozdevgroup.com/</string>
+				<string>https://openkiosk.mozdevgroup.com/</string>
 			</dict>
 			<key>Processor</key>
 			<string>URLTextSearcher</string>
