@@ -53,7 +53,7 @@
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>installs_item_paths</key>
                 <array>
-                    <string>/Applications/FL Studio 21.app</string>
+                    <string>/Applications/FL Studio 2024.app</string>
                 </array>
             </dict>
             <key>Processor</key>
@@ -89,11 +89,24 @@
             <string>MunkiImporter</string>
         </dict>
         <dict>
+             <key>Arguments</key>
+             <dict>
+                 <key>mode</key>
+                 <string>777</string>
+                 <key>resource_path</key>
+                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+             </dict>
+             <key>Processor</key>
+             <string>com.github.grahampugh.recipes.commonprocessors/ChangeModeOwner</string>
+         </dict>
+        <dict>
             <key>Arguments</key>
             <dict>
                 <key>path_list</key>
                 <array>
                     <string>%RECIPE_CACHE_DIR%/unpack</string>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/FL Studio 2024.app</string>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%/Applications</string>
                     <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 </array>
             </dict>
