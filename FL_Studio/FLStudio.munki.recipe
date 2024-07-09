@@ -30,8 +30,6 @@
             <string>FL Studio is a complete software music production environment or Digital Audio Workstation (DAW). Representing more than 20 years of innovative development it has everything you need in one package to compose, arrange, record, edit, mix and master professional quality music.</string>
             <key>display_name</key>
             <string>FL Studio</string>
-            <key>minimum_os_version</key>
-            <string>10.13.6</string>
             <key>name</key>
             <string>%NAME%</string>
             <key>unattended_install</key>
@@ -68,10 +66,25 @@
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>re_pattern</key>
+                <string>macos ([0-9]*\.[0-9]+) \([A-Za-z]+\) or higher</string>
+                <key>result_output_var_name</key>
+                <string>min_os_ver</string>
+                <key>url</key>
+                <string>https://www.image-line.com/fl-studio-download/</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
                 <key>additional_pkginfo</key>
                 <dict>
                     <key>version</key>
                     <string>%version%</string>
+                    <key>minimum_os_version</key>
+                    <string>%min_os_ver%</string>
                 </dict>
             </dict>
             <key>Processor</key>
