@@ -32,6 +32,29 @@
             <string>FL Studio</string>
             <key>name</key>
             <string>%NAME%</string>
+            <key>uninstall_method</key>
+            <string>uninstall_script</string>
+            <key>uninstall_script</key>
+            <string>#!/bin/bash
+
+# Vendor Documentation https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/app_flstudioinstallationfiles.htm
+
+/bin/echo Stopping launchd service...
+/bin/launchctl bootout system/com.image-line.flc-install-helper-socket
+
+/bin/echo Renmoving launchd service....
+/bin/rm -Rf /Library/LaunchDaemons/com.image-line.flc-install-helper-socket.plist
+
+/bin/echo Removing FL Studio 2024 and FL Cloud Plugins Applications...
+/bin/rm -Rf "/Applications/FL Studio 2024.app"
+/bin/rm -Rf "/Applications/FL Cloud Plugins.app"
+
+# Vendor Documentation: https://support.image-line.com/action/knowledgebase?ans=87
+
+/bin/echo Removing Licensing...
+/bin/rm -Rf "/Library/Application Support/Image-Line"
+
+exit</string>
             <key>unattended_install</key>
             <true/>
         </dict>
