@@ -53,7 +53,7 @@
                 <array>
                     <string>/Applications/Karabiner-Elements.app</string>
                     <string>/Applications/Karabiner-EventViewer.app</string>
-                    <string>/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-DriverKit-VirtualHIDDeviceClient.app</string>
+                    <string>/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app</string>
                     <string>/Library/Application Support/org.pqrs/Karabiner-Elements/Karabiner-Menu.app</string>
                     <string>/Library/Application Support/org.pqrs/Karabiner-Elements/Karabiner-MultitouchExtension.app</string>
                     <string>/Library/Application Support/org.pqrs/Karabiner-Elements/Karabiner-NotificationWindow.app</string>

@@ -125,9 +125,9 @@
                 <key>expected_authority_names</key>
                 <array/>
                 <key>input_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-DriverKit-VirtualHIDDeviceClient.app</string>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app</string>
                 <key>requirement</key>
-                <string>identifier "org.pqrs.Karabiner-DriverKit-VirtualHIDDeviceClient" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = G43BCU2T37</string>
+                <string>identifier "org.pqrs.Karabiner-VirtualHIDDevice-Daemon" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = G43BCU2T37</string>
                 <key>strict_verification</key>
                 <true/>
             </dict>
