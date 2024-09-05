@@ -52,7 +52,7 @@ For example, the URL for the Epson Perfection V850 Pro fetched from the US Epson
                 <key>url</key>
                 <string>%SEARCH_URL%</string>
                 <key>re_pattern</key>
-                <string>Scanner Driver[^v]*v[\d.]+[\s\w="-;]+href="(https://ftp.epson.com/drivers/[\w].*\.dmg)"</string>
+                <string>"Scanner Driver[^v]*v[\d.]+[\s\w="-;]+href="(https://ftp.epson.com/drivers/[\w].*\.dmg)"</string>
                 <key>result_output_var_name</key>
                 <string>url</string>
             </dict>
