@@ -57,7 +57,18 @@ fi
 
 if [ -d "$APP" ]; then
     sudo "$EXE" --uninstall
-fi</string>
+fi
+
+# Set "Enterprise Mode" for version 6.4.4 and later
+# Source: https://community.jamf.com/t5/jamf-pro/how-to-disable-auto-launching-quot-wacom-desktop-center-quot-app/m-p/322943#M278338
+cat &lt;&lt; EOF &gt; "/Library/Preferences/com.wacomtablet.defaults.xml"
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;root&gt;
+  &lt;OperatingMode&gt;Enterprise&lt;/OperatingMode&gt;
+&lt;/root&gt;
+EOF
+
+exit 0</string>
             <key>unattended_install</key>
             <true/>
         </dict>
