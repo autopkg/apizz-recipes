@@ -20,6 +20,11 @@
                 <string>(\/download\/DragonframeLicenseManager_(?P&lt;version&gt;[\d\.]+)\.pkg)</string>
                 <key>url</key>
                 <string>https://www.dragonframe.com/downloads/</string>
+                <key>request_headers</key>
+                <dict>
+                    <key>user-agent</key>
+                    <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36</string>
+                </dict>
             </dict>
             <key>Processor</key>
             <string>URLTextSearcher</string>
@@ -28,7 +33,7 @@
             <key>Arguments</key>
             <dict>
                 <key>filename</key>
-                <string>%NAME%.pkg</string>
+                <string>%NAME%-%version%.pkg</string>
                 <key>url</key>
                 <string>https://www.dragonframe.com%match%</string>
             </dict>
