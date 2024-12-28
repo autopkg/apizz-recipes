@@ -14,64 +14,17 @@
     <key>MinimumVersion</key>
     <string>1.0.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.apizz.download.smartutility</string>
+    <string>com.github.flammable.download.SMARTUtility</string>
     <key>Process</key>
     <array>
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>pkgdirs</key>
-                <dict>
-                    <key>Applications</key>
-                    <string>0775</string>
-                </dict>
-                <key>pkgroot</key>
-                <string>%RECIPE_CACHE_DIR%/pkgroot</string>
+                <key>app_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/SMART Utility/SMART Utility.app</string>
             </dict>
             <key>Processor</key>
-            <string>PkgRootCreator</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>archive_path</key>
-                <string>%pathname%</string>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/pkgroot/Applications</string>
-                <key>purge_destination</key>
-                <true/>
-            </dict>
-            <key>Processor</key>
-            <string>Unarchiver</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>pkg_request</key>
-                <dict>
-                    <key>chown</key>
-                    <array>
-                        <dict>
-                            <key>group</key>
-                            <string>admin</string>
-                            <key>path</key>
-                            <string>Applications</string>
-                            <key>user</key>
-                            <string>root</string>
-                        </dict>
-                    </array>
-                    <key>id</key>
-                    <string>com.volitans-software.SMARTUtility</string>
-                    <key>options</key>
-                    <string>purge_ds_store</string>
-                    <key>pkgname</key>
-                    <string>%NAME%</string>
-                    <key>version</key>
-                    <string>%version%</string>
-                </dict>
-            </dict>
-            <key>Processor</key>
-            <string>PkgCreator</string>
+            <string>AppPkgCreator</string>
         </dict>
     </array>
 </dict>
