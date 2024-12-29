@@ -19,9 +19,11 @@
 			<key>Arguments</key>
 			<dict>
 				<key>re_pattern</key>
-				<string>(?P&lt;url&gt;https\:\/\/www\.mozdevgroup.com\/.*\/openkiosk-(?P&lt;version&gt;[\d.]+)-(?P&lt;date&gt;[\d-]+)\.dmg)</string>
+				<string>https://www\.mozdevgroup\.com/dropbox/okcd/\d+/release/OpenKiosk[\d\.-]+-universal\.dmg</string>
 				<key>url</key>
 				<string>https://openkiosk.mozdevgroup.com/</string>
+				<key>result_output_var_name</key>
+				<string>url</string>
 			</dict>
 			<key>Processor</key>
 			<string>URLTextSearcher</string>
@@ -31,8 +33,6 @@
 			<dict>
 				<key>filename</key>
 				<string>%NAME%.dmg</string>
-				<key>url</key>
-				<string>%url%</string>
 			</dict>
 			<key>Processor</key>
 			<string>URLDownloader</string>
