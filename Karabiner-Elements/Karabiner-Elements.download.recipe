@@ -94,8 +94,6 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>expected_authority_names</key>
-                <array/>
                 <key>input_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Karabiner-Elements.app</string>
                 <key>requirement</key>
@@ -122,8 +120,6 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>expected_authority_names</key>
-                <array/>
                 <key>input_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app</string>
                 <key>requirement</key>

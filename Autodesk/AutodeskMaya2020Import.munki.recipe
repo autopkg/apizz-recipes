@@ -231,8 +231,6 @@ done</string>
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>expected_authority_names</key>
-                <array/>
                 <key>input_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Autodesk/maya2020/Maya.app</string>
                 <key>requirement</key>

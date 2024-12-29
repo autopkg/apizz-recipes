@@ -43,8 +43,6 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>expected_authority_names</key>
-                <array/>
                 <key>input_path</key>
                 <string>%RECIPE_CACHE_DIR%/unpack/Applications/Dragonframe 4/Dragonframe 4.app</string>
                 <key>requirement</key>

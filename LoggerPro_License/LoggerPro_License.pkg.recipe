@@ -42,8 +42,6 @@
 		<dict>
 			<key>Arguments</key>
 			<dict>
-				<key>expected_authority_names</key>
-				<array/>
 				<key>input_path</key>
 				<string>%RECIPE_CACHE_DIR%/unpack/Logger Pro.app</string>
 				<key>requirement</key>

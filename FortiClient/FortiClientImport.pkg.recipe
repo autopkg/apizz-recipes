@@ -111,8 +111,6 @@ More valuable when used as a parent recipe to bring FortiClient into munki, Jamf
             <string>Check the app code signature.</string>
             <key>Arguments</key>
             <dict>
-                <key>expected_authority_names</key>
-                <array/>
                 <key>input_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/FortiClient.app</string>
                 <key>requirement</key>

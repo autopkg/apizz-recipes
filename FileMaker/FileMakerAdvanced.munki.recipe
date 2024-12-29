@@ -71,8 +71,6 @@ When purchasing FileMaker, the order confirmation email includes a URL which tak
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>expected_authority_names</key>
-                <array/>
                 <key>input_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/FileMaker Pro %MAJOR_VERSION% Advanced/FileMaker Pro Advanced.app</string>
                 <key>requirement</key>

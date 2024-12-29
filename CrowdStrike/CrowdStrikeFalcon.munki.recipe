@@ -154,8 +154,6 @@ writelog "*****  Install CrowdStrike Process:  COMPLETE  *****"</string>
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>expected_authority_names</key>
-                <array/>
                 <key>input_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Falcon.app</string>
                 <key>requirement</key>

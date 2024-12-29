@@ -51,8 +51,6 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>expected_authority_names</key>
-                <array/>
                 <key>input_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Microsoft Teams.app</string>
                 <key>requirement</key>
@@ -102,8 +100,6 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>expected_authority_names</key>
-                <array/>
                 <key>input_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/Library/Audio/Plug-Ins/HAL/MSTeamsAudioDevice.driver</string>
                 <key>requirement</key>

@@ -81,8 +81,6 @@ rm -f /Library/Preferences/com.tuxera.NTFS.plist</string>
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>expected_authority_names</key>
-                <array/>
                 <key>input_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Tuxera Disk Manager.app</string>
                 <key>requirement</key>
@@ -126,8 +124,6 @@ rm -f /Library/Preferences/com.tuxera.NTFS.plist</string>
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>expected_authority_names</key>
-                <array/>
                 <key>input_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/Library/PreferencePanes/Tuxera NTFS.prefPane</string>
                 <key>requirement</key>
@@ -186,4 +182,3 @@ rm -f /Library/Preferences/com.tuxera.NTFS.plist</string>
     </array>
 </dict>
 </plist>
-
