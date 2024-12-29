@@ -25,7 +25,7 @@
             <key>Arguments</key>
             <dict>
                 <key>info_path</key>
-                <string>%pathname%/RedisInsight*.app/Contents/Info.plist</string>
+                <string>%pathname%/Redis Insight.app/Contents/Info.plist</string>
                 <key>plist_keys</key>
                 <dict>
                     <key>CFBundleShortVersionString</key>
