@@ -23,7 +23,7 @@
                 <key>re_pattern</key>
                 <string>%REGEX%</string>
                 <key>url</key>
-                <string>https://www.etcconnect.com/Products/Consoles/Cobalt-Family/ETCnomad-ETCnomad-Puck/Software.aspx</string>
+                <string>https://www.etcconnect.com/Eos-Software</string>
             </dict>
             <key>Processor</key>
             <string>URLTextSearcher</string>
