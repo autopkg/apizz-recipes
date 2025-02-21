@@ -17,7 +17,7 @@
             <key>Arguments</key>
             <dict>
                 <key>re_pattern</key>
-                <string>"(https://mediadl\.musictribe\.com/[\S/]+/M32-Edit_MAC_[\d\.]+\.zip)"</string>
+                <string>"(https://cdn\.mediavalet\.com/[\S/]+/M32-Edit_MAC_[\d\.]+\.zip)"</string>
                 <key>url</key>
                 <string>https://www.midasconsoles.com/.rest/musictribe/v1/downloadcenter/solr-dldatatable?brandName=midas&amp;showLegacy=true&amp;modelCode=0603-AEP&amp;type=Software&amp;subtype=Mac&amp;sEcho=60&amp;iColumns=6&amp;iDisplayStart=0&amp;iDisplayLength=60&amp;mDataProp_0=modelName&amp;sSearch_0=&amp;bRegex_0=false&amp;bSearchable_0=true&amp;bSortable_0=true&amp;mDataProp_1=groupName&amp;sSearch_1=&amp;bRegex_1=false&amp;bSearchable_1=true&amp;bSortable_1=true&amp;mDataProp_2=title&amp;sSearch_2=&amp;bRegex_2=false&amp;bSearchable_2=true&amp;bSortable_2=true&amp;mDataProp_3=releaseNotes&amp;sSearch_3=&amp;bRegex_3=false&amp;bSearchable_3=true&amp;bSortable_3=true&amp;mDataProp_4=date&amp;sSearch_4=&amp;bRegex_4=false&amp;bSearchable_4=true&amp;bSortable_4=true&amp;mDataProp_5=url&amp;sSearch_5=&amp;bRegex_5=false&amp;bSearchable_5=true&amp;bSortable_5=true&amp;sSearch=&amp;bRegex=false&amp;iSortCol_0=4&amp;sSortDir_0=desc&amp;iSortingCols=1</string>
                 <key>result_output_var_name</key>
