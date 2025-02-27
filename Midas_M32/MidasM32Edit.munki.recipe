@@ -49,7 +49,7 @@ It provides powerful remote control for all functions, as well as off-line editi
                 <key>dmg_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
                 <key>dmg_root</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <string>%found_filename%</string>
             </dict>
             <key>Processor</key>
             <string>DmgCreator</string>
@@ -64,6 +64,17 @@ It provides powerful remote control for all functions, as well as off-line editi
             </dict>
             <key>Processor</key>
             <string>MunkiImporter</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
         </dict>
     </array>
 </dict>
