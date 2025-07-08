@@ -42,6 +42,16 @@
     <string>com.github.kevinmcox.pkg.Tart</string>
     <key>Process</key>
     <array>
+		<dict>
+            <key>Processor</key>
+            <string>DeprecationWarning</string>
+            <key>Arguments</key>
+            <dict>
+                <key>message</key>
+                <string>⚠️ The recipe com.github.apizz.munki.Tart is deprecated.
+Please use com.github.kevinmcox.munki.Tart going forward.</string>
+            </dict>
+        </dict>
         <dict>
             <key>Arguments</key>
             <dict>
