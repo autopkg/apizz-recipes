@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of Tart and imports it into a munki_repo. Specify an ARCH of "arm64" for Apple Silicon or "amd64" for Intel.</string>
+    <string>Downloads the latest version of Tart and imports it into a munki_repo.</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.Tart</string>
     <key>Input</key>
@@ -11,11 +11,9 @@
         <key>MUNKI_CATEGORY</key>
         <string>Virtualization</string>
         <key>MUNKI_REPO_SUBDIR</key>
-        <string>cli-tools/tart/%ARCH%</string>
+        <string>cli-tools/tart</string>
         <key>NAME</key>
         <string>Tart</string>
-        <key>ARCH</key>
-        <string>arm64</string>
         <key>pkginfo</key>
         <dict>
             <key>catalogs</key>
@@ -41,35 +39,18 @@
     <key>MinimumVersion</key>
     <string>1.0.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.wegotoeleven-recipes.pkg.Tart</string>
+    <string>com.github.kevinmcox.pkg.Tart</string>
     <key>Process</key>
     <array>
-        <dict>
+		<dict>
+            <key>Processor</key>
+            <string>DeprecationWarning</string>
             <key>Arguments</key>
             <dict>
-                <key>find</key>
-                <string>amd64</string>
-                <key>input_string</key>
-                <string>%ARCH%</string>
-                <key>replace</key>
-                <string>x86_64</string>
+                <key>message</key>
+                <string>⚠️ The recipe com.github.apizz.munki.Tart is deprecated.
+Please use com.github.kevinmcox.munki.Tart going forward.</string>
             </dict>
-            <key>Processor</key>
-            <string>com.github.homebysix.FindAndReplace/FindAndReplace</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>additional_pkginfo</key>
-                <dict>
-                    <key>supported_architectures</key>
-                    <array>
-                        <string>%output_string%</string>
-                    </array>
-                </dict>
-            </dict>
-            <key>Processor</key>
-            <string>MunkiPkginfoMerger</string>
         </dict>
         <dict>
             <key>Arguments</key>
