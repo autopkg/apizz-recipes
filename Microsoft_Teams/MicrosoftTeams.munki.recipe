@@ -25,11 +25,11 @@
             <key>category</key>
             <string>%MUNKI_CATEGORY%</string>
             <key>description</key>
-            <string>Microsoft Teams</string>
+            <string>Microsoft Teams classic</string>
             <key>developer</key>
             <string>Microsoft</string>
             <key>display_name</key>
-            <string>Microsoft Teams</string>
+            <string>Microsoft Teams classic</string>
             <key>name</key>
             <string>%NAME%</string>
             <key>unattended_install</key>
@@ -84,7 +84,7 @@
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>installs_item_paths</key>
                 <array>
-                    <string>/Applications/Microsoft Teams.app</string>
+                    <string>/Applications/Microsoft Teams classic.app</string>
                 </array>
             </dict>
             <key>Processor</key>
