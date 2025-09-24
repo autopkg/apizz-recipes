@@ -28,7 +28,7 @@
                     <string>%USER_AGENT%</string>
                 </dict>
                 <key>url</key>
-                <string>http://tbswitcher.rugarciap.com/</string>
+                <string>https://tbswitcher.rugarciap.com/</string>
             </dict>
             <key>Processor</key>
             <string>URLTextSearcher</string>
