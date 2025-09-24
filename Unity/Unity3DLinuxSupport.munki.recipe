@@ -9,7 +9,7 @@ Need to supply the munki item name for Unity 3D in UNITY_MUNKI_ITEM_NAME to corr
 
 A preinstall script in this support package checks to make sure the same version of Unity 3D is installed, otherwise it fails.
 
-BACKEND is either IP2CPP or Mono.
+BACKEND is either IL2CPP or Mono.
     </string>
     <key>Identifier</key>
     <string>com.github.apizz.autopkg.munki.Unity3DLinux</string>
