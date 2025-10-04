@@ -202,8 +202,6 @@ The native BlockBlock Installer.app utilizes a shell script to install / uninsta
                     </array>
                     <key>id</key>
                     <string>%pkg_id%</string>
-                    <key>options</key>
-                    <string>purge_ds_store</string>
                     <key>pkgname</key>
                     <string>%NAME%-%version%</string>
                     <key>version</key>

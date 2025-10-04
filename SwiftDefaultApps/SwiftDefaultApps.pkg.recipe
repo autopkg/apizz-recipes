@@ -126,8 +126,6 @@ To package only the executable, use SwiftDefaultApps_CLI.pkg.recipe instead.</st
                     </array>
                     <key>id</key>
                     <string>com.github.Lord-Kamina.SwiftDefaultApps</string>
-                    <key>options</key>
-                    <string>purge_ds_store</string>
                     <key>pkgname</key>
                     <string>%NAME%-%version%</string>
                     <key>version</key>
