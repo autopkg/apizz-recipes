@@ -62,8 +62,6 @@
                     </array>
                     <key>id</key>
                     <string>com.sqwarq.FastTasks-2</string>
-                    <key>options</key>
-                    <string>purge_ds_store</string>
                     <key>pkgname</key>
                     <string>%NAME%</string>
                     <key>version</key>

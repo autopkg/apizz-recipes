@@ -77,8 +77,6 @@ To package both the executable and preference pane, use SwiftDefaultApps.pkg.rec
                     </array>
                     <key>id</key>
                     <string>com.github.Lord-Kamina.SwiftDefaultAppsCLI</string>
-                    <key>options</key>
-                    <string>purge_ds_store</string>
                     <key>pkgname</key>
                     <string>%NAME%-%version%</string>
                     <key>version</key>
