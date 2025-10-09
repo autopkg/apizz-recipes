@@ -37,7 +37,7 @@
     <key>MinimumVersion</key>
     <string>1.0.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.tallfunnyjew.download.Telegram</string>
+    <string>com.github.moofit-recipes.download.Telegram</string>
     <key>Process</key>
     <array>
         <dict>
