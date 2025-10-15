@@ -18,43 +18,72 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>re_pattern</key>
-                <string>/projects/smartmontools/files/smartmontools/([\d.]+)</string>
-                <key>result_output_var_name</key>
-                <string>version</string>
-                <key>url</key>
-                <string>https://sourceforge.net/projects/smartmontools/files/smartmontools/</string>
+                <key>asset_regex</key>
+                <string>smartmontools-.*dmg$</string>
+                <key>github_repo</key>
+                <string>smartmontools/smartmontools</string>
+                <key>include_prereleases</key>
+                <string>%PRERELEASE%</string>
             </dict>
             <key>Processor</key>
-            <string>URLTextSearcher</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>re_pattern</key>
-                <string>(https://sourceforge.net/projects/smartmontools/files/smartmontools/[\d.]+/smartmontools-[\d.]+-1.dmg/download)</string>
-                <key>result_output_var_name</key>
-                <string>match</string>
-                <key>url</key>
-                <string>https://sourceforge.net/projects/smartmontools/files/smartmontools/%version%</string>
-            </dict>
-            <key>Processor</key>
-            <string>URLTextSearcher</string>
+            <string>GitHubReleasesInfoProvider</string>
         </dict>
         <dict>
             <key>Arguments</key>
             <dict>
                 <key>filename</key>
                 <string>%NAME%.dmg</string>
-                <key>url</key>
-                <string>%match%</string>
-            </dict>
-            <key>Processor</key>
-            <string>URLDownloader</string>
-        </dict>
+           </dict>
+           <key>Processor</key>
+           <string>URLDownloader</string>
+       </dict>
         <dict>
             <key>Processor</key>
             <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%pathname%/smartmontools*.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Because the smartmontools Github doesn't have a clean release version number, we have to get this ourselves from the PKG</string>
+            <key>Arguments</key>
+            <dict>
+                <key>flat_pkg_path</key>
+                <string>%pathname%/%dmg_found_filename%</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+            </dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Collect the version number from the extracted flat PKG</string>
+            <key>Arguments</key>
+            <dict>
+                <key>package_info_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/PackageInfo</string>
+            </dict>
+            <key>Processor</key>
+            <string>com.facebook.autopkg.shared/PackageInfoVersioner</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/unpack</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
         </dict>
     </array>
 </dict>
