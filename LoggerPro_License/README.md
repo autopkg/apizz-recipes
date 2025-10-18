@@ -4,7 +4,7 @@ The original LoggerPro_Update download recipe points to the publicly available V
 
 For individuals and institutions with licensed versions of the software, when logging into your Vernier account online you can actually use your unique licensed software URLs in the download recipe instead!
 
-![screenshot](https://github.com/apizz/prochat-recipes/blob/master/LoggerPro_License/LoggerPro_License_Page.png)
+![screenshot](LoggerPro_License_Page.png)
 
 Each of your licensed software contain unique links for Mac & Windows.  The only difference between these is a unique 5-digit number at the end of the URL. Right-click and copy the download URL for Mac or Windows download you care about. It will look something like this:
 
