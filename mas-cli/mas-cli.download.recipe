@@ -3,11 +3,18 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest release copy of the mas-cli from Github. Set PRERELEASE to a non-empty string to download prereleases, either via Input in an override or via the -k option, i.e.: `-k PRERELEASE=yes`</string>
+    <string>Downloads the latest release copy of the mas-cli from Github. 
+
+    Set ARCH to download the desired architecture.  Accepted values are arm64 or x86_64
+
+    Set PRERELEASE to a non-empty string to download prereleases, either via Input in an override or via the -k option, i.e.: `-k PRERELEASE=yes` 
+    </string>
     <key>Identifier</key>
     <string>com.github.apizz.download.mas-cli</string>
     <key>Input</key>
     <dict>
+        <key>ARCH</key>
+        <string>arm64</string>
     	<key>NAME</key>
     	<string>mas-cli</string>
     	<key>PRERELEASE</key>
@@ -20,6 +27,8 @@
         <dict>
     	    <key>Arguments</key>
     	    <dict>
+                <key>asset_regex</key>
+                <string>.*\-%ARCH%.pkg</string>
     	        <key>github_repo</key>
     	        <string>mas-cli/mas</string>
     	        <key>include_prereleases</key>
@@ -32,7 +41,7 @@
             <key>Arguments</key>
             <dict>
                 <key>filename</key>
-                <string>%NAME%.pkg</string>
+                <string>%NAME%-%ARCH%.pkg</string>
 	       </dict>
     	    <key>Processor</key>
     	    <string>URLDownloader</string>
