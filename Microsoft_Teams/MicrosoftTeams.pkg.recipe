@@ -14,7 +14,7 @@
     <key>MinimumVersion</key>
     <string>1.0.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.rtrouton.download.microsoftteams</string>
+    <string>com.github.rtrouton.download.microsoftteamsclassic</string>
     <key>Process</key>
     <array>
         <dict>
@@ -54,7 +54,7 @@
                 <key>expected_authority_names</key>
                 <array/>
                 <key>input_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Microsoft Teams.app</string>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Microsoft Teams classic.app</string>
                 <key>requirement</key>
                 <string>identifier "com.microsoft.teams" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = UBF8T346G9</string>
                 <key>strict_verification</key>
@@ -67,7 +67,7 @@
             <key>Arguments</key>
             <dict>
                 <key>info_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Microsoft Teams.app/Contents/Info.plist</string>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Microsoft Teams classic.app/Contents/Info.plist</string>
                 <key>plist_keys</key>
                 <dict>
                     <key>CFBundleShortVersionString</key>
