@@ -3,7 +3,12 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest Intel-based version of Code42 and imports it into a munki_repo.</string>
+    <string>Downloads the latest version of Code42 and imports it into a munki_repo.
+    
+Provide the desired architecture in the ARCH variable. Options include:
+- "x86_64" (default, downloads the Intel-based version)
+- "arm64" (downloads the arm64 version)
+</string>
     <key>Identifier</key>
     <string>com.github.apizz.munki.Code42</string>
     <key>Input</key>
@@ -43,7 +48,7 @@
             <string>%NAME%</string>
             <key>supported_architectures</key>
             <array>
-                <string>x86_64</string>
+                <string>%ARCH%</string>
             </array>
             <key>uninstall_method</key>
             <string>uninstall_script</string>

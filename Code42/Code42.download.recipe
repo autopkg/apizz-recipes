@@ -3,25 +3,45 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest Intel-based version of Code42.</string>
+    <string>Downloads the latest version of Code42.
+    
+Provide the desired architecture in the ARCH variable. Options include:
+- "x86_64" (default, downloads the Intel-based version)
+- "arm64" (downloads the arm64 version)
+</string>
     <key>Identifier</key>
     <string>com.github.apizz.download.Code42</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
         <string>Code42</string>
+        <key>ARCH</key>
+        <string>x86_64</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.1.0</string>
     <key>Process</key>
     <array>
         <dict>
+            <key>Processor</key>
+            <string>com.github.homebysix.FindAndReplace/FindAndReplace</string>
+            <key>Arguments</key>
+            <dict>
+                <key>input_string</key>
+                <string>https://download-preservation.code42.com/installs/agent/latest-mac-%ARCH%.dmg</string>
+                <key>find</key>
+                <string>-x86_64</string>
+                <key>replace</key>
+                <string></string>
+            </dict>
+        </dict>
+        <dict>
             <key>Arguments</key>
             <dict>
                 <key>filename</key>
                 <string>%NAME%.dmg</string>
                 <key>url</key>
-                <string>https://download-preservation.code42.com/installs/agent/latest-mac.dmg</string>
+                <string>%output_string%</string>
             </dict>
             <key>Processor</key>
             <string>URLDownloader</string>

@@ -3,7 +3,12 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest Intel-based version of Code42 and extracts the installer PKG.</string>
+    <string>Downloads the latest version of Code42 and extracts the installer PKG.
+    
+Provide the desired architecture in the ARCH variable. Options include:
+- "x86_64" (default, downloads the Intel-based version)
+- "arm64" (downloads the arm64 version)
+</string>
     <key>Identifier</key>
     <string>com.github.apizz.pkg.Code42</string>
     <key>Input</key>
