@@ -47,7 +47,7 @@
         <string>EndOfCheckPhase</string>
       </dict>
       <dict>
-        <key>Arugments</key>
+        <key>Arguments</key>
         <dict>
           <key>archive_path</key>
           <string>%pathname%</string>
