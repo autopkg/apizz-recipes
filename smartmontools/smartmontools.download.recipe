@@ -72,7 +72,7 @@
                 <string>%RECIPE_CACHE_DIR%/unpack/PackageInfo</string>
             </dict>
             <key>Processor</key>
-            <string>com.facebook.autopkg.shared/PackageInfoVersioner</string>
+            <string>com.github.nmcspadden.shared/PackageInfoVersioner</string>
         </dict>
         <dict>
             <key>Arguments</key>
